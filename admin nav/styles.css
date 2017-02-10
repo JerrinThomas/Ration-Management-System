@@ -57,3 +57,18 @@ li.dropdown{
 .dropdown:hover .dropdown-menu {
   display: block;
 }
+
+.anbutton{
+  background-color: #395fb0;
+  border-bottom: 2.5px solid #304777;
+  display: inline;
+  text-align: center;
+  padding: 10px 15px;
+  color: white;
+  text-decoration: none;
+  font-family: 'Roboto';
+  border-radius: 4px;
+  float: right;
+  margin-right: 10px;
+  margin-top: 7px;
+}
