@@ -1,7 +1,0 @@
-admindetails table :
-CREATE TABLE `drms`.`admindetails` ( `username` VARCHAR(16) NOT NULL , `password` VARCHAR(32) NOT NULL , `name` VARCHAR(32) NOT NULL , `taluk` VARCHAR(32) NOT NULL , `role` INT(1) NOT NULL DEFAULT '0' , PRIMARY KEY (`username`(16))) ENGINE = MyISAM;
-
-Super Admin : 
-INSERT INTO `admindetails` (`username`, `password`, `name`, `taluk`, `role`) VALUES ('superadmin', '1234567890', 'Gabbar Singh', 'Kottayam', '1');
-MiniAdmin 1 :
-INSERT INTO `admindetails` (`username`, `password`, `name`, `taluk`, `role`) VALUES ('miniadmin', '1234567890', 'Jose Prakash', 'kottarakara', '0');
