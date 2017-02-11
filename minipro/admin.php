@@ -15,12 +15,12 @@ $ro=mysqli_fetch_row($result);
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8">
-    <title>admin</title>
+    <title>ADMIN</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="waves.css">
 </head>
   <body>
-    <p></p>
+    <p>logged In As : <span style="color:#FF0000;"><?php echo $_SESSION['name'] ?></span></p>
     <ul>
       <li><a href="#">Home</a></li>
       <li class="dropdown"><a href="#" class="dropdown-btn">Ration Shops</a>
