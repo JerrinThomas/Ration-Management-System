@@ -1,0 +1,29 @@
+<form action="adduser.php" method="post" enctype="multipart/form-data">
+  Name of the Head of the family:
+  <input type="text" name="name" required ><br>
+  Address line 1:
+  <input type="text" name="address1"required ><br>
+  Address line 2:
+  <input type="text" name="address2" ><br>
+  Address line 3:
+  <input type="text" name="address3" ><br>
+  Panchayat/Municipality/Corporation:
+  <input type="text" name="panchayat" required ><br>
+  PIN code:
+  <input type="number" name="pin" min="100000" max="999999" required ><br>
+  Ward Number:
+  <input type="number" name="ward" min="1" max="99" required><br>
+  House Number:
+  <input type="number" name="houseno" min="1" max="9999" required ><br>
+  Monthly Income:
+  <input type="number" name="income" min="0" required ><br>
+  Number of members in family
+  <input type="number" name="membernumber" min="1" max="25"><br>
+  Details of Family Members:<br>
+  <input type="text" name="famember1" ><br>
+  Select image to upload:
+  <input type="file" name="fileToUpload" id="fileToUpload">
+  <input type="submit" value="Upload Image" name="submit">
+
+<input type="submit" value="Submit">
+</form>
