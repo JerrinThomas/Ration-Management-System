@@ -18,6 +18,7 @@
 		<script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
 	</head>
 </body>
+<!--navigaation bar-->
 <ul>
 <li><a href="#">Home</a></li>
 <li class="dropdown"><a href="#" class="dropdown-btn">Ration Shops</a>
@@ -41,16 +42,20 @@
     Waves.attach('.anbutton');
     Waves.init();
 </script>
-</ul>
+</ul> <!-- ended navigation bar-->
+<!--main body / form starting-->
 <h2>Add User</h2>
+<!-- container containing form code-->
   <div class="container">
+		<!-- form start-->
     <section class="content bgcolor-3">
+			<!-- head of family box starting-->
       <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-32" />
         <label class="input__label input__label--manami" for="input-32">
           <span class="input__label-content input__label-content--manami">Name of the Head of the Family</span>
         </label>
-      </span>
+      </span><!-- head of family box end-->
       <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-33" />
         <label class="input__label input__label--manami" for="input-33">
@@ -112,16 +117,20 @@
         </label>
       </span>
     </section>
-  </div>
+  </div><!-- ended form container-->
+	<!-- image upload button code-->
 	<div class="two">
 		<div class="box">
 			<input type="file" name="file-1[]" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" multiple />
-			<label for="file-1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> <span>Choose a file&hellip;</span></label>
+			<label for="file-1">
+					 <span>Choose a file&hellip;</span>
+			</label>
 		</div>
-	</div>
+	</div><!-- ended image upload button-->
+<!-- submit button-->
 <div>
   <button class="btn" type="button"><span>submit</span></button>
-</div>
+</div><!-- ended submit button -->
 	<script src="js/custom-file-input.js"></script>
   <script>
     (function() {
