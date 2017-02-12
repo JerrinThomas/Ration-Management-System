@@ -129,3 +129,7 @@ li.dropdown{
 
   transition: width .2s ease-out, padding-top .2s ease-out;
 }
+
+.two{
+  text-align: center;
+}
