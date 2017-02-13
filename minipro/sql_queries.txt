@@ -8,7 +8,7 @@ INSERT INTO `admindetails` (`username`, `password`, `name`, `taluk`, `role`) VAL
 
 
 Ration_Card_Holder
-CREATE TABLE `drms`.`rationcard_holder` ( `adhar_no` INT(12) NOT NULL , `hofamily` VARCHAR(25) NOT NULL , `add1` VARCHAR(125) NOT NULL , `add2` VARCHAR(125) NULL , `add3` VARCHAR(125) NULL , `pan_mun_cor` VARCHAR(50) NULL , `pincode` INT(6) NULL , `wardno` INT(3) NULL , `house_no` INT(4) NULL , `monthly_in` INT(12) NULL , `no_of_mem` INT(14) NULL , `hof_img` BLOB NULL , `mob_no` INT(16) NULL , `taluk` VARCHAR(50) NOT NULL , `ration_card_no` INT(12) NOT NULL ,PRIMARY KEY(`ration_card_no`), UNIQUE (`adhar_no`), UNIQUE (`mob_no`)) ENGINE = InnoDB; 
+CREATE TABLE `drms`.`rationcard_holder` ( `ration_card_no` INT(12) NOT NULL , `adhar_no` INT(12) NOT NULL , `hofamily` VARCHAR(25) NOT NULL , `add1` VARCHAR(125) NOT NULL , `add2` VARCHAR(125) NULL , `add3` VARCHAR(125) NULL , `pan_mun_cor` VARCHAR(50) NULL , `pincode` INT(6) NULL , `wardno` INT(3) NULL , `house_no` INT(4) NULL , `monthly_in` INT(12) NULL , `no_of_mem` INT(14) NULL , `hof_img` BLOB NULL , `mob_no` INT(16) NULL , `taluk` VARCHAR(50) NOT NULL , PRIMARY KEY(`ration_card_no`), UNIQUE (`adhar_no`), UNIQUE (`mob_no`)) ENGINE = InnoDB; 
 ALTER TABLE `rationcard_holder` ADD INDEX(`ration_card_no`);
 
 
