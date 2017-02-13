@@ -1,5 +1,5 @@
 admindetails table :
-CREATE TABLE `drms`.`admindetails` ( `username` VARCHAR(16) NOT NULL , `password` VARCHAR(32) NOT NULL , `name` VARCHAR(32) NOT NULL , `taluk` VARCHAR(32) NOT NULL , `role` INT(1) NOT NULL DEFAULT '0' , PRIMARY KEY (`username`(16))) ENGINE = MyISAM;
+CREATE TABLE `drms`.`admindetails` ( `username` VARCHAR(16) NOT NULL , `password` VARCHAR(32) NOT NULL , `name` VARCHAR(32) NOT NULL , `taluk` VARCHAR(32) NOT NULL , `role` INT(1) NOT NULL DEFAULT '0' , PRIMARY KEY (`username`(16))) ENGINE = InnoDB;
 
 Super Admin : 
 INSERT INTO `admindetails` (`username`, `password`, `name`, `taluk`, `role`) VALUES ('superadmin', '1234567890', 'Gabbar Singh', 'Kottayam', '1');
@@ -11,4 +11,7 @@ Ration_Card_Holder
 CREATE TABLE `drms`.`rationcard_holder` ( `ration_card_no` INT(12) NOT NULL , `adhar_no` INT(12) NOT NULL , `hofamily` VARCHAR(25) NOT NULL , `add1` VARCHAR(125) NOT NULL , `add2` VARCHAR(125) NULL , `add3` VARCHAR(125) NULL , `pan_mun_cor` VARCHAR(50) NULL , `pincode` INT(6) NULL , `wardno` INT(3) NULL , `house_no` INT(4) NULL , `monthly_in` INT(12) NULL , `no_of_mem` INT(14) NULL , `hof_img` BLOB NULL , `mob_no` INT(16) NULL , `taluk` VARCHAR(50) NOT NULL , PRIMARY KEY(`ration_card_no`), UNIQUE (`adhar_no`), UNIQUE (`mob_no`)) ENGINE = InnoDB; 
 ALTER TABLE `rationcard_holder` ADD INDEX(`ration_card_no`);
 
-
+Details of members ! 
+CREATE TABLE `drms`.`cardholder_and_mem` ( `adhar_no` INT(12) NOT NULL , `ration_card_no` INT(12) NOT NULL , PRIMARY KEY(`adhar_no`) ) ENGINE = InnoDB;
+ALTER TABLE `cardholder_and_mem` ADD INDEX(`ration_card_no`);
+ALTER TABLE `cardholder_and_mem` ADD CONSTRAINT `fkey1` FOREIGN KEY (`ration_card_no`) REFERENCES `rationcard_holder`(`ration_card_no`) ON DELETE CASCADE ON UPDATE CASCADE;
