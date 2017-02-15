@@ -54,19 +54,24 @@ li.dropdown{
 }
 
 .anbutton{
-  background-color: #395fb0;
-  border-bottom: 2.5px solid #304777;
+  background-color: transparent;
+  border: 2.5px solid #ffff;
   display: inline;
   text-align: center;
-  padding: 10px 15px;
+  padding: 8px 12px;
   color: white;
   text-decoration: none;
-  font-family: 'Roboto';
-  border-radius: 4px;
+  font-family: sans-serif;
+  border-radius: 30px;
   float: right;
   margin-right: 10px;
   margin-top: 7px;
 }
+.anbutton:hover{
+  background-color: white;
+}
+
+
 
 .btn {
   position: relative;
