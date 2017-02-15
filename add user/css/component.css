@@ -8,9 +8,13 @@
 }
 
 .inputfile + label {
+  background-color: transparent;
     max-width: 80%;
     font-size: 1.25rem;
     /* 20px */
+    border-radius: 10px;
+
+    border: 2.5px solid #ffff;
     font-weight: 700;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -52,7 +56,7 @@
 
 .inputfile-1 + label {
     color: #f1e5e6;
-    background-color: #d3394c;
+    background-color: transparent;
 }
 
 .inputfile-1:focus + label,

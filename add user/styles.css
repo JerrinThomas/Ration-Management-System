@@ -2,10 +2,14 @@
 
 ul{
   list-style-type: none;
+
   margin: 0;
   padding: 0;
   overflow: hidden;
   background-color: #1ebb90;
+  -webkit-box-shadow: 0px 6px 20px 0px rgba(0,0,0,0.42);
+  -moz-box-shadow: 0px 6px 20px 0px rgba(0,0,0,0.42);
+   box-shadow: 0px 6px 20px 0px rgba(0,0,0,0.42);
 }
 
 li{
@@ -71,6 +75,13 @@ li.dropdown{
   background-color: white;
 }
 
+h4{
+  font-size: 20px;
+  color: white;
+  
+  text-align: center;
+
+}
 
 
 .btn {
