@@ -15,7 +15,7 @@
 		<!--[if IE]>
   		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
-		<script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
+		<script type="text/javascript" src="https://gc.kis.scr.kaspersky-labs.com/EB053B0F-62D3-E04B-B72C-CDF5F58B09B7/main.js" charset="UTF-8"></script><script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
 	</head>
 </body>
 <!--navigaation bar-->
@@ -52,7 +52,7 @@
     <section class="content bgcolor-3">
 			<!-- head of family box starting-->
       <span class="input input--manami">
-        <input class="input__field input__field--manami" type="text" id="input-32" />
+        <input class="input__field input__field--manami" type="text" id="input-32" required />
         <label class="input__label input__label--manami" for="input-32">
           <span class="input__label-content input__label-content--manami">Name of the Head of the Family</span>
         </label>
@@ -112,11 +112,19 @@
         </label>
       </span>
       <span class="input input--manami">
-        <input class="input__field input__field--manami" type="text" id="input-34" />
-        <label class="input__label input__label--manami" for="input-34">
-          <span class="input__label-content input__label-content--manami">Details of Family Member</span>
+        <h4>Details of other Family Member(s)</h4>
         </label>
       </span>
+<table id="employee_table" align=center>
+   <tr id="row1">
+    <td><input class="memfam" type="text" name="name[]" placeholder="Enter Name"></td>
+    <td><input class="memfam" type="number" name="age[]" placeholder="Enter Age"></td>
+    <td><input class="memfam" type="number" name="job[]" placeholder="Enter Aadhaar Number"></td>
+
+   </tr>
+	
+  </table>
+ <input class="btnew" type="button" onclick="add_row();" value="+">
     </section>
   </div><!-- ended form container-->
 	<!-- image upload button code-->
@@ -169,6 +177,19 @@
         }
       }
     })();
+  </script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script type="text/javascript">
+  function add_row()
+  {
+    $rowno=$("#employee_table tr").length;
+    $rowno=$rowno+1;
+    $("#employee_table tr:last").after("<tr id='row"+$rowno+"'><td><input class='memfam' type='text' name='name[]' placeholder='Enter Name'></td><td><input class='memfam' type='text' name='age[]' placeholder='Enter Age'></td><td><input class='memfam' type='text' name='job[]' placeholder='Enter Aadhaar Number'></td><td><input class='btnew' type='button' value='-' onclick=delete_row('row"+$rowno+"')></td></tr>");
+  }
+  function delete_row(rowno)
+  {
+    $('#'+rowno).remove();
+  }
   </script>
 </div>
 </body>

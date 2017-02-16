@@ -83,7 +83,33 @@ h4{
 
 }
 
+.memfam{
+    width: 20rem;
+    background: transparent;
+    color:white;
+    padding: 10px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
 
+.btnew{
+background: transparent;
+border: 2px solid #4CAF50; /* Green */
+border-radius:8px;
+text-align: center;
+  padding: 8px 12px;
+  color: white;
+  text-decoration: none;
+  font-family: Arial;
+
+}
+
+.btnew:hover{
+color: #4CAF50;
+}
 .btn {
   position: relative;
   width:25%;
