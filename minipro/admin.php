@@ -32,7 +32,7 @@ $ro=mysqli_fetch_row($result);
       </li>
       <li class="dropdown"><a href="#" class="dropdown-btn">Users</a>
           <div class="dropdown-menu">
-              <a href="#">Add</a>
+              <a href="adduser/adduser.html">Add</a>
               <a href="#">Remove</a>
               <a href="#">Modify</a>
           </div>
