@@ -76,9 +76,17 @@ li.dropdown {
     margin-top: 7px;
 }
 
+<<<<<<< HEAD
+h4{
+  font-size: 20px;
+  color: white;
+
+  text-align: center;
+=======
 .anbutton:hover {
     background-color: white;
 }
+>>>>>>> origin/master
 
 h4 {
     font-size: 20px;

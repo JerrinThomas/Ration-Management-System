@@ -30,7 +30,7 @@
 </li>
 <li class="dropdown"><a href="#" class="dropdown-btn">Users</a>
     <div class="dropdown-menu">
-        <a href="#">Add</a>
+        <a href="adduser.html">Add</a>
         <a href="#">Remove</a>
         <a href="#">Modify</a>
     </div>
@@ -52,7 +52,7 @@
 		<!-- form start-->
     <section class="content bgcolor-3">
 			<!-- head of family box starting-->
-			<form action="add user.php" method="post" enctype="multipart/form-data">
+			<form action="adduser.php" method="post" enctype="multipart/form-data">
       <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-32" name="hofamily" />
         <label class="input__label input__label--manami" for="input-32">
@@ -137,9 +137,9 @@
       </span>
 <table id="employee_table" align=center>
    <tr id="row1">
-    <td><input class="memfam" type="text" name="name[]" placeholder="Enter Name"></td>
-    <td><input class="memfam" type="number" name="age[]" placeholder="Enter Age"></td>
-    <td><input class="memfam" type="number" name="job[]" placeholder="Enter Aadhaar Number"></td>
+    <td><input class="memfam" type="text" name="name[]" placeholder=" Name "></td>
+    <td><input class="memfam" type="number" name="age[]" placeholder=" Age "></td>
+    <td><input class="memfam" type="number" name="adhar_no2[]" placeholder=" Aadhar Number "></td>
 
    </tr>
 
@@ -151,7 +151,7 @@
 	<h4>Upload an Image : </h4>
 	<div class="two">
 		<div class="box">
-			<input type="file" name="file-1[]" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" multiple />
+			<input type="file" name="fileToUpload" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" multiple />
 			<label for="file-1">
 					 <span>Choose a file&hellip;</span>
 			</label>
@@ -205,7 +205,7 @@
   {
     $rowno=$("#employee_table tr").length;
     $rowno=$rowno+1;
-    $("#employee_table tr:last").after("<tr id='row"+$rowno+"'><td><input class='memfam' type='text' name='name[]' placeholder='Enter Name'></td><td><input class='memfam' type='text' name='age[]' placeholder='Enter Age'></td><td><input class='memfam' type='text' name='job[]' placeholder='Enter Aadhaar Number'></td><td><input class='btnew' type='button' value='-' onclick=delete_row('row"+$rowno+"')></td></tr>");
+    $("#employee_table tr:last").after("<tr id='row"+$rowno+"'><td><input class='memfam' type='text' name='name[]' placeholder=' Name '></td><td><input class='memfam' type='text' name='age[]' placeholder=' Age '></td><td><input class='memfam' type='text' name='adhar_no2[]' placeholder=' Aadhaar Number '></td><td><input class='btnew' type='button' value='-' onclick=delete_row('row"+$rowno+"')></td></tr>");
   }
   function delete_row(rowno)
   {
