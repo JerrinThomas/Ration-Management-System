@@ -1,17 +1,19 @@
 admindetails table :
 CREATE TABLE `drms`.`admindetails` ( `username` VARCHAR(16) NOT NULL , `password` VARCHAR(32) NOT NULL , `name` VARCHAR(32) NOT NULL , `taluk` VARCHAR(32) NOT NULL , `role` INT(1) NOT NULL DEFAULT '0' , PRIMARY KEY (`username`(16))) ENGINE = InnoDB;
 
-Super Admin : 
+Super Admin :
 INSERT INTO `admindetails` (`username`, `password`, `name`, `taluk`, `role`) VALUES ('superadmin', '1234567890', 'Gabbar Singh', 'Kottayam', '1');
 MiniAdmin 1 :
 INSERT INTO `admindetails` (`username`, `password`, `name`, `taluk`, `role`) VALUES ('miniadmin', '1234567890', 'Jose Prakash', 'kottarakara', '0');
 
 
 Ration_Card_Holder
-CREATE TABLE `drms`.`rationcard_holder` ( `ration_card_no` INT(12) NOT NULL , `adhar_no` INT(12) NOT NULL , `hofamily` VARCHAR(25) NOT NULL , `add1` VARCHAR(125) NOT NULL , `add2` VARCHAR(125) NULL , `add3` VARCHAR(125) NULL , `pan_mun_cor` VARCHAR(50) NULL , `pincode` INT(6) NULL , `wardno` INT(3) NULL , `house_no` INT(4) NULL , `monthly_in` INT(12) NULL , `no_of_mem` INT(14) NULL , `hof_img` BLOB NULL , `mob_no` INT(16) NULL , `taluk` VARCHAR(50) NOT NULL , PRIMARY KEY(`ration_card_no`), UNIQUE (`adhar_no`), UNIQUE (`mob_no`)) ENGINE = InnoDB; 
-ALTER TABLE `rationcard_holder` ADD INDEX(`ration_card_no`);
+CREATE TABLE `drms`.`rationcard_holder` ( `ration_card_no` BIGINT(16) NOT NULL AUTO_INCREMENT, `adhar_no` BIGINT(18) NOT NULL , `hofamily` VARCHAR(50) NOT NULL , `add1` VARCHAR(125) NOT NULL , `add2` VARCHAR(125) NULL , `add3` VARCHAR(125) NULL , `pan_mun_cor` VARCHAR(50) NULL , `pincode` INT(7) NULL , `wardno` INT(4) NULL , `house_no` INT(4) NULL , `monthly_in` INT(14) NULL , `no_of_mem` INT(14) NULL , `hof_img` VARCHAR(125) NULL, `hof_img_type` VARCHAR(5) NULL , `mob_no` BIGINT(16) NULL , `taluk` VARCHAR(50) NOT NULL , PRIMARY KEY(`ration_card_no`), UNIQUE (`adhar_no`), UNIQUE (`mob_no`)) ENGINE = InnoDB;
+ALTER TABLE `rationcard_holder` AUTO_INCREMENT=1000000000;
+ALTER TABLE `rationcard_holder` ADD INDEX(`ration_card_no`);	
 
-Details of members ! 
-CREATE TABLE `drms`.`cardholder_and_mem` ( `adhar_no` INT(12) NOT NULL , `ration_card_no` INT(12) NOT NULL , PRIMARY KEY(`adhar_no`) ) ENGINE = InnoDB;
+Details Of Family Members//.. 
+CREATE TABLE `drms`.`cardholder_and_mem` ( `adhar_no` BIGINT(18) NOT NULL , `ration_card_no` BIGINT(16) NOT NULL , `mem_name` VARCHAR(50) NOT NULL, `age` INT(3) NOT NULL, PRIMARY KEY(`adhar_no`) ) ENGINE = InnoDB;
 ALTER TABLE `cardholder_and_mem` ADD INDEX(`ration_card_no`);
 ALTER TABLE `cardholder_and_mem` ADD CONSTRAINT `fkey1` FOREIGN KEY (`ration_card_no`) REFERENCES `rationcard_holder`(`ration_card_no`) ON DELETE CASCADE ON UPDATE CASCADE;
+	
