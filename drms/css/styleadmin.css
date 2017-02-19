@@ -133,4 +133,6 @@ h2{
 h3{
     text-align: center;
     color: crimson;
+    background-color: white;
+    padding: 7px;
 }
