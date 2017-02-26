@@ -196,3 +196,11 @@ color: #4CAF50;
     text-decoration-color: aliceblue;
     z-index: 10;
 }
+
+.bfore{
+  padding: 25px;
+  margin: 0 auto;
+  border: 2px solid white;
+  max-width: 500px;
+}
+
