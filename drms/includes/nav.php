@@ -12,7 +12,7 @@
     <li class="dropdown"><a href="#" class="dropdown-btn">Users</a>
         <div class="dropdown-menu">
             <a href="adduserhome.php">Add</a>
-            <a href="#">Remove</a>
+            <a href="rm_user_home.php">Remove</a>
             <a href="edit_user_home.php">Modify</a>
         </div>
     </li>

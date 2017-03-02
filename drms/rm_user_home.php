@@ -9,13 +9,19 @@ if(isset($_GET['msg']))
  else {
    $msg="";
  }
+ if(isset($_GET['msg1']))
+  {
+    $msg1=$_GET['msg1'];
+  }
+  else {
+    $msg1="";
+  }
 ?>
 
 </body>
-<h2>Modify User</h2>
-
+<h2>Remove User</h2>
 <div class="bfore">
-     <form action="edit_user.php" method="post">
+     <form action="rm_user.php" method="post">
                     <span><?php echo "<h1>".$msg."</h1>" ?></span>
                     <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-32" name="cardno" required/>
@@ -26,6 +32,7 @@ if(isset($_GET['msg']))
        <div>
             <input class="btn" type="submit" value="submit" name="Submit" />
         </div>
+        <span><?php echo "<h1>".$msg1."</h1>" ?></span>
 
     </form>
 </div>

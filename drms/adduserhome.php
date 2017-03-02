@@ -47,7 +47,7 @@ include('includes/nav.php');
                     <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-34" name="pan_mun_cor"/>
         <label class="input__label input__label--manami" for="input-34">
-          <span class="input__label-content input__label-content--manami">Panchayath/Muncipality Corporation</span>
+          <span class="input__label-content input__label-content--manami">Panchayath/Muncipality/Corporation</span>
                     </label>
                     </span>
                     <span class="input input--manami">

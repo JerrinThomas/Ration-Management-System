@@ -9,7 +9,7 @@ if(isset($_POST["Submit"])) {
 else {
   $cardno="";
 }
-$sql1="SELECT adhar_no,hofamily,add1,add2,add3,pan_mun_cor,pincode,wardno,house_no,monthly_in,no_of_mem,hof_img,hof_img_type,mob_no,taluk from rationcard_holder where ration_card_no='$cardno'";
+$sql1="SELECT ration_card_no,adhar_no,hofamily,add1,add2,add3,pan_mun_cor,pincode,wardno,house_no,monthly_in,mob_no,taluk,no_of_mem,hof_img from rationcard_holder where ration_card_no='$cardno'";
 $result=mysqli_query($dbC,$sql1);
 $count=mysqli_num_rows($result);
 if($count==0)
@@ -27,82 +27,89 @@ $res=mysqli_query($dbC,$sql2);
             <!-- form sta rt-->
             <section class="content bgcolor-3">
                 <!-- head of family box starting-->
-                <form action="adduser.php" method="post" enctype="multipart/form-data">
+                <img src="<?php echo $row1[14];?>"/>
+                <form action="edit_user_db.php" method="post" enctype="multipart/form-data">
                     <span class="input input--manami input--filled" >
-        <input class="input__field input__field--manami" type="text" id="input-32" name="hofamily" placeholder="<?php echo $row1[0]; ?>" />
+        <input class="input__field input__field--manami" type="text" id="input-32" name="cardno" placeholder="<?php echo $row1[0]; ?>" value="<?php echo $row1[0]; ?>" readonly="readonly"/>
         <label class="input__label input__label--manami" for="input-32">
           <span class="input__label-content input__label-content--manami">Ration Card Number</span>
                     </label>
                     </span>
                     <!-- head of family box end-->
                     <span class="input input--manami input--filled">
-				<input class="input__field input__field--manami" type="text" id="input-34" name="adhar_no" placeholder="<?php echo $row1[1]; ?>"/>
+				<input class="input__field input__field--manami" type="text" id="input-34" name="adhar_no" placeholder="<?php echo $row1[1]; ?>" value="<?php echo $row1[1]; ?>"/>
 				<label class="input__label input__label--manami" for="input-34">
 					<span class="input__label-content input__label-content--manami">Adhar Number</span>
                     </label>
                     </span>
                     <span class="input input--manami input--filled">
-        <input class="input__field input__field--manami" type="text" id="input-33" name="add1"  placeholder="<?php echo $row1[2]; ?>"/>
+        <input class="input__field input__field--manami" type="text" id="input-33" name="hofamily"  placeholder="<?php echo $row1[2]; ?>" value="<?php echo $row1[2]; ?>"/>
         <label class="input__label input__label--manami" for="input-33">
+          <span class="input__label-content input__label-content--manami">Head Of Family</span>
+                    </label>
+                    </span>
+                    <span class="input input--manami input--filled">
+        <input class="input__field input__field--manami" type="text" id="input-34" name="add1"  placeholder="<?php echo $row1[3]; ?>" value="<?php echo $row1[3]; ?>"/>
+        <label class="input__label input__label--manami" for="input-34">
           <span class="input__label-content input__label-content--manami">Address 1</span>
                     </label>
                     </span>
                     <span class="input input--manami input--filled">
-        <input class="input__field input__field--manami" type="text" id="input-34" name="add2"  placeholder="<?php echo $row1[3]; ?>"/>
+        <input class="input__field input__field--manami" type="text" id="input-34" name="add2"  placeholder="<?php echo $row1[4]; ?>" value="<?php echo $row1[4]; ?>"/>
         <label class="input__label input__label--manami" for="input-34">
           <span class="input__label-content input__label-content--manami">Address 2</span>
                     </label>
                     </span>
                     <span class="input input--manami input--filled">
-        <input class="input__field input__field--manami" type="text" id="input-34" name="add3"  placeholder="<?php echo $row1[4]; ?>"/>
+        <input class="input__field input__field--manami" type="text" id="input-34" name="add3"  placeholder="<?php echo $row1[5]; ?>" value="<?php echo $row1[5]; ?>"/>
         <label class="input__label input__label--manami" for="input-34">
           <span class="input__label-content input__label-content--manami">Address 3</span>
                     </label>
                     </span>
                     <span class="input input--manami input--filled">
-        <input class="input__field input__field--manami" type="text" id="input-34" name="pan_mun_cor"  placeholder="<?php echo $row1[5]; ?>"/>
+        <input class="input__field input__field--manami" type="text" id="input-34" name="pan_mun_cor"  placeholder="<?php echo $row1[6]; ?>" value="<?php echo $row1[6]; ?>"/>
         <label class="input__label input__label--manami" for="input-34">
-          <span class="input__label-content input__label-content--manami">Panchayat / Muncipality / Coorperation</span>
+          <span class="input__label-content input__label-content--manami">Panchayath/Muncipality/Corporation</span>
                     </label>
                     </span>
                     <span class="input input--manami input--filled">
-        <input class="input__field input__field--manami" type="text" id="input-34" name="pincode"  placeholder="<?php echo $row1[6]; ?>"/>
+        <input class="input__field input__field--manami" type="text" id="input-34" name="pincode"  placeholder="<?php echo $row1[7]; ?>" value="<?php echo $row1[7]; ?>"/>
         <label class="input__label input__label--manami" for="input-34">
           <span class="input__label-content input__label-content--manami">Pincode</span>
                     </label>
                     </span>
                     <span class="input input--manami input--filled">
-        <input class="input__field input__field--manami" type="text" id="input-34" name="wardno"  placeholder="<?php echo $row1[7]; ?>"/>
+        <input class="input__field input__field--manami" type="text" id="input-34" name="wardno"  placeholder="<?php echo $row1[8]; ?>" value="<?php echo $row1[8]; ?>"/>
         <label class="input__label input__label--manami" for="input-34">
           <span class="input__label-content input__label-content--manami">Ward Number</span>
                     </label>
                     </span>
                     <span class="input input--manami input--filled">
-        <input class="input__field input__field--manami" type="text" id="input-34" name="house_no"  placeholder="<?php echo $row1[8]; ?>"/>
+        <input class="input__field input__field--manami" type="text" id="input-34" name="house_no"  placeholder="<?php echo $row1[9]; ?>" value="<?php echo $row1[9]; ?>"/>
         <label class="input__label input__label--manami" for="input-34">
           <span class="input__label-content input__label-content--manami">House Number</span>
                     </label>
                     </span>
                     <span class="input input--manami input--filled">
-        <input class="input__field input__field--manami" type="text" id="input-34" name="monthly_in"  placeholder="<?php echo $row1[9]; ?>"/>
+        <input class="input__field input__field--manami" type="text" id="input-34" name="monthly_in"  placeholder="<?php echo $row1[10]; ?>" value="<?php echo $row1[10]; ?>"/>
         <label class="input__label input__label--manami" for="input-34">
           <span class="input__label-content input__label-content--manami">Monthly Income</span>
                     </label>
                     </span>
                     <span class="input input--manami input--filled">
-				<input class="input__field input__field--manami" type="text" id="input-34" name="mob_no"  placeholder="<?php echo $row1[10]; ?>"/>
+				<input class="input__field input__field--manami" type="text" id="input-34" name="mob_no"  placeholder="<?php echo $row1[11]; ?>" value="<?php echo $row1[11]; ?>"/>
 				<label class="input__label input__label--manami" for="input-34">
 					<span class="input__label-content input__label-content--manami">Mobile Number</span>
                     </label>
                     </span>
                     <span class="input input--manami input--filled">
-				<input class="input__field input__field--manami" type="text" id="input-34" name="taluk"  placeholder="<?php echo $row1[13]; ?>"/>
+				<input class="input__field input__field--manami" type="text" id="input-34" name="taluk"  placeholder="<?php echo $row1[12]; ?>" value="<?php echo $row1[12]; ?>"/>
 				<label class="input__label input__label--manami" for="input-34">
 					<span class="input__label-content input__label-content--manami">Taluk</span>
                     </label>
                     </span>
                     <span class="input input--manami input--filled">
-        <input class="input__field input__field--manami" type="text" id="input-34" name="no_of_mem"  placeholder="<?php echo $row1[14]; ?>"/>
+        <input class="input__field input__field--manami" type="text" id="input-34" name="no_of_mem"  placeholder="<?php echo $row1[13]; ?>" value="<?php echo $row1[13]; ?>"/>
         <label class="input__label input__label--manami" for="input-34">
           <span class="input__label-content input__label-content--manami">Number Of Members Family</span>
                     </label>
@@ -112,13 +119,14 @@ $res=mysqli_query($dbC,$sql2);
         </label>
       </span>
                     <table id="employee_table" align=center>
-                        <tr id="row1">
                           <?php while ($row2=mysqli_fetch_row($res))
                             {
-                              echo "<td><input class=\"memfam\" type=\"text\" name=\"name[]\" placeholder=\"".$row2[0]."\"></td><td><input class=\"memfam\" type=\"number\" name=\"age[]\" placeholder=\"".$row2[1]."\"></td><td><input class=\"memfam\" type=\"number\" name=\"adhar_no2[]\" placeholder=\"".$row2[2]."\"></td><td><input class='btnew' type='button' value='-' onclick=delete_('row1')></td>";
+                              $i=1;
+                              echo "<tr id=\"row".$i."\"><td><input class=\"memfam\" type=\"text\" name=\"name[]\" placeholder=\"".$row2[0]."\" value=\"".$row2[0]."\"></td><td><input class=\"memfam\" type=\"number\" name=\"age[]\" placeholder=\"".$row2[1]."\" value=\"".$row2[1]."\"></td><td><input class=\"memfam\" type=\"number\" name=\"adhar_no2[]\" placeholder=\"".$row2[2]
+                              ."\" value=\"".$row2[2]."\"></td><td><input class='btnew' type='button' value='-' onclick=delete_('row1')></td></tr>";
+                              $i++;
                             }
                           ?>
-                        </tr>
                     </table>
                     <input class="btnew" type="button" onclick="add_row();" value="+">
             </section>
