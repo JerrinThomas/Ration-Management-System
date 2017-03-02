@@ -17,17 +17,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
   $mob_no=test_input($_POST["mob_no"]);
   $taluk=test_input($_POST["taluk"]);
   $no_of_mem=test_input($_POST["no_of_mem"]);
+  if($no_of_mem!=0){
   $name=$_POST["name"];
   $age=$_POST["age"];
   $adhar_no2=$_POST["adhar_no2"];
   for($i=0;$i<count($name);$i++)
   {
+       $Ydetails=true;
        if($name[$i]!="" && $age[$i]!="" && $adhar_no2[$i]!="")
         {
            $name[$i]=test_input($name[$i]);
            $age[$i]=test_input($age[$i]);
            $adhar_no2[$i]=test_input($adhar_no2[$i]);
         }
+ }
+ }
+ else {
+   $Ydetails=false;
  }
 }
 
@@ -42,51 +48,52 @@ try {
 if(!isset($_FILES["fileToUpload"]["tmp_name"])||$hofamily==""||$adhar_no==""||$add1==""||$add2==""||$add3==""||$pan_mun_cor==""||$pincode==""||$wardno==""||$house_no==""||$monthly_in==""||$mob_no==""||$taluk=="") {
      throw new Exception(" MISSING INPUT ..... <br> Try Again.... :/ ");
   }
-foreach ($name as $k) {
-  if($k=="")
-    throw new Exception(" Missing Data In DETAILS OF MEMBERS :- Names Not Found... <br> Try Again :/ ..");
-}
-foreach ($adhar_no2 as $k) {
-  if($k=="")
-    throw new Exception(" Missing Data In DETAILS OF MEMBERS :- Adhar No Not Found... <br> Try Again :/ ..");
-}
-foreach ($age as $k) {
-  if($k=="")
-    throw new Exception(" Missing Data In DETAILS OF MEMBERS :- Age No Not Found... <br> Try Again :/ ..");
+if($Ydetails){
+    foreach ($name as $k) {
+       if($k=="")
+         throw new Exception(" Missing Data In DETAILS OF MEMBERS :- Names Not Found... <br> Try Again :/ ..");
+    }
+    foreach ($adhar_no2 as $k) {
+      if($k=="")
+        throw new Exception(" Missing Data In DETAILS OF MEMBERS :- Adhar No Not Found... <br> Try Again :/ ..");
+    }
+    foreach ($age as $k) {
+      if($k=="")
+         throw new Exception(" Missing Data In DETAILS OF MEMBERS :- Age No Not Found... <br> Try Again :/ ..");
+  }
 }
 if((strlen((String)$adhar_no) !== 12))
      throw new Exception(" Please Enter A Valid 12 Digit Adhar Number.... :/ <br>GO BACK>>> ");
 if((strlen((String)$mob_no) !== 10))
           throw new Exception(" Please Enter A Valid 10 Digit Mobile Number.... :/ <br>GO BACK>>> ");
-if(count($name) < $no_of_mem)
-{
+if($Ydetails){
+   if(count($name) < $no_of_mem)
+   {
      $c=$no_of_mem-count($name);
      throw new Exception("Please Enter ".$c." More Member(s) :/ ....GO BACK>>> ");
-}
-if(count($name) > $no_of_mem)
-{
+   }
+   if(count($name) > $no_of_mem)
+   {
      $c=$no_of_mem-count($name);
      throw new Exception("Please Delete ".$c." Member(s).... :/ AND TRY AGAIN>>> ");
-}
-$ar=array();
-$e=1;
- foreach ($adhar_no2 as $var) {
-  $len=strlen((String)$var);
-   if( $len !== 12)
+   }
+    $ar=array();
+    $e=1;
+   foreach ($adhar_no2 as $var) {
+       $len=strlen((String)$var);
+      if( $len !== 12)
         {
           $e=0;
           array_push($ar,$var);
         }
- }
-
-
-if($e==0)
-{   echo "Please Enter A Valid Adhar No In The Member Details Section <br> The Following Adhar No.s Are Invalid... :/ ";
+   }
+  if($e==0)
+  {   echo "Please Enter A Valid Adhar No In The Member Details Section <br> The Following Adhar No.s Are Invalid... :/ ";
     foreach ($ar as $v) {
       echo "<br>$v<br>";
     }
     throw new Exception(" Please Go Back And Try Again ... :) ");
-
+  }
 }
 
 // Check if image file is a actual image or fake image
@@ -145,6 +152,7 @@ if(mysqli_num_rows($checkmem) != 0){
   echo "<img src=\"".$target_file."\"><br>The allotted ration card No : ".$rw[0]."<br>The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.<br>Head Of Family : ".$hofamily;
 } catch (Exception $e) {
   echo 'Caught exception: ',  $e->getMessage(), "\n  ";
+  echo "<input action=\"action\" type=\"button\" value=\"Back\" onclick=\"history.go(-1);\"/>";
 }
 
 

@@ -2,21 +2,29 @@
 include('includes/checksuper.php');
 include('includes/header.php');
 include('includes/nav.php');
+if(isset($_GET['msg']))
+ {
+   $msg=$_GET['msg'];
+ }
+ else {
+   $msg="";
+ }
 ?>
 
 </body>
 <h2>Edit User</h2>
 
 <div class="bfore">
-     <form action="#" method="post" enctype="multipart/form-data">
+     <form action="edit_user.php" method="post">
+                    <span><?php echo "<h1>".$msg."</h1>" ?></span>
                     <span class="input input--manami">
-        <input class="input__field input__field--manami" type="text" id="input-32" name="hofamily" required/>
+        <input class="input__field input__field--manami" type="text" id="input-32" name="cardno" required/>
         <label class="input__label input__label--manami" for="input-32">
           <span class="input__label-content input__label-content--manami">Ration Card Number</span>
                     </label>
                     </span>
        <div>
-            <input class="btn" type="submit" value="submit" />
+            <input class="btn" type="submit" value="submit" name="Submit" />
         </div>
 
     </form>
@@ -57,17 +65,5 @@ include('includes/nav.php');
                     }
                 }
             })();
-        </script>
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script type="text/javascript">
-            function add_row() {
-                $rowno = $("#employee_table tr").length;
-                $rowno = $rowno + 1;
-                $("#employee_table tr:last").after("<tr id='row" + $rowno + "'><td><input class='memfam' type='text' name='name[]' placeholder=' Name '></td><td><input class='memfam' type='text' name='age[]' placeholder=' Age '></td><td><input class='memfam' type='text' name='adhar_no2[]' placeholder=' Aadhaar Number '></td><td><input class='btnew' type='button' value='-' onclick=delete_row('row" + $rowno + "')></td></tr>");
-            }
-
-            function delete_row(rowno) {
-                $('#' + rowno).remove();
-            }
         </script>
 </body>

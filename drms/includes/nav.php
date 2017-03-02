@@ -13,7 +13,7 @@
         <div class="dropdown-menu">
             <a href="adduserhome.php">Add</a>
             <a href="#">Remove</a>
-            <a href="#">Modify</a>
+            <a href="edit_user_home.php">Modify</a>
         </div>
     </li>
     <li><a href="#">Stock</a></li>

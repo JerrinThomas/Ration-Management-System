@@ -8,7 +8,7 @@
  ***********************************************************************/
 $dbHost = 'localhost';
 $dbUser = 'root';
-$dbPass = 'password';
+$dbPass = '123';
 $dbName = 'drms';
 $dbC = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName)
         or die('Error Connecting to MySQL DataBase');
