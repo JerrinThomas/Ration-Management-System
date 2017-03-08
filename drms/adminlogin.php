@@ -1,5 +1,8 @@
 <?php
 include_once 'check_login.php';
+header("Cache-Control: no-cache, must-revalidate"); 
+if(isset($_SESSION['name']))
+  header("Location: admin.php");
 if(isset($_GET['msg']))
  {
    $msg=$_GET['msg'];

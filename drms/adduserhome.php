@@ -2,8 +2,12 @@
 include('includes/checksuper.php');
 include('includes/header.php');
 include('includes/nav.php');
+
+    if(!isset($_SESSION['name']))
+      header("Location: adminlogin.php");
+
 ?>
-    </body>
+    <body>
     <h2>Add User</h2>
     <!-- container containing form code-->
 

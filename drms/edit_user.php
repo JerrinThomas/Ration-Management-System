@@ -3,6 +3,7 @@ include('includes/checksuper.php');
 include('includes/header.php');
 include('includes/nav.php');
 require_once('config.php');
+header("Cache-Control: public, must-revalidate"); 
 if(isset($_POST["Submit"])) {
   $cardno = $_POST["cardno"];
 }

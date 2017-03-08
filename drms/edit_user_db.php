@@ -1,7 +1,7 @@
 
 <?php
 require_once('config.php');
-
+ob_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
   $cardno=test_input($_POST["cardno"]);
@@ -148,13 +148,14 @@ if(mysqli_num_rows($checkmem) != 0){
 
  }
 
-  echo "<img src=\"".$target_file."\"><br>The allotted ration card No : ".$cardno." has been Modified<br>The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.<br>Head Of Family : ".$hofamily;
+  echo "<img src=\"".$target_file."\"><br>The allotted ration card No : ".$cardno." has been Modified<br>The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.<br>Head Of Family : ".$hofamily."<br><input action=\"action\" type=\"button\" value=\"Back\" onclick=\"history.go(-2);\"/>";
 } catch (Exception $e) {
   echo 'Caught exception: ',  $e->getMessage(), "\n  ";
   echo "<input action=\"action\" type=\"button\" value=\"Back\" onclick=\"history.go(-1);\"/>";
 }
 
 
-
+ob_get_contents();
+ob_end_flush();
 
 ?>
