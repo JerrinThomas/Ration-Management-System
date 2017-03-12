@@ -22,4 +22,4 @@ ALTER TABLE `cardholder_and_mem` ADD INDEX(`ration_card_no`);
 ALTER TABLE `cardholder_and_mem` ADD CONSTRAINT `fkey1` FOREIGN KEY (`ration_card_no`) REFERENCES `rationcard_holder`(`ration_card_no`) ON DELETE CASCADE ON UPDATE CASCADE;
 	
 To Add Details Manually...
-INSERT INTO cardholder_and_mem VALUES( 100000000002,1000000001,'Chweet Lve',24);
+INSERT INTO cardholder_and_mem VALUES( 100000000002,1000000000,'Chweet Lve',24);
