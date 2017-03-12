@@ -1,7 +1,7 @@
 
 <?php
 require_once('config.php');
-
+ob_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
   $hofamily=test_input($_POST["hofamily"]);
@@ -45,7 +45,7 @@ function test_input($data) {
 }
 
 try {
-if(!isset($_FILES["fileToUpload"]["tmp_name"])||$hofamily==""||$adhar_no==""||$add1==""||$add2==""||$add3==""||$pan_mun_cor==""||$pincode==""||$wardno==""||$house_no==""||$monthly_in==""||$mob_no==""||$taluk=="") {
+if(!isset($_FILES["fileToUpload"]["tmp_name"])||$hofamily==""||$adhar_no==""||$add1==""||$pan_mun_cor==""||$pincode==""||$wardno==""||$house_no==""||$monthly_in==""||$mob_no==""||$taluk=="") {
      throw new Exception(" MISSING INPUT ..... <br> Try Again.... :/ ");
   }
 if($Ydetails){
@@ -150,12 +150,14 @@ if(mysqli_num_rows($checkmem) != 0){
  }
 
   echo "<img src=\"".$target_file."\"><br>The allotted ration card No : ".$rw[0]."<br>The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.<br>Head Of Family : ".$hofamily;
+  echo "<br><a href=\"admin.php\">Go Back</a>";
 } catch (Exception $e) {
   echo 'Caught exception: ',  $e->getMessage(), "\n  ";
   echo "<input action=\"action\" type=\"button\" value=\"Back\" onclick=\"history.go(-1);\"/>";
+
 }
 
-
-
+ob_get_contents();
+ob_end_flush();
 
 ?>

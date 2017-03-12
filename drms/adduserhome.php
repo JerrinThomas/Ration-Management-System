@@ -2,7 +2,7 @@
 include('includes/checksuper.php');
 include('includes/header.php');
 include('includes/nav.php');
-
+header("Cache-Control: public, must-revalidate");
     if(!isset($_SESSION['name']))
       header("Location: adminlogin.php");
 
@@ -84,8 +84,8 @@ include('includes/nav.php');
 					<span class="input__label-content input__label-content--manami">Mobile Number</span>
                     </label>
                     </span>
-                    <span class="input input--manami">
-				<input class="input__field input__field--manami" type="text" id="input-34" name="taluk"/>
+                    <span class="input input--manami input--filled">
+				<input class="input__field input__field--manami" type="text" id="input-34" name="taluk"  placeholder="<?php echo $ro[1]; ?>" readonly="readonly"/>
 				<label class="input__label input__label--manami" for="input-34">
 					<span class="input__label-content input__label-content--manami">Taluk</span>
                     </label>
