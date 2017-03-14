@@ -10,7 +10,7 @@ if(isset($_POST["Submit"])) {
 else {
   $cardno="";
 }
-$sql1="SELECT ration_card_no,adhar_no,hofamily,add1,add2,add3,pan_mun_cor,pincode,wardno,house_no,monthly_in,mob_no,taluk,no_of_mem,hof_img from rationcard_holder where ration_card_no='$cardno'";
+$sql1="SELECT ration_card_no,adhar_no,hofamily,add1,add2,add3,pan_mun_cor,pincode,wardno,house_no,monthly_in,mob_no,taluk,category,no_of_mem,hof_img from rationcard_holder where ration_card_no='$cardno'";
 $result=mysqli_query($dbC,$sql1);
 $count=mysqli_num_rows($result);
 if($count==0)
@@ -18,8 +18,11 @@ header("location:edit_user_home.php?msg=Invalid RationCard Number");
 $row1=mysqli_fetch_row($result);
 $sql2="SELECT mem_name,age,adhar_no FROM cardholder_and_mem WHERE ration_card_no='$cardno'";
 $res=mysqli_query($dbC,$sql2);
-if($_SESSION['taluk']!=$row1[12])
-header("location:edit_admin_home.php?msg=Ration Card Is Not Under Your Taluk");
+echo $_SESSION['taluk'];
+echo $row1[12];
+if (strcasecmp($_SESSION['taluk'],$row1[12]) != 0) {
+ header("location:edit_user_home.php?msg=Ration Card Is Not Under Your Taluk");
+}
 ?>
     <body>
     <h2>Modify User</h2>
@@ -30,7 +33,7 @@ header("location:edit_admin_home.php?msg=Ration Card Is Not Under Your Taluk");
             <!-- form sta rt-->
             <section class="content bgcolor-3">
                 <!-- head of family box starting-->
-                <img src="<?php echo $row1[14];?>"/>
+                <img src="<?php echo $row1[15];?>"/>
                 <form action="edit_user_db.php" method="post" enctype="multipart/form-data">
                     <span class="input input--manami input--filled" >
         <input class="input__field input__field--manami" type="text" id="input-32" name="cardno" placeholder="<?php echo $row1[0]; ?>" value="<?php echo $row1[0]; ?>" readonly="readonly"/>
@@ -112,7 +115,13 @@ header("location:edit_admin_home.php?msg=Ration Card Is Not Under Your Taluk");
                     </label>
                     </span>
                     <span class="input input--manami input--filled">
-        <input class="input__field input__field--manami" type="text" id="input-34" name="no_of_mem"  placeholder="<?php echo $row1[13]; ?>" value="<?php echo $row1[13]; ?>"/>
+				<input class="input__field input__field--manami" type="text" id="input-34" name="cat"  placeholder="<?php echo $row1[13]; ?>" value="<?php echo $row1[13]; ?>" readonly="readonly"/>
+				<label class="input__label input__label--manami" for="input-34">
+					<span class="input__label-content input__label-content--manami">Category</span>
+                    </label>
+                    </span>
+                    <span class="input input--manami input--filled">
+        <input class="input__field input__field--manami" type="text" id="input-34" name="no_of_mem"  placeholder="<?php echo $row1[14]; ?>" value="<?php echo $row1[14]; ?>"/>
         <label class="input__label input__label--manami" for="input-34">
           <span class="input__label-content input__label-content--manami">Number Of Members Family</span>
                     </label>

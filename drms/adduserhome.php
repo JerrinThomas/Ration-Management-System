@@ -90,6 +90,12 @@ include('includes/nav.php');
 					<span class="input__label-content input__label-content--manami">Taluk</span>
                     </label>
                     </span>
+                    <span class="input input--manami input--filled">
+        <input class="input__field input__field--manami" type="text" id="input-34" name="cat" />
+        <label class="input__label input__label--manami" for="input-34">
+          <span class="input__label-content input__label-content--manami">Category</span>
+                    </label>
+                    </span>
                     <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-34" name="no_of_mem"/>
         <label class="input__label input__label--manami" for="input-34">

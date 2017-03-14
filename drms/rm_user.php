@@ -6,14 +6,15 @@ if(isset($_POST["Submit"])) {
 else {
   $cardno="";
 }
+session_start();
 $sql="SELECT ration_card_no,taluk from rationcard_holder where ration_card_no='$cardno'";
 $re=mysqli_query($dbC,$sql);
 $count=mysqli_num_rows($re);
 $tuple=mysqli_fetch_row($re);
 if($count==0)
 header("location:rm_user_home.php?msg=Invalid RationCard Number");
-elseif ($tuple[1]!=$_SESSION['taluk']) {
-header("location:rm_user_home.php?msg=RationCard is Not Under Your Taluk");
+if (strcasecmp($_SESSION['taluk'],$tuple[1]) != 0) {
+ header("location:rm_user_home.php?msg=Ration Card Is Not Under Your Taluk");
 }
 else {
   $sql1="DELETE FROM cardholder_and_mem WHERE ration_card_no='$cardno'";

@@ -18,6 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
   $mob_no=test_input($_POST["mob_no"]);
   $taluk=test_input($_POST["taluk"]);
   $no_of_mem=test_input($_POST["no_of_mem"]);
+  $cat=test_input($_POST["cat"]);
   if($no_of_mem!=0){
   $name=$_POST["name"];
   $age=$_POST["age"];
@@ -46,7 +47,7 @@ function test_input($data) {
 }
 
 try {
-if(!isset($_FILES["fileToUpload"]["tmp_name"])||$hofamily==""||$adhar_no==""||$add1==""||$pan_mun_cor==""||$pincode==""||$wardno==""||$house_no==""||$monthly_in==""||$mob_no==""||$taluk=="") {
+if(!isset($_FILES["fileToUpload"]["tmp_name"])||$hofamily==""||$adhar_no==""||$add1==""||$pan_mun_cor==""||$pincode==""||$wardno==""||$house_no==""||$monthly_in==""||$mob_no==""||$taluk==""||$cat=="") {
      throw new Exception(" MISSING INPUT ..... <br> Try Again.... :/ ");
   }
 if($Ydetails){
@@ -62,11 +63,12 @@ if($Ydetails){
       if($k=="")
          throw new Exception(" Missing Data In DETAILS OF MEMBERS :- Age No Not Found... <br> Try Again :/ ..");
   }
+  if((strlen((String)$adhar_no) !== 12))
+       throw new Exception(" Please Enter A Valid 12 Digit Adhar Number.... :/ <br>GO BACK>>> ");
+  if((strlen((String)$mob_no) !== 10))
+            throw new Exception(" Please Enter A Valid 10 Digit Mobile Number.... :/ <br>GO BACK>>> ");
 }
-if((strlen((String)$adhar_no) !== 12))
-     throw new Exception(" Please Enter A Valid 12 Digit Adhar Number.... :/ <br>GO BACK>>> ");
-if((strlen((String)$mob_no) !== 10))
-          throw new Exception(" Please Enter A Valid 10 Digit Mobile Number.... :/ <br>GO BACK>>> ");
+
 if($Ydetails){
    if(count($name) < $no_of_mem)
    {
@@ -131,7 +133,7 @@ if(mysqli_num_rows($checkmem) != 0){
       throw new Exception("Error Uploading File...\n Try Again By Going Back....");
   }
   $sql="UPDATE rationcard_holder SET adhar_no=\"$adhar_no\",hofamily=\"$hofamily\",add1=\"$add1\",add2=\"$add2\",add3=\"$add3\",pan_mun_cor=\"$pan_mun_cor\",pincode=\"$pincode\",wardno=\"$wardno\",house_no=\"$house_no\",monthly_in=\"$monthly_in\",no_of_mem=\"$no_of_mem\"
-  ,hof_img=\"$target_file\",hof_img_type=\"$imageFileType\",mob_no=\"$mob_no\",taluk=\"$taluk\" WHERE ration_card_no=$cardno";
+  ,hof_img=\"$target_file\",hof_img_type=\"$imageFileType\",mob_no=\"$mob_no\",taluk=\"$taluk\",category=\"$cat\" WHERE ration_card_no=$cardno";
   $result=mysqli_query($dbC,$sql);
   if(!$result) {
      throw new Exception("Error In DataBase row addiction...<br> Please Fill Valid Informations...<br> Try Again By Going Back... :/ ");

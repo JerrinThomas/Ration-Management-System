@@ -16,6 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
   $monthly_in=test_input($_POST["monthly_in"]);
   $mob_no=test_input($_POST["mob_no"]);
   $taluk=test_input($_POST["taluk"]);
+  $cat=test_input($_POST["cat"]);
   $no_of_mem=test_input($_POST["no_of_mem"]);
   if($no_of_mem!=0){
   $name=$_POST["name"];
@@ -129,8 +130,8 @@ if(mysqli_num_rows($checkmem) != 0){
   if(!$move) {
       throw new Exception("Error Uploading File...\n Try Again By Going Back....");
   }
-  $sql="INSERT INTO rationcard_holder(`adhar_no`,`hofamily`,`add1`,`add2`,`add3`,`pan_mun_cor`,`pincode`,`wardno`,`house_no`,`monthly_in`,`no_of_mem`,`hof_img`,`hof_img_type`,`mob_no`,`taluk`) VALUES('".$adhar_no."' , '".$hofamily."' , '".$add1."','".$add2."'
-  ,'".$add3."','".$pan_mun_cor."','".$pincode."','".$wardno."','".$house_no."','".$monthly_in."','".$no_of_mem."','".$target_file."','".$imageFileType."','".$mob_no."','".$taluk."')";
+  $sql="INSERT INTO rationcard_holder(`adhar_no`,`hofamily`,`add1`,`add2`,`add3`,`pan_mun_cor`,`pincode`,`wardno`,`house_no`,`monthly_in`,`no_of_mem`,`hof_img`,`hof_img_type`,`mob_no`,`taluk`,`category`) VALUES('".$adhar_no."' , '".$hofamily."' , '".$add1."','".$add2."'
+  ,'".$add3."','".$pan_mun_cor."','".$pincode."','".$wardno."','".$house_no."','".$monthly_in."','".$no_of_mem."','".$target_file."','".$imageFileType."','".$mob_no."','".$taluk."','".$cat."')";
 
   $result=mysqli_query($dbC,$sql);
   if(!$result) {
