@@ -3,7 +3,7 @@ include('includes/checksuper.php');
 include('includes/header.php');
 include('includes/nav.php');
 require_once('config.php');
-header("Cache-Control: public, must-revalidate"); 
+header("Cache-Control: public, must-revalidate");
 if(isset($_POST["Submit"])) {
   $cardno = $_POST["cardno"];
 }
@@ -104,7 +104,7 @@ $res=mysqli_query($dbC,$sql2);
                     </label>
                     </span>
                     <span class="input input--manami input--filled">
-				<input class="input__field input__field--manami" type="text" id="input-34" name="taluk"  placeholder="<?php echo $row1[12]; ?>" value="<?php echo $row1[12]; ?>"/>
+				<input class="input__field input__field--manami" type="text" id="input-34" name="taluk"  placeholder="<?php echo $row1[12]; ?>" value="<?php echo $row1[12]; ?>" readonly="readonly"/>
 				<label class="input__label input__label--manami" for="input-34">
 					<span class="input__label-content input__label-content--manami">Taluk</span>
                     </label>

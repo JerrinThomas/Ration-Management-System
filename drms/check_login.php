@@ -10,14 +10,16 @@ if(isset($_POST['Submit'])) {
       $mypassword = stripslashes($password);
       $myusername = mysqli_real_escape_string($dbC, $myusername);
       $mypassword = mysqli_real_escape_string($dbC, $mypassword);
-      $sql="SELECT role FROM admindetails WHERE username= '$myusername' and password= '$mypassword'";
+      $sql="SELECT role,taluk FROM admindetails WHERE username= '$myusername' and password= '$mypassword'";
       $result=mysqli_query($dbC,$sql);
       $count=mysqli_num_rows($result);
+      $tal=mysqli_fetch_row($result);
       // If result matched $myusername and $mypassword, table row must be 1 row
       if($count==1){
           // Admin Found ! and redirect to admin page...
          session_start();
           $_SESSION['name']=$myusername;
+          $_SESSION['taluk']=$tal[1];
           header("location:admin.php");
        }
       else {
