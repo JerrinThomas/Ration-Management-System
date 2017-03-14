@@ -16,8 +16,6 @@ $count=mysqli_num_rows($result);
 if($count==0)
 header("location:edit_admin_home.php?msg=Invalid Username");
 $row=mysqli_fetch_row($result);
-if($_SESSION['taluk']!=$row[3])
-header("location:edit_admin_home.php?msg=Ration Card Is Not Under Your Taluk");
 ?>
     <body>
     <h2>Modify User</h2>

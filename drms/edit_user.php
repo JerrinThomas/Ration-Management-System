@@ -18,6 +18,8 @@ header("location:edit_user_home.php?msg=Invalid RationCard Number");
 $row1=mysqli_fetch_row($result);
 $sql2="SELECT mem_name,age,adhar_no FROM cardholder_and_mem WHERE ration_card_no='$cardno'";
 $res=mysqli_query($dbC,$sql2);
+if($_SESSION['taluk']!=$row1[12])
+header("location:edit_admin_home.php?msg=Ration Card Is Not Under Your Taluk");
 ?>
     <body>
     <h2>Modify User</h2>
