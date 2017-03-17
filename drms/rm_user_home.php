@@ -22,7 +22,7 @@ if(isset($_GET['msg']))
 <h2>Remove User</h2>
 <div class="bfore">
      <form action="rm_user.php" method="post">
-                    <span><?php echo "<h1>".$msg."</h1>" ?></span>
+                    <span style="color:white;font-size:15px;text-align:center;"><?php echo "<h1>".$msg."</h1>" ?></span>
                     <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-32" name="cardno" required/>
         <label class="input__label input__label--manami" for="input-32">
@@ -32,7 +32,7 @@ if(isset($_GET['msg']))
        <div>
             <input class="btn" type="submit" value="submit" name="Submit" />
         </div>
-        <span><?php echo "<h1>".$msg1."</h1>" ?></span>
+         <span style="color:white;text-align:center;font-size:15px;"><?php echo "<h1>".$msg1."</h1>" ?></span>
 
     </form>
 </div>

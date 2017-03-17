@@ -24,7 +24,7 @@ if(isset($_GET['msg']))
     <body class="align">
         <div class="grid">
             <form class="form-signin" name="form1" method="post">
-                <span><?php echo "<h1>".$msg."</h1>" ?></span>
+                <span style="color:#d64550;text-align:center;"><?php echo "<h1>".$msg."</h1>" ?></span>
                 <h2 class="form-signin-heading">Please sign in</h2>
                 <div class="form__field">
                 <input name="username" id="uname" type="text" class="form-control" placeholder="Username" required>
