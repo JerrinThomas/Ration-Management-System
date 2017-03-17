@@ -11,8 +11,8 @@ include('includes/nav.php');
     function val(){
         var missingFields = false;
         var strFields = "";
-        
-        if(frm.hofamily.value=='' || isNaN(frm.hofamily.value))
+
+        if(frm.hofamily.value=='')
         {
             missingFields = true;
             strFields += "     Please enter a name \n";
@@ -22,12 +22,12 @@ include('includes/nav.php');
             missingFields = true;
             strFields += "     Please enter a valid adhar no.\n";
         }
-        if(frm.add1.value=='' || isNaN(frm.add1.value))
+        if(frm.add1.value=='')
         {
             missingFields = true;
             strFields += "     Please enter address\n";
         }
-        if(frm.pan_mun_cor.value=='' || isNaN(frm.pan_mun_cor.value))
+        if(frm.pan_mun_cor.value=='')
         {
             missingFields = true;
             strFields += "     Please enter a Panchayath/Muncipality/Corporation\n";
@@ -56,11 +56,6 @@ include('includes/nav.php');
         {
             missingFields = true;
             strFields += "     Please enter a mobile no.\n";
-        }
-        if(frm.taluk.value=='' || isNaN(frm.taluk.value))
-        {
-            missingFields = true;
-            strFields += "     Please enter a taluk\n";
         }
         if(frm.cat.value=='' || isNaN(frm.cat.value))
         {
