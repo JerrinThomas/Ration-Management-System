@@ -2,11 +2,98 @@
 include('includes/checksuper.php');
 include('includes/header.php');
 include('includes/nav.php');
-header("Cache-Control: public, must-revalidate"); 
+/*header("Cache-Control: public, must-revalidate"); */
     if(!isset($_SESSION['name']))
       header("Location: adminlogin.php");
 
 ?>
+<script type="text/javascript">
+    function val(){
+        var missingFields = false;
+        var strFields = "";
+        
+        if(frm.hofamily.value=='' || isNaN(frm.hofamily.value))
+        {
+            missingFields = true;
+            strFields += "     Please enter a name \n";
+        }
+        if(frm.adhar_no.value=='' || isNaN(frm.adhar_no.value))
+        {
+            missingFields = true;
+            strFields += "     Please enter a valid adhar no.\n";
+        }
+        if(frm.add1.value=='' || isNaN(frm.add1.value))
+        {
+            missingFields = true;
+            strFields += "     Please enter address\n";
+        }
+        if(frm.pan_mun_cor.value=='' || isNaN(frm.pan_mun_cor.value))
+        {
+            missingFields = true;
+            strFields += "     Please enter a Panchayath/Muncipality/Corporation\n";
+        }
+        if(frm.pincode.value=='' || isNaN(frm.pincode.value))
+        {
+            missingFields = true;
+            strFields += "     Please enter a Pincode\n";
+        }
+        if(frm.wardno.value=='' || isNaN(frm.wardno.value))
+        {
+            missingFields = true;
+            strFields += "     Please enter a wardno\n";
+        }
+        if(frm.house_no.value=='' || isNaN(frm.house_no.value))
+        {
+            missingFields = true;
+            strFields += "     Please enter a house no.\n";
+        }
+        if(frm.monthly_in.value=='' || isNaN(frm.monthly_in.value))
+        {
+            missingFields = true;
+            strFields += "     Please enter a monthly income\n";
+        }
+        if(frm.mob_no.value=='' || isNaN(frm.mob_no.value))
+        {
+            missingFields = true;
+            strFields += "     Please enter a mobile no.\n";
+        }
+        if(frm.taluk.value=='' || isNaN(frm.taluk.value))
+        {
+            missingFields = true;
+            strFields += "     Please enter a taluk\n";
+        }
+        if(frm.cat.value=='' || isNaN(frm.cat.value))
+        {
+            missingFields = true;
+            strFields += "     Please enter a category.\n";
+        }
+        if(frm.no_of_mem.value=='' || isNaN(frm.no_of_mem.value))
+        {
+            missingFields = true;
+            strFields += "     Please enter a no of members\n";
+        }
+        /*if(frm.name[].value=='' || isNaN(frm.name[].value))
+        {
+            missingFields = true;
+            strFields += "     Please enter a name\n";
+        }
+        if(frm.age[].value=='' || isNaN(frm.age[].value))
+        {
+            missingFields = true;
+            strFields += "     Please enter a age\n";
+        }
+        if(frm.adhar_no2[].value=='' || isNaN(frm.adhar_no2[].value))
+        {
+            missingFields = true;
+            strFields += "     Please enter a adhar number\n";
+        }*/
+        if( missingFields ) {
+            alert( "I'm sorry, but you must provide the following field(s) before continuing:\n" + strFields );
+            return false;
+        }
+        return true;
+    }
+</script>
     <body>
     <h2>Add User</h2>
     <!-- container containing form code-->
@@ -16,7 +103,7 @@ header("Cache-Control: public, must-revalidate");
             <!-- form start-->
             <section class="content bgcolor-3">
                 <!-- head of family box starting-->
-                <form action="adduser.php" method="post" enctype="multipart/form-data">
+                <form action="adduser.php" method="post" enctype="multipart/form-data" name="frm">
                     <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-32" name="hofamily" />
         <label class="input__label input__label--manami" for="input-32">
@@ -139,7 +226,7 @@ header("Cache-Control: public, must-revalidate");
         <!-- ended image upload button-->
         <!-- submit button-->
         <div>
-            <input class="btn" type="submit" value="submit" />
+            <input class="btn" type="submit" value="submit" onclick="return val();"/>
         </div>
         <!-- ended submit button -->
         </form>

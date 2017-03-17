@@ -149,9 +149,8 @@ if(mysqli_num_rows($checkmem) != 0){
        }
 
  }
-
-  echo "<img src=\"".$target_file."\"><br>The allotted ration card No : ".$rw[0]."<br>The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.<br>Head Of Family : ".$hofamily;
-  echo "<br><a href=\"admin.php\">Go Back</a>";
+  echo "<img src=\"".$target_file."\"><br>The allotted ration card No : ".$rw[0]."<br><p>The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.</p><br><p>Head Of Family : ".$hofamily;
+  echo "</p><br><a href=\"admin.php\">Go Back</a>";
 } catch (Exception $e) {
   echo 'Caught exception: ',  $e->getMessage(), "\n  ";
   echo "<input action=\"action\" type=\"button\" value=\"Back\" onclick=\"history.go(-1);\"/>";
