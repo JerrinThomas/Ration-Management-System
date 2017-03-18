@@ -4,91 +4,169 @@ include('includes/header.php');
 include('includes/nav.php');
 /*header("Cache-Control: public, must-revalidate"); */
     if(!isset($_SESSION['name']))
-      header("Location: adminlogin.php?msg=Sign In Again");
+      header("Location: adminlogin.php");
 
 ?>
+<style>
+    .error{
+        color: coral;
+        font-size: 25px;
+        visibility: hidden;
+    }
+
+</style>
 <script type="text/javascript">
     function val(){
-        var missingFields = false;
-        var strFields = "";
+        var error = 0,error1 = 0,error2 = 0,error3 = 0,error4 = 0,error5 = 0,error6 = 0,error7 = 0,error8 = 0,error9 = 0,error10 =0;
+        var errhofamily = document.getElementById('errhofamily');
+        if((frm.hofamily.value === "") || (!(isNaN(frm.hofamily.value))))
+        {
+            errhofamily.setAttribute("style","visibility:visible");
+            error = 0;
+        }
+        else
+        {
+            errhofamily.setAttribute("style","visibility:hidden");
+            error = 1;
+        }
+       
+        var erradhar_no = document.getElementById('erradhar_no');
+        if((frm.adhar_no.value== "") || (frm.adhar_no.value.length != 12) || (isNaN(frm.adhar_no.value)))
+        {
+            erradhar_no.setAttribute("style","visibility:visible");
+            error1 = 0;
+        }
+        else
+        {
+            erradhar_no.setAttribute("style","visibility:hidden");
+            error1 = 1;
+        }
+    
+       
+        var erradd1 = document.getElementById('erradd1');
+        if(frm.add1.value==="")
+        {
+            erradd1.setAttribute("style","visibility:visible");
+            error2 = 0;
+        }
+        else
+        {
+            erradd1.setAttribute("style","visibility:hidden");
+            error2 = 1;
+        }
+        
+       
+        var errpan_mun_cor = document.getElementById('errpan_mun_cor');
+        if(frm.pan_mun_cor.value==="")
+        {
+            errpan_mun_cor.setAttribute("style","visibility:visible");
+            error3 = 0;
+        }
+        else
+        {
+            errpan_mun_cor.setAttribute("style","visibility:hidden");
+            error3 = 1;
+        }
+        
+       
+        var errpincode = document.getElementById('errpincode');
+        if((frm.pincode.value == "") || (isNaN(frm.pincode.value)))
+        {
+            errpincode.style.visibility = "visible";
+            error4 = 0;
+        }
+        else
+        {
+            errpincode.style.visibility = "hidden";
+            error4 = 1;
+        }
+        
+       
+        var errwardno = document.getElementById('errwardno');
+        if(frm.wardno.value == "")
+        {
+            errwardno.style.visibility = "visible";
+            error5 = 0;
+        }
+        else
+        {
+            errwardno.style.visibility = "hidden";
+            error5 = 1;
+        }
+        
+        
+        var errhouse_no = document.getElementById('errhouse_no');
+        if(frm.house_no.value == "")
+        {
+            errhouse_no.style.visibility = "visible";
+            error6 = 0;
+        }
+        else
+        {
+            errhouse_no.style.visibility = "hidden";
+            error6 = 1;
+        }
 
-        if(frm.hofamily.value=='')
+        var errmonthly_in = document.getElementById('errmonthly_in');
+        if((frm.monthly_in.value == "") || (isNaN(frm.monthly_in.value)))
         {
-            missingFields = true;
-            strFields += "     Please enter a name \n";
+            errmonthly_in.style.visibility = "visible";
+            error7 = 0;
         }
-        if(frm.adhar_no.value=='' || isNaN(frm.adhar_no.value))
+        else
         {
-            missingFields = true;
-            strFields += "     Please enter a valid adhar no.\n";
+            errmonthly_in.style.visibility = "hidden";
+            error7 = 1;
         }
-        if(frm.add1.value=='')
+        
+        var errmob_no = document.getElementById('errmob_no');
+        if((frm.mob_no.value == "")|| (frm.mob_no.value.length != 10) || (isNaN(frm.mob_no.value)))
         {
-            missingFields = true;
-            strFields += "     Please enter address\n";
+            errmob_no.style.visibility = "visible";
+            error8 = 0;
         }
-        if(frm.pan_mun_cor.value=='')
+        else
         {
-            missingFields = true;
-            strFields += "     Please enter a Panchayath/Muncipality/Corporation\n";
+            errmob_no.style.visibility = "hidden";
+            error8 = 1;
         }
-        if(frm.pincode.value=='' || isNaN(frm.pincode.value))
+
+         var errcat = document.getElementById('errcat');
+        if((frm.cat.value == "") || (isNaN(frm.cat.value)))
         {
-            missingFields = true;
-            strFields += "     Please enter a Pincode\n";
+            errcat.style.visibility = "visible";
+            error9 = 0;
         }
-        if(frm.wardno.value=='' || isNaN(frm.wardno.value))
+        else
         {
-            missingFields = true;
-            strFields += "     Please enter a wardno\n";
+            errcat.style.visibility = "hidden";
+            error9 = 1;
         }
-        if(frm.house_no.value=='' || isNaN(frm.house_no.value))
+
+        var errno_of_mem = document.getElementById('errno_of_mem');
+        if((frm.no_of_mem.value == "") || (isNaN(frm.no_of_mem.value)))
         {
-            missingFields = true;
-            strFields += "     Please enter a house no.\n";
+            errno_of_mem.style.visibility = "visible";
+            error10 = 0;
         }
-        if(frm.monthly_in.value=='' || isNaN(frm.monthly_in.value))
+        else
         {
-            missingFields = true;
-            strFields += "     Please enter a monthly income\n";
+            errno_of_mem.style.visibility = "hidden";
+            error10 = 1;
         }
-        if(frm.mob_no.value=='' || isNaN(frm.mob_no.value))
+
+
+        if(((error && error1) && (error2 && error3) && (error4 && error5) && (error6 && error7) && (error8 && error9) && error10)==0)
         {
-            missingFields = true;
-            strFields += "     Please enter a mobile no.\n";
-        }
-        if(frm.cat.value=='' || isNaN(frm.cat.value))
-        {
-            missingFields = true;
-            strFields += "     Please enter a category.\n";
-        }
-        if(frm.no_of_mem.value=='' || isNaN(frm.no_of_mem.value))
-        {
-            missingFields = true;
-            strFields += "     Please enter a no of members\n";
-        }
-        /*if(frm.name[].value=='' || isNaN(frm.name[].value))
-        {
-            missingFields = true;
-            strFields += "     Please enter a name\n";
-        }
-        if(frm.age[].value=='' || isNaN(frm.age[].value))
-        {
-            missingFields = true;
-            strFields += "     Please enter a age\n";
-        }
-        if(frm.adhar_no2[].value=='' || isNaN(frm.adhar_no2[].value))
-        {
-            missingFields = true;
-            strFields += "     Please enter a adhar number\n";
-        }*/
-        if( missingFields ) {
-            alert( "I'm sorry, but you must provide the following field(s) before continuing:\n" + strFields );
             return false;
         }
-        return true;
+        else
+        {
+            return true;
+        }
     }
 </script>
+
     <body>
     <h2>Add User</h2>
     <!-- container containing form code-->
@@ -98,13 +176,16 @@ include('includes/nav.php');
             <!-- form start-->
             <section class="content bgcolor-3">
                 <!-- head of family box starting-->
-                <form action="adduser.php" method="post" enctype="multipart/form-data" name="frm">
+                <form action="adduser.php" method="post" enctype="multipart/form-data" name="frm" onsubmit="return val();">
                     <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-32" name="hofamily" />
         <label class="input__label input__label--manami" for="input-32">
           <span class="input__label-content input__label-content--manami">Name of the Head of the Family</span>
                     </label>
                     </span>
+                    <br/>
+                    <span id="errhofamily" class="error">please enter a name</span>
+                    <br/>
                     <!-- head of family box end-->
                     <span class="input input--manami">
 				<input class="input__field input__field--manami" type="text" id="input-34" name="adhar_no"/>
@@ -112,78 +193,117 @@ include('includes/nav.php');
 					<span class="input__label-content input__label-content--manami">Adhar Number</span>
                     </label>
                     </span>
+                    <br/>
+                    <span id="erradhar_no" class="error">please enter Adhar Number</span>
+                    <br/>
                     <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-33" name="add1"/>
         <label class="input__label input__label--manami" for="input-33">
           <span class="input__label-content input__label-content--manami">Address 1</span>
                     </label>
                     </span>
+                    <br/>
+                    <span id="erradd1" class="error">please enter Address</span>
+                    <br/>
                     <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-34" name="add2"/>
         <label class="input__label input__label--manami" for="input-34">
           <span class="input__label-content input__label-content--manami">Address 2</span>
                     </label>
                     </span>
+                    <br/>
+                    <span id="erradd2" class="error">please enter a name</span>
+                    <br/>
                     <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-34" name="add3"/>
         <label class="input__label input__label--manami" for="input-34">
           <span class="input__label-content input__label-content--manami">Address 3</span>
                     </label>
                     </span>
+                    <br/>
+                    <span id="erradd3" class="error">please enter a name</span>
+                    <br/>
                     <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-34" name="pan_mun_cor"/>
         <label class="input__label input__label--manami" for="input-34">
           <span class="input__label-content input__label-content--manami">Panchayath/Muncipality/Corporation</span>
                     </label>
                     </span>
+                    <br/>
+                    <span id="errpan_mun_cor" class="error">please enter a value</span>
+                    <br/>
                     <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-34" name="pincode"/>
         <label class="input__label input__label--manami" for="input-34">
           <span class="input__label-content input__label-content--manami">PINCODE</span>
                     </label>
                     </span>
+                    <br/>
+                    <span id="errpincode" class="error">please enter pincode</span>
+                    <br/>
                     <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-34" name="wardno"/>
         <label class="input__label input__label--manami" for="input-34">
           <span class="input__label-content input__label-content--manami">Ward Number</span>
                     </label>
                     </span>
+                    <br/>
+                    <span id="errwardno" class="error">please enter wardno</span>
+                    <br/>
                     <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-34" name="house_no"/>
         <label class="input__label input__label--manami" for="input-34">
           <span class="input__label-content input__label-content--manami">House Number</span>
                     </label>
                     </span>
+                    <br/>
+                    <span id="errhouse_no" class="error">please enter House Number</span>
+                    <br/>
                     <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-34" name="monthly_in"/>
         <label class="input__label input__label--manami" for="input-34">
           <span class="input__label-content input__label-content--manami">Monthly Income</span>
                     </label>
                     </span>
+                    <br/>
+                    <span id="errmonthly_in" class="error">please enter Monthly Income</span>
+                    <br/>
                     <span class="input input--manami">
 				<input class="input__field input__field--manami" type="text" id="input-34" name="mob_no"/>
 				<label class="input__label input__label--manami" for="input-34">
 					<span class="input__label-content input__label-content--manami">Mobile Number</span>
                     </label>
                     </span>
+                    <br/>
+                    <span id="errmob_no" class="error">please enter Mobile Number</span>
+                    <br/>
                     <span class="input input--manami input--filled">
 				<input class="input__field input__field--manami" type="text" id="input-34" name="taluk"  placeholder="<?php echo $ro[1]; ?>" value="<?php echo $ro[1]; ?>" readonly="readonly"/>
 				<label class="input__label input__label--manami" for="input-34">
 					<span class="input__label-content input__label-content--manami">Taluk</span>
                     </label>
                     </span>
+                    <br/>
+                    <span id="errtaluk" class="error">please enter taluk</span>
+                    <br/>
                     <span class="input input--manami input--filled">
         <input class="input__field input__field--manami" type="text" id="input-34" name="cat" />
         <label class="input__label input__label--manami" for="input-34">
           <span class="input__label-content input__label-content--manami">Category</span>
                     </label>
                     </span>
+                    <br/>
+                    <span id="errcat" class="error">please enter Category</span>
+                    <br/>
                     <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-34" name="no_of_mem"/>
         <label class="input__label input__label--manami" for="input-34">
           <span class="input__label-content input__label-content--manami">Number of Members in Family</span>
                     </label>
                     </span>
+                    <br/>
+                    <span id="errno_of_mem" class="error">please enter Number of Members in Family</span>
+                    <br/>
                     <span class="input input--manami">
         <h4>Details of other Family Member(s)</h4>
         </label>
@@ -221,7 +341,7 @@ include('includes/nav.php');
         <!-- ended image upload button-->
         <!-- submit button-->
         <div>
-            <input class="btn" type="submit" value="submit" onclick="return val();"/>
+            <input class="btn" type="submit" value="submit" />
         </div>
         <!-- ended submit button -->
         </form>
