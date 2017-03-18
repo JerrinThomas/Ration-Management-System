@@ -5,7 +5,7 @@ include('includes/nav.php');
 include('add_admin.php');
 header("Cache-Control: public, must-revalidate");
     if(!isset($_SESSION['name']))
-      header("Location: adminlogin.php");
+      header("Location: adminlogin.php?msg=Sign In Again");
 
 ?>
 <body>

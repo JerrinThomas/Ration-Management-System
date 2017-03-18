@@ -4,7 +4,7 @@ include('includes/header.php');
 include('includes/nav.php');
 /*header("Cache-Control: public, must-revalidate"); */
     if(!isset($_SESSION['name']))
-      header("Location: adminlogin.php");
+      header("Location: adminlogin.php?msg=Sign In Again");
 
 ?>
 <script type="text/javascript">

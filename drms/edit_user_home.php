@@ -9,6 +9,8 @@ if(isset($_GET['msg']))
  else {
    $msg="";
  }
+ if(!isset($_SESSION['name']))
+   header("Location: adminlogin.php?msg=Sign In Again");
 ?>
 
 </body>

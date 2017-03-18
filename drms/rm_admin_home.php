@@ -3,6 +3,8 @@ include('includes/checksuper.php');
 include('includes/header.php');
 include('includes/nav.php');
 require_once('config.php');
+if(!isset($_SESSION['name']))
+  header("Location: adminlogin.php?msg=Sign In Again");
 if(isset($_POST["Submit"])) {
     $uname = $_POST["uname"];
     $sql="SELECT username from admindetails where username='$uname'";
@@ -15,7 +17,7 @@ if(isset($_POST["Submit"])) {
       $sql1="DELETE FROM admindetails WHERE username='$uname'";
       $res=mysqli_query($dbC,$sql1);
       if($res==true)
-        $msg1="Admin Removed.";
+        $msg1="Admin ".$uname." Removed.";
       else {
        $msg1="Unsuccessfull";
       }

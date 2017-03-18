@@ -15,14 +15,13 @@ $result=mysqli_query($dbC,$sql1);
 $count=mysqli_num_rows($result);
 if($count==0)
 header("location:edit_user_home.php?msg=Invalid RationCard Number");
+elseif (strcasecmp($_SESSION['taluk'],$row1[12]) != 0) {
+ header("location:edit_user_home.php?msg=Ration Card ".$cardno." Is Not Under Your Taluk");
+}
 $row1=mysqli_fetch_row($result);
 $sql2="SELECT mem_name,age,adhar_no FROM cardholder_and_mem WHERE ration_card_no='$cardno'";
 $res=mysqli_query($dbC,$sql2);
-echo $_SESSION['taluk'];
-echo $row1[12];
-if (strcasecmp($_SESSION['taluk'],$row1[12]) != 0) {
- header("location:edit_user_home.php?msg=Ration Card Is Not Under Your Taluk");
-}
+
 ?>
     <body>
     <h2>Modify User</h2>

@@ -4,9 +4,9 @@
     <li><a href="#">Home</a></li>
     <li class="dropdown"><a href="#" class="dropdown-btn">Ration Shops</a>
         <div class="dropdown-menu">
-            <a href="#">Add</a>
-            <a href="#">Remove</a>
-            <a href="#">Modify</a>
+            <a href="addshopshome.php">Add</a>
+            <a href="rm_shops.php">Remove</a>
+            <a href="edit_shop_home.php">Modify</a>
         </div>
     </li>
     <li class="dropdown"><a href="#" class="dropdown-btn">Users</a>

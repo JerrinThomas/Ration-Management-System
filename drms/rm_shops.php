@@ -2,39 +2,55 @@
 include('includes/checksuper.php');
 include('includes/header.php');
 include('includes/nav.php');
-if(isset($_GET['msg']))
- {
-   $msg=$_GET['msg'];
- }
- else {
-   $msg="";
- }
- if(isset($_GET['msg1']))
-  {
-    $msg1=$_GET['msg1'];
-  }
-  else {
+require_once('config.php');
+if(!isset($_SESSION['name']))
+  header("Location: adminlogin.php?msg=Sign In Again");
+if(isset($_POST["Submit"])) {
+    $shopno = $_POST["shopno"];
+    $sql="SELECT shopno,taluk from rationshops where shopno='$shopno'";
+    $re=mysqli_query($dbC,$sql);
+    $count=mysqli_num_rows($re);
+    $r=mysqli_fetch_row($re);
+    if($count==0){
+    $msg="Invalid Shop Number ! ";$msg1="";
+    }
+    elseif(strcasecmp($_SESSION['taluk'],$r[1]) != 0){
+      $msg="Ration Shop ".$shopno." Is Not Under Your Taluk ! ";$msg1="";
+    }
+    else {
+      $sql1="DELETE FROM rationshops WHERE shopno='$shopno'";
+      $res=mysqli_query($dbC,$sql1);
+      if($res==true)
+        $msg1="Shop ".$shopno." Removed.";
+      else {
+       $msg1="Unsuccessfull";
+      }
+      $msg="";
+    }
+}
+else {
+    $shopno="";
+    $msg="";
     $msg1="";
   }
-if(!isset($_SESSION['name']))
-    header("Location: adminlogin.php?msg=Sign In Again");
+
 ?>
 
 </body>
-<h2>Remove User</h2>
+<h2>Remove Ration Shop</h2>
 <div class="bfore">
-     <form action="rm_user.php" method="post">
-                    <span style="color:white;font-size:15px;text-align:center;"><?php echo "<h1>".$msg."</h1>" ?></span>
+     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                    <span><?php echo "<h1>".$msg."</h1>" ?></span>
                     <span class="input input--manami">
-        <input class="input__field input__field--manami" type="text" id="input-32" name="cardno" required/>
+        <input class="input__field input__field--manami" type="text" id="input-32" name="shopno" required/>
         <label class="input__label input__label--manami" for="input-32">
-          <span class="input__label-content input__label-content--manami">Ration Card Number</span>
+          <span class="input__label-content input__label-content--manami">Ration Shop Number</span>
                     </label>
                     </span>
        <div>
             <input class="btn" type="submit" value="submit" name="Submit" />
         </div>
-         <span style="color:white;text-align:center;font-size:15px;"><?php echo "<h1>".$msg1."</h1>" ?></span>
+        <span><?php echo "<h1>".$msg1."</h1>" ?></span>
 
     </form>
 </div>

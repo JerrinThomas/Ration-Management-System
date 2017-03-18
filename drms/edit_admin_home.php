@@ -2,6 +2,8 @@
 include('includes/checksuper.php');
 include('includes/header.php');
 include('includes/nav.php');
+if(!isset($_SESSION['name']))
+  header("Location: adminlogin.php?msg=Sign In Agin");
 if(isset($_GET['msg']))
  {
    $msg=$_GET['msg'];
