@@ -2,10 +2,11 @@
 	position: relative;
 	z-index: 1;
 	display: inline-block;
-	margin: 1em;
+	margin: .7em;
 	max-width: 750px;
 	width: calc(100% - 2em);
 	vertical-align: top;
+
 }
 
 .input__field {

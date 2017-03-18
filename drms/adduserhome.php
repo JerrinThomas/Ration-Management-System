@@ -18,188 +18,214 @@ include('includes/nav.php');
 <script type="text/javascript">
     function val(){
         var error = 0,error1 = 0,error2 = 0,error3 = 0,error4 = 0,error5 = 0,error6 = 0,error7 = 0,error8 = 0,error9 = 0,error10 =0,error11 =1,error12 =1,error13 =1;
-        var errhofamily = document.getElementById('errhofamily');
+        var errhofamily = document.getElementsByName('hofamily');
+        var selhofamily = document.getElementById('erhoname');
         if(frm.hofamily.value === "") 
         {
-            errhofamily.setAttribute("style","visibility:visible");
+            errhofamily[0].placeholder = "Enter a Name";
+            errhofamily[0].setAttribute("style","color:#f8001d");
+            selhofamily.setAttribute("style","color:#ff7f50");
             error = 0;
         }
         else if(!(isNaN(frm.hofamily.value)))
         {
-            errhofamily.innerHTML = "Please enter a valid name";
-            errhofamily.setAttribute("style","visibility:visible");
+            errhofamily[0].placeholder = "Please enter a valid Name";
+            errhofamily[0].setAttribute("style","color:#f8001d");
+            selhofamily.setAttribute("style","color:#ff7f50");
             error = 0;
         }
         else
         {
-            errhofamily.setAttribute("style","visibility:hidden");
+            selhofamily.setAttribute("style","color:#f5edea");
             error = 1;
         }
        
-        var erradhar_no = document.getElementById('erradhar_no');
+        var erradhar_no = document.getElementsByName('adhar_no');
+        var seladhar_no = document.getElementById('erradhar');
         if(frm.adhar_no.value== "")
         {
-            erradhar_no.setAttribute("style","visibility:visible");
+            erradhar_no[0].setAttribute("style","color:#f8001d");
+            seladhar_no.setAttribute("style","color:#ff7f50");
             error1 = 0;
         }
         else if((frm.adhar_no.value.length != 12) || (isNaN(frm.adhar_no.value)))
         {
-            erradhar_no.innerHTML = "Pleas Enter a valid Adhar Number";
-            erradhar_no.setAttribute("style","visibility:visible");
+            erradhar_no[0].setAttribute("style","color:#f8001d");
+            erradhar_no[0].placeholder = "Pleas Enter a valid Adhar Number";
+            seladhar_no.setAttribute("style","color:#ff7f50");
             error1 = 0;
         }
         else
         {
-            erradhar_no.setAttribute("style","visibility:hidden");
+            seladhar_no.setAttribute("style","color:#f5edea");
             error1 = 1;
         }
     
-       
-        var erradd1 = document.getElementById('erradd1');
+        var erradd = document.getElementsByName('add1');
+        var seladd1 = document.getElementById('erradd');
         if(frm.add1.value==="")
         {
-            erradd1.setAttribute("style","visibility:visible");
+            erradd[0].setAttribute("style","color:#f8001d");
+            seladd1.setAttribute("style","color:#ff7f50");
             error2 = 0;
         }
         else
         {
-            erradd1.setAttribute("style","visibility:hidden");
+            seladd1.setAttribute("style","color:#f5edea");
             error2 = 1;
         }
         
-       
-        var errpan_mun_cor = document.getElementById('errpan_mun_cor');
+        var errpan = document.getElementsByName('pan_mun_cor');
+        var selpan = document.getElementById('errpan');
         if(frm.pan_mun_cor.value==="")
         {
-            errpan_mun_cor.setAttribute("style","visibility:visible");
+            errpan[0].setAttribute("style","color:#f8001d");
+            selpan.setAttribute("style","color:#ff7f50");
             error3 = 0;
         }
         else
         {
-            errpan_mun_cor.setAttribute("style","visibility:hidden");
+            selpan.setAttribute("style","color:#f5edea");
             error3 = 1;
         }
         
-       
-        var errpincode = document.getElementById('errpincode');
+        var errpin = document.getElementsByName('pincode');
+        var selpin = document.getElementById('errpin');
         if(frm.pincode.value == "")
         {
-            errpincode.style.visibility = "visible";
+            errpin[0].setAttribute("style","color:#f8001d");
+            selpin.setAttribute("style","color:#ff7f50");
             error4 = 0;
         }
         else if((isNaN(frm.pincode.value)))
         {
-            errpincode.innerHTML = "Please Enter a valid Pincode";
-            errpincode.style.visibility = "visible";
+            errpin[0].setAttribute("style","color:#f8001d");
+            errpin[0].placeholder = "Pleas Enter a valid Pincode";
+            selpin.setAttribute("style","color:#ff7f50");
             error4 = 0;
         }
         else
         {
-            errpincode.style.visibility = "hidden";
+            selpin.setAttribute("style","color:#f5edea");
             error4 = 1;
         }
         
-       
-        var errwardno = document.getElementById('errwardno');
+        var errward = document.getElementsByName('wardno');
+        var selward = document.getElementById('errward');
         if(frm.wardno.value == "")
         {
-            errwardno.style.visibility = "visible";
+            errward[0].setAttribute("style","color:#f8001d");
+            selward.setAttribute("style","color:#ff7f50");
             error5 = 0;
         }
         else if((isNaN(frm.wardno.value)))
         {
-            errwardno.innerHTML = "please enter a valid Ward number";
-            errwardno.style.visibility = "visible";
+            errward[0].setAttribute("style","color:#f8001d");
+            errward[0].placeholder = "Pleas Enter a valid Ward Number";
+            selward.setAttribute("style","color:#ff7f50");
             error5 = 0;
         }
         else
         {
-            errwardno.style.visibility = "hidden";
+            selward.setAttribute("style","color:#f5edea");
             error5 = 1;
         }
         
-        
-        var errhouse_no = document.getElementById('errhouse_no');
+        var errhouse = document.getElementsByName('house_no');
+        var selhouse = document.getElementById('errhouse');
         if(frm.house_no.value == "")
         {
-            errhouse_no.style.visibility = "visible";
+            errhouse[0].setAttribute("style","color:#f8001d");
+            selhouse.setAttribute("style","color:#ff7f50");
             error6 = 0;
         }
         else
         {
-            errhouse_no.style.visibility = "hidden";
+            selhouse.setAttribute("style","color:#f5edea");
             error6 = 1;
         }
 
-        var errmonthly_in = document.getElementById('errmonthly_in');
+        var errmon = document.getElementsByName('monthly_in');
+        var selmon = document.getElementById('errmon');
         if(frm.monthly_in.value == "")
         {
-            errmonthly_in.style.visibility = "visible";
+            errmon[0].setAttribute("style","color:#f8001d");
+            selmon.setAttribute("style","color:#ff7f50");
             error7 = 0;
         }
         else if((isNaN(frm.monthly_in.value)))
         {
-            errmonthly_in.innerHTML = "Please enter valid Income";
-            errmonthly_in.style.visibility = "visible";
+            errmon[0].setAttribute("style","color:#f8001d");
+            errmon[0].placeholder = "Pleas Enter a valid Income";
+            selmon.setAttribute("style","color:#ff7f50");
             error7 = 0;
         }
         else
         {
-            errmonthly_in.style.visibility = "hidden";
+            selmon.setAttribute("style","color:#f5edea");
             error7 = 1;
         }
         
-        var errmob_no = document.getElementById('errmob_no');
+        var errmob = document.getElementsByName('mob_no');
+        var selmob = document.getElementById('errmob');
         if(frm.mob_no.value == "")
         {
-            errmob_no.style.visibility = "visible";
+            errmob[0].setAttribute("style","color:#f8001d");
+            selmob.setAttribute("style","color:#ff7f50");
             error8 = 0;
         }
         else if( (frm.mob_no.value.length != 10) || (isNaN(frm.mob_no.value)))
         {
-            errmob_no.innerHTML = "Please enter Valid Mobile Number";
-            errmob_no.style.visibility = "visible";
+            errmob[0].setAttribute("style","color:#f8001d");
+            errmob[0].placeholder = "Pleas Enter a valid Mobile Number";
+            selmob.setAttribute("style","color:#ff7f50");
             error8 = 0;
         }
         else
         {
-            errmob_no.style.visibility = "hidden";
+            selmob.setAttribute("style","color:#f5edea");
             error8 = 1;
         }
 
-         var errcat = document.getElementById('errcat');
+        var errcat = document.getElementsByName('cat');
+        var selcat = document.getElementById('errcat');
         if(frm.cat.value == "")
         {
-            errcat.style.visibility = "visible";
+            errcat[0].setAttribute("style","color:#f8001d");
+            selcat.setAttribute("style","color:#ff7f50");
             error9 = 0;
         }
         else if((isNaN(frm.cat.value)))
         {
-            errcat.innerHTML = "Please enter a Valid Category";
-            errcat.style.visibility = "visible";
+            errcat[0].setAttribute("style","color:#f8001d");
+            errcat[0].placeholder = "Pleas Enter a valid Category";
+            selcat.setAttribute("style","color:#ff7f50");
             error9 = 0;
         }
         else
         {
-            errcat.style.visibility = "hidden";
+            selcat.setAttribute("style","color:#f5edea");
             error9 = 1;
         }
 
-        var errno_of_mem = document.getElementById('errno_of_mem');
+        var errno = document.getElementsByName('no_of_mem');
+        var selno = document.getElementById('errno');
         if(frm.no_of_mem.value == "")
         {
-            errno_of_mem.style.visibility = "visible";
+            errno[0].setAttribute("style","color:#f8001d");
+            selno.setAttribute("style","color:#ff7f50");
             error10 = 0;
         }
         else if((isNaN(frm.no_of_mem.value)))
         {
-            errno_of_mem.innerHTML = "Please enter a valid Number";
-            errno_of_mem.style.visibility = "visible";
+            errno[0].setAttribute("style","color:#f8001d");
+            errno[0].placeholder = "Pleas Enter a Number";
+            selno.setAttribute("style","color:#ff7f50");
             error10 = 0;
         }
         else
         {
-            errno_of_mem.style.visibility = "hidden";
+            selno.setAttribute("style","color:#f5edea");
             error10 = 1;
         }
 
@@ -267,131 +293,103 @@ include('includes/nav.php');
             <section class="content bgcolor-3">
                 <!-- head of family box starting-->
                 <form action="adduser.php" method="post" enctype="multipart/form-data" name="frm" onsubmit="return val();">
-                    <br/>
-                    <span id="errhofamily" class="error">please enter a name</span>
-                    <br/>
+                    
                     <span class="input input--manami">
-        <input class="input__field input__field--manami" type="text" id="input-32" name="hofamily" />
+                        <input class="input__field input__field--manami" type="text" id="input-32" name="hofamily" placeholder="Name of the Head of the Family" />
         <label class="input__label input__label--manami" for="input-32">
-          <span class="input__label-content input__label-content--manami">Name of the Head of the Family</span>
+          <span class="input__label-content input__label-content--manami" id="erhoname">Name of the Head of the Family</span>
                     </label>
                     </span>
-                    <br/>
-                    <span id="erradhar_no" class="error">please enter Adhar Number</span>
-                    <br/>
+                    
                     <!-- head of family box end-->
                     <span class="input input--manami">
-				<input class="input__field input__field--manami" type="text" id="input-34" name="adhar_no"/>
+                        <input class="input__field input__field--manami" type="text" id="input-34" name="adhar_no" placeholder="Enter Adhar Number"/>
 				<label class="input__label input__label--manami" for="input-34">
-					<span class="input__label-content input__label-content--manami">Adhar Number</span>
+                    <span class="input__label-content input__label-content--manami" id="erradhar">Adhar Number</span>
                     </label>
                     </span>
-                    <br/>
-                    <span id="erradd1" class="error">please enter Address</span>
-                    <br/>
+                    
                     <span class="input input--manami">
-        <input class="input__field input__field--manami" type="text" id="input-33" name="add1"/>
+        <input class="input__field input__field--manami" type="text" id="input-33" name="add1" placeholder="Enter Address"/>
         <label class="input__label input__label--manami" for="input-33">
-          <span class="input__label-content input__label-content--manami">Address 1</span>
+          <span class="input__label-content input__label-content--manami" id="erradd">Address 1</span>
                     </label>
                     </span>
-                    <br/>
-                    <span id="erradd2" class="error">please enter a name</span>
-                    <br/>
+                    
                     <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-34" name="add2"/>
         <label class="input__label input__label--manami" for="input-34">
           <span class="input__label-content input__label-content--manami">Address 2</span>
                     </label>
                     </span>
-                    <br/>
-                    <span id="erradd3" class="error">please enter a name</span>
-                    <br/>
+                    
                     <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-34" name="add3"/>
         <label class="input__label input__label--manami" for="input-34">
           <span class="input__label-content input__label-content--manami">Address 3</span>
                     </label>
                     </span>
-                    <br/>
-                    <span id="errpan_mun_cor" class="error">please enter a value</span>
-                    <br/>
+                    
                     <span class="input input--manami">
-        <input class="input__field input__field--manami" type="text" id="input-34" name="pan_mun_cor"/>
+                        <input class="input__field input__field--manami" type="text" id="input-34" name="pan_mun_cor" placeholder="Enter Panchayath/Muncipality/Corporation"/>
         <label class="input__label input__label--manami" for="input-34">
-          <span class="input__label-content input__label-content--manami">Panchayath/Muncipality/Corporation</span>
+          <span class="input__label-content input__label-content--manami" id="errpan">Panchayath/Muncipality/Corporation</span>
                     </label>
                     </span>
-                    <br/>
-                    <span id="errpincode" class="error">please enter pincode</span>
-                    <br/>
+                    
                     <span class="input input--manami">
-        <input class="input__field input__field--manami" type="text" id="input-34" name="pincode"/>
+                        <input class="input__field input__field--manami" type="text" id="input-34" name="pincode" placeholder="Enter PINCODE"/>
         <label class="input__label input__label--manami" for="input-34">
-          <span class="input__label-content input__label-content--manami">PINCODE</span>
+          <span class="input__label-content input__label-content--manami" id="errpin">PINCODE</span>
                     </label>
                     </span>
-                    <br/>
-                    <span id="errwardno" class="error">please enter wardno</span>
-                    <br/>
+                    
                     <span class="input input--manami">
-        <input class="input__field input__field--manami" type="text" id="input-34" name="wardno"/>
+        <input class="input__field input__field--manami" type="text" id="input-34" name="wardno" placeholder="Enter Ward Number"/>
         <label class="input__label input__label--manami" for="input-34">
-          <span class="input__label-content input__label-content--manami">Ward Number</span>
+          <span class="input__label-content input__label-content--manami" id="errward">Ward Number</span>
                     </label>
                     </span>
-                    <br/>
-                    <span id="errhouse_no" class="error">please enter House Number</span>
-                    <br/>
+                    
                     <span class="input input--manami">
-        <input class="input__field input__field--manami" type="text" id="input-34" name="house_no"/>
+        <input class="input__field input__field--manami" type="text" id="input-34" name="house_no" placeholder="Enter House Number"/>
         <label class="input__label input__label--manami" for="input-34">
-          <span class="input__label-content input__label-content--manami">House Number</span>
+          <span class="input__label-content input__label-content--manami" id="errhouse">House Number</span>
                     </label>
                     </span>
-                    <br/>
-                    <span id="errmonthly_in" class="error">please enter Monthly Income</span>
-                    <br/>
+                    
                     <span class="input input--manami">
-        <input class="input__field input__field--manami" type="text" id="input-34" name="monthly_in"/>
+        <input class="input__field input__field--manami" type="text" id="input-34" name="monthly_in" placeholder="Enter Monthly Income"/>
         <label class="input__label input__label--manami" for="input-34">
-          <span class="input__label-content input__label-content--manami">Monthly Income</span>
+          <span class="input__label-content input__label-content--manami" id="errmon">Monthly Income</span>
                     </label>
                     </span>
-                    <br/>
-                    <span id="errmob_no" class="error">please enter Mobile Number</span>
-                    <br/>
+                    
                     <span class="input input--manami">
-				<input class="input__field input__field--manami" type="text" id="input-34" name="mob_no"/>
+				<input class="input__field input__field--manami" type="text" id="input-34" name="mob_no" placeholder="Enter Mobile Number"/>
 				<label class="input__label input__label--manami" for="input-34">
-					<span class="input__label-content input__label-content--manami">Mobile Number</span>
+					<span class="input__label-content input__label-content--manami" id="errmob">Mobile Number</span>
                     </label>
                     </span>
-                    <br/>
-                    <span id="errtaluk" class="error">please enter taluk</span>
-                    <br/>
+                    
                     <span class="input input--manami input--filled">
 				<input class="input__field input__field--manami" type="text" id="input-34" name="taluk"  placeholder="<?php echo $ro[1]; ?>" value="<?php echo $ro[1]; ?>" readonly="readonly"/>
 				<label class="input__label input__label--manami" for="input-34">
 					<span class="input__label-content input__label-content--manami">Taluk</span>
                     </label>
                     </span>
-                    <br/>
-                    <span id="errcat" class="error">please enter Category</span>
-                    <br/>
+                    
                     <span class="input input--manami input--filled">
-        <input class="input__field input__field--manami" type="text" id="input-34" name="cat" />
+        <input class="input__field input__field--manami" type="text" id="input-34" name="cat" placeholder="Enter Category"/>
         <label class="input__label input__label--manami" for="input-34">
-          <span class="input__label-content input__label-content--manami">Category</span>
+          <span class="input__label-content input__label-content--manami" id="errcat">Category</span>
                     </label>
                     </span>
-                    <br/>
-                    <span id="errno_of_mem" class="error">please enter Number of Members in Family</span>
-                    <br/>
+                    
                     <span class="input input--manami">
-        <input class="input__field input__field--manami" type="text" id="input-34" name="no_of_mem"/>
+        <input class="input__field input__field--manami" type="text" id="input-34" name="no_of_mem" placeholder="Enter Number of Members in Family"/>
         <label class="input__label input__label--manami" for="input-34">
-          <span class="input__label-content input__label-content--manami">Number of Members in Family</span>
+          <span class="input__label-content input__label-content--manami" id="errno">Number of Members in Family</span>
                     </label>
                     </span>
                 
