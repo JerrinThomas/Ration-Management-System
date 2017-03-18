@@ -17,10 +17,16 @@ include('includes/nav.php');
 </style>
 <script type="text/javascript">
     function val(){
-        var error = 0,error1 = 0,error2 = 0,error3 = 0,error4 = 0,error5 = 0,error6 = 0,error7 = 0,error8 = 0,error9 = 0,error10 =0;
+        var error = 0,error1 = 0,error2 = 0,error3 = 0,error4 = 0,error5 = 0,error6 = 0,error7 = 0,error8 = 0,error9 = 0,error10 =0,error11 =1,error12 =1,error13 =1;
         var errhofamily = document.getElementById('errhofamily');
-        if((frm.hofamily.value === "") || (!(isNaN(frm.hofamily.value))))
+        if(frm.hofamily.value === "") 
         {
+            errhofamily.setAttribute("style","visibility:visible");
+            error = 0;
+        }
+        else if(!(isNaN(frm.hofamily.value)))
+        {
+            errhofamily.innerHTML = "Please enter a valid name";
             errhofamily.setAttribute("style","visibility:visible");
             error = 0;
         }
@@ -31,8 +37,14 @@ include('includes/nav.php');
         }
        
         var erradhar_no = document.getElementById('erradhar_no');
-        if((frm.adhar_no.value== "") || (frm.adhar_no.value.length != 12) || (isNaN(frm.adhar_no.value)))
+        if(frm.adhar_no.value== "")
         {
+            erradhar_no.setAttribute("style","visibility:visible");
+            error1 = 0;
+        }
+        else if((frm.adhar_no.value.length != 12) || (isNaN(frm.adhar_no.value)))
+        {
+            erradhar_no.innerHTML = "Pleas Enter a valid Adhar Number";
             erradhar_no.setAttribute("style","visibility:visible");
             error1 = 0;
         }
@@ -70,8 +82,14 @@ include('includes/nav.php');
         
        
         var errpincode = document.getElementById('errpincode');
-        if((frm.pincode.value == "") || (isNaN(frm.pincode.value)))
+        if(frm.pincode.value == "")
         {
+            errpincode.style.visibility = "visible";
+            error4 = 0;
+        }
+        else if((isNaN(frm.pincode.value)))
+        {
+            errpincode.innerHTML = "Please Enter a valid Pincode";
             errpincode.style.visibility = "visible";
             error4 = 0;
         }
@@ -85,6 +103,12 @@ include('includes/nav.php');
         var errwardno = document.getElementById('errwardno');
         if(frm.wardno.value == "")
         {
+            errwardno.style.visibility = "visible";
+            error5 = 0;
+        }
+        else if((isNaN(frm.wardno.value)))
+        {
+            errwardno.innerHTML = "please enter a valid Ward number";
             errwardno.style.visibility = "visible";
             error5 = 0;
         }
@@ -108,8 +132,14 @@ include('includes/nav.php');
         }
 
         var errmonthly_in = document.getElementById('errmonthly_in');
-        if((frm.monthly_in.value == "") || (isNaN(frm.monthly_in.value)))
+        if(frm.monthly_in.value == "")
         {
+            errmonthly_in.style.visibility = "visible";
+            error7 = 0;
+        }
+        else if((isNaN(frm.monthly_in.value)))
+        {
+            errmonthly_in.innerHTML = "Please enter valid Income";
             errmonthly_in.style.visibility = "visible";
             error7 = 0;
         }
@@ -120,8 +150,14 @@ include('includes/nav.php');
         }
         
         var errmob_no = document.getElementById('errmob_no');
-        if((frm.mob_no.value == "")|| (frm.mob_no.value.length != 10) || (isNaN(frm.mob_no.value)))
+        if(frm.mob_no.value == "")
         {
+            errmob_no.style.visibility = "visible";
+            error8 = 0;
+        }
+        else if( (frm.mob_no.value.length != 10) || (isNaN(frm.mob_no.value)))
+        {
+            errmob_no.innerHTML = "Please enter Valid Mobile Number";
             errmob_no.style.visibility = "visible";
             error8 = 0;
         }
@@ -132,8 +168,14 @@ include('includes/nav.php');
         }
 
          var errcat = document.getElementById('errcat');
-        if((frm.cat.value == "") || (isNaN(frm.cat.value)))
+        if(frm.cat.value == "")
         {
+            errcat.style.visibility = "visible";
+            error9 = 0;
+        }
+        else if((isNaN(frm.cat.value)))
+        {
+            errcat.innerHTML = "Please enter a Valid Category";
             errcat.style.visibility = "visible";
             error9 = 0;
         }
@@ -144,8 +186,14 @@ include('includes/nav.php');
         }
 
         var errno_of_mem = document.getElementById('errno_of_mem');
-        if((frm.no_of_mem.value == "") || (isNaN(frm.no_of_mem.value)))
+        if(frm.no_of_mem.value == "")
         {
+            errno_of_mem.style.visibility = "visible";
+            error10 = 0;
+        }
+        else if((isNaN(frm.no_of_mem.value)))
+        {
+            errno_of_mem.innerHTML = "Please enter a valid Number";
             errno_of_mem.style.visibility = "visible";
             error10 = 0;
         }
@@ -155,8 +203,50 @@ include('includes/nav.php');
             error10 = 1;
         }
 
+        var errrow = document.getElementsByClassName('memfam');
 
-        if(((error && error1) && (error2 && error3) && (error4 && error5) && (error6 && error7) && (error8 && error9) && error10)==0)
+        if(errrow[0].value=="")
+        {
+            errrowname.style.visibility = "visible";
+            error11 = 0;
+        }
+        else if((!(isNaN(errrow[0].value))))
+        {
+            errrowname.innerHTML = "Please enter a valid name";
+            errrowname.style.visibility = "visible";
+            error11 = 0;
+        }
+        else
+        {
+            errrowname.style.visibility = "hidden";
+            error11 = 1;
+        }
+
+       
+        if((errrow[1].value =="")  || (isNaN(errrow[1].value)))
+        {
+            errrowage.style.visibility = "visible";
+            error12 = 0;
+        }
+        else
+        {
+            errrowage.style.visibility = "hidden";
+            error12 = 1;
+        }
+
+        
+        if((errrow[2].value =="") || (errrow[2].value.length != 12) || (isNaN(errrow[2].value)))
+        {
+            errrowadhar.style.visibility = "visible";
+            error13 = 0;
+        }
+        else
+        {
+            errrowadhar.style.visibility = "hidden";
+            error13 = 1;
+        }
+
+        if(((error && error1) && (error2 && error3) && (error4 && error5) && (error6 && error7) && (error8 && error9) && (error10 && error11) && (error12 && error13)) ==0)
         {
             return false;
         }
@@ -177,6 +267,9 @@ include('includes/nav.php');
             <section class="content bgcolor-3">
                 <!-- head of family box starting-->
                 <form action="adduser.php" method="post" enctype="multipart/form-data" name="frm" onsubmit="return val();">
+                    <br/>
+                    <span id="errhofamily" class="error">please enter a name</span>
+                    <br/>
                     <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-32" name="hofamily" />
         <label class="input__label input__label--manami" for="input-32">
@@ -184,7 +277,7 @@ include('includes/nav.php');
                     </label>
                     </span>
                     <br/>
-                    <span id="errhofamily" class="error">please enter a name</span>
+                    <span id="erradhar_no" class="error">please enter Adhar Number</span>
                     <br/>
                     <!-- head of family box end-->
                     <span class="input input--manami">
@@ -194,7 +287,7 @@ include('includes/nav.php');
                     </label>
                     </span>
                     <br/>
-                    <span id="erradhar_no" class="error">please enter Adhar Number</span>
+                    <span id="erradd1" class="error">please enter Address</span>
                     <br/>
                     <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-33" name="add1"/>
@@ -203,7 +296,7 @@ include('includes/nav.php');
                     </label>
                     </span>
                     <br/>
-                    <span id="erradd1" class="error">please enter Address</span>
+                    <span id="erradd2" class="error">please enter a name</span>
                     <br/>
                     <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-34" name="add2"/>
@@ -212,7 +305,7 @@ include('includes/nav.php');
                     </label>
                     </span>
                     <br/>
-                    <span id="erradd2" class="error">please enter a name</span>
+                    <span id="erradd3" class="error">please enter a name</span>
                     <br/>
                     <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-34" name="add3"/>
@@ -221,7 +314,7 @@ include('includes/nav.php');
                     </label>
                     </span>
                     <br/>
-                    <span id="erradd3" class="error">please enter a name</span>
+                    <span id="errpan_mun_cor" class="error">please enter a value</span>
                     <br/>
                     <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-34" name="pan_mun_cor"/>
@@ -230,7 +323,7 @@ include('includes/nav.php');
                     </label>
                     </span>
                     <br/>
-                    <span id="errpan_mun_cor" class="error">please enter a value</span>
+                    <span id="errpincode" class="error">please enter pincode</span>
                     <br/>
                     <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-34" name="pincode"/>
@@ -239,7 +332,7 @@ include('includes/nav.php');
                     </label>
                     </span>
                     <br/>
-                    <span id="errpincode" class="error">please enter pincode</span>
+                    <span id="errwardno" class="error">please enter wardno</span>
                     <br/>
                     <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-34" name="wardno"/>
@@ -248,7 +341,7 @@ include('includes/nav.php');
                     </label>
                     </span>
                     <br/>
-                    <span id="errwardno" class="error">please enter wardno</span>
+                    <span id="errhouse_no" class="error">please enter House Number</span>
                     <br/>
                     <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-34" name="house_no"/>
@@ -257,7 +350,7 @@ include('includes/nav.php');
                     </label>
                     </span>
                     <br/>
-                    <span id="errhouse_no" class="error">please enter House Number</span>
+                    <span id="errmonthly_in" class="error">please enter Monthly Income</span>
                     <br/>
                     <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-34" name="monthly_in"/>
@@ -266,7 +359,7 @@ include('includes/nav.php');
                     </label>
                     </span>
                     <br/>
-                    <span id="errmonthly_in" class="error">please enter Monthly Income</span>
+                    <span id="errmob_no" class="error">please enter Mobile Number</span>
                     <br/>
                     <span class="input input--manami">
 				<input class="input__field input__field--manami" type="text" id="input-34" name="mob_no"/>
@@ -275,7 +368,7 @@ include('includes/nav.php');
                     </label>
                     </span>
                     <br/>
-                    <span id="errmob_no" class="error">please enter Mobile Number</span>
+                    <span id="errtaluk" class="error">please enter taluk</span>
                     <br/>
                     <span class="input input--manami input--filled">
 				<input class="input__field input__field--manami" type="text" id="input-34" name="taluk"  placeholder="<?php echo $ro[1]; ?>" value="<?php echo $ro[1]; ?>" readonly="readonly"/>
@@ -284,7 +377,7 @@ include('includes/nav.php');
                     </label>
                     </span>
                     <br/>
-                    <span id="errtaluk" class="error">please enter taluk</span>
+                    <span id="errcat" class="error">please enter Category</span>
                     <br/>
                     <span class="input input--manami input--filled">
         <input class="input__field input__field--manami" type="text" id="input-34" name="cat" />
@@ -293,7 +386,7 @@ include('includes/nav.php');
                     </label>
                     </span>
                     <br/>
-                    <span id="errcat" class="error">please enter Category</span>
+                    <span id="errno_of_mem" class="error">please enter Number of Members in Family</span>
                     <br/>
                     <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-34" name="no_of_mem"/>
@@ -301,10 +394,7 @@ include('includes/nav.php');
           <span class="input__label-content input__label-content--manami">Number of Members in Family</span>
                     </label>
                     </span>
-                    <br/>
-                    <span id="errno_of_mem" class="error">please enter Number of Members in Family</span>
-                    <br/>
-                    <span class="input input--manami">
+                
         <h4>Details of other Family Member(s)</h4>
         </label>
       </span>
@@ -325,6 +415,10 @@ include('includes/nav.php');
 
                     </table>
                     <input class="btnew" type="button" onclick="add_row();" value="+">
+                    <br/>
+                    <span id="errrowname" class="error">please enter name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                    <span id="errrowage" class="error"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;please enter age  </span>
+                    <span id="errrowadhar" class="error">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;please enter adhar No</span>
             </section>
         </div>
         <!-- ended form container-->
