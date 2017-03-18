@@ -24,3 +24,8 @@ ALTER TABLE `cardholder_and_mem` ADD CONSTRAINT `fkey1` FOREIGN KEY (`ration_car
 	
 To Add Details Manually...
 INSERT INTO cardholder_and_mem VALUES( 100000000002,1000000000,'Chweet Lve',24);
+
+RationShops
+CREATE TABLE `drms`.`rationshops` ( `shopno` INT(8) NOT NULL AUTO_INCREMENT, `lname` VARCHAR(50) NOT NULL , `address` VARCHAR(125) NOT NULL ,`taluk` VARCHAR(50) NOT NULL,max_wheat int(4) NULL,max_rice int(4) NULL,max_ker int(4) NULL,bal_wheat int(4) NULL,bal_rice int(4) NULL,bal_ker int(4) NULL,amt int(5) NULL , PRIMARY KEY(`shopno`)) ENGINE = InnoDB;
+ALTER TABLE `rationshops` AUTO_INCREMENT=100000;
+ALTER TABLE `rationshops` ADD INDEX(`shopno`);
