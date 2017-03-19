@@ -22,14 +22,14 @@ include('includes/nav.php');
         var selhofamily = document.getElementById('erhoname');
         if(frm.hofamily.value === "")
         {
-            errhofamily[0].placeholder = "Enter a Name";
+            errhofamily[0].placeholder = "Enter A Name";
             errhofamily[0].setAttribute("style","color:#f8001d");
             selhofamily.setAttribute("style","color:#ff7f50");
             error = 0;
         }
         else if(!(isNaN(frm.hofamily.value)))
         {
-            errhofamily[0].placeholder = "Please enter a valid Name";
+            errhofamily[0].placeholder = "Please Enter A Valid Name";
             errhofamily[0].setAttribute("style","color:#f8001d");
             selhofamily.setAttribute("style","color:#ff7f50");
             error = 0;
@@ -52,7 +52,7 @@ include('includes/nav.php');
         else if((frm.adhar_no.value.length != 12) || (isNaN(frm.adhar_no.value)))
         {
             erradhar_no[0].setAttribute("style","color:#f8001d");
-            erradhar_no[0].placeholder = "Pleas Enter a valid Adhar Number";
+            erradhar_no[0].placeholder = "Please Enter a Valid Adhar Number";
             seladhar_no.setAttribute("style","color:#ff7f50");
             error1 = 0;
         }
@@ -104,7 +104,7 @@ include('includes/nav.php');
         else if((isNaN(frm.pincode.value)))
         {
             errpin[0].setAttribute("style","color:#f8001d");
-            errpin[0].placeholder = "Pleas Enter a valid Pincode";
+            errpin[0].placeholder = "Pleas Enter A valid Pincode";
             selpin.setAttribute("style","color:#ff7f50");
             error4 = 0;
         }
@@ -126,7 +126,7 @@ include('includes/nav.php');
         else if((isNaN(frm.wardno.value)))
         {
             errward[0].setAttribute("style","color:#f8001d");
-            errward[0].placeholder = "Pleas Enter a valid Ward Number";
+            errward[0].placeholder = "Pleas Enter A valid Ward Number";
             selward.setAttribute("style","color:#ff7f50");
             error5 = 0;
         }
@@ -185,7 +185,7 @@ include('includes/nav.php');
         else if( (frm.mob_no.value.length != 10) || (isNaN(frm.mob_no.value)))
         {
             errmob[0].setAttribute("style","color:#f8001d");
-            errmob[0].placeholder = "Pleas Enter a valid Mobile Number";
+            errmob[0].placeholder = "Please Enter A Valid Mobile Number";
             selmob.setAttribute("style","color:#ff7f50");
             error8 = 0;
         }
@@ -204,10 +204,10 @@ include('includes/nav.php');
             selcat.setAttribute("style","color:#ff7f50");
             error9 = 0;
         }
-        else if((isNaN(frm.cat.value)))
+        else if((isNaN(frm.cat.value)) || frm.cat.value > 5 || frm.cat.value < 1)
         {
             errcat[0].setAttribute("style","color:#f8001d");
-            errcat[0].placeholder = "Pleas Enter a valid Category";
+            errcat[0].placeholder = "Please Enter A Valid Category(1-5)";
             selcat.setAttribute("style","color:#ff7f50");
             error9 = 0;
         }
@@ -229,7 +229,7 @@ include('includes/nav.php');
         else if((isNaN(frm.no_of_mem.value)))
         {
             errno[0].setAttribute("style","color:#f8001d");
-            errno[0].placeholder = "Pleas Enter a Number";
+            errno[0].placeholder = "Please Enter Data";
             selno.setAttribute("style","color:#ff7f50");
             error10 = 0;
         }
@@ -239,8 +239,8 @@ include('includes/nav.php');
             selno.setAttribute("style","color:#f5edea");
             error10 = 1;
         }
-        
-        
+
+
         var x = document.getElementById("employee_table").rows.length;
         var i;
         var a=1,b=1,c=1;
@@ -258,16 +258,16 @@ include('includes/nav.php');
                     else if((!(isNaN(y.value))))
                     {
                         y.style.border = "2px solid red";
-                        errrowname.innerHTML = "Please enter a valid name";
+                        errrowname.innerHTML = "Please Enter A Valid Name";
                         errrowname.style.visibility = "visible";
                         erro11 = 0;
                     }
                     else
                     {
                         y.style.border = "1px solid #ccc";
-                        erro11 = 1;    
+                        erro11 = 1;
                     }
-                   
+
                 var y1= document.getElementById("age"+i);
 
                     if(y1.value =="")
@@ -279,7 +279,7 @@ include('includes/nav.php');
                     else if(isNaN(y1.value))
                     {
                         y1.style.border = "2px solid red";
-                        errrowage.innerHTML = "Please enter a valid Age";
+                        errrowage.innerHTML = "Please Enter A valid Age";
                         errrowage.style.visibility = "visible";
                         erro12 = 0;
                     }
@@ -288,9 +288,9 @@ include('includes/nav.php');
                         y1.style.border = "1px solid #ccc";
                         erro12 = 1;
                     }
-                    
+
                 var y2= document.getElementById("adhar"+i);
-                    
+
                     if(y2.value =="")
                     {
                         y2.style.border = "2px solid red";
@@ -300,7 +300,7 @@ include('includes/nav.php');
                     else if((y2.value.length != 12) || (isNaN(y2.value)))
                     {
                         y2.style.border = "2px solid red";
-                        errrowadhar.innerHTML = "enter a valid Adhar No.";
+                        errrowadhar.innerHTML = "Enter A Valid Adhar No.";
                         errrowadhar.style.visibility = "visible";
                         erro13 = 0;
                     }
@@ -309,7 +309,7 @@ include('includes/nav.php');
                         y2.style.border = "1px solid #ccc";
                         erro13 = 1;
                     }
-                    
+
                 a = a && erro11;
                 b = b && erro12;
                 c = c && erro13;
@@ -338,8 +338,7 @@ include('includes/nav.php');
             return true;
         }
     }
-</script>
-
+  </script>
     <body>
     <h2>Add User</h2>
     <!-- container containing form code-->
@@ -348,7 +347,7 @@ include('includes/nav.php');
         <div class="container">
             <!-- form start-->
             <section class="content bgcolor-3">
-                <!-- head of family box starting-->
+                <!-- head of family box starting -->
                 <form action="adduser.php" method="post" enctype="multipart/form-data" name="frm" onsubmit="return val();">
 
                     <span class="input input--manami">
@@ -360,10 +359,11 @@ include('includes/nav.php');
 
                     <!-- head of family box end-->
                     <span class="input input--manami">
-                        <input class="input__field input__field--manami" type="text" id="input-34" name="adhar_no" placeholder="Enter Adhar Number"/>
+                        <input class="input__field input__field--manami" type="text" id="idadhar" name="adhar_no" placeholder="Enter Adhar Number" onblur="validate('message',this.value)"/>
 				<label class="input__label input__label--manami" for="input-34">
                     <span class="input__label-content input__label-content--manami" id="erradhar">Adhar Number</span>
                     </label>
+                    <span id="message"></span>
                     </span>
 
                     <span class="input input--manami">
@@ -471,9 +471,9 @@ include('includes/nav.php');
         </table>
                     <input class="btnew" type="button" onclick="add_row();" value="+">
                     <br/>
-                    <span id="errrowname" class="error">please enter name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-            <span style="padding-right:30px; padding-left:70px; " id="errrowage" class="error"> please enter age  </span>
-            <span style="padding-left:40px;" id="errrowadhar" class="error">please enter adhar No</span>
+                    <span id="errrowname" class="error">Please Enter Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            <span style="padding-right:30px; padding-left:70px; " id="errrowage" class="error"> Please Enter Age  </span>
+            <span style="padding-left:40px;" id="errrowadhar" class="error">Please Enter Adhar No</span>
             </section>
         </div>
         <!-- ended form container-->
@@ -483,18 +483,41 @@ include('includes/nav.php');
             <div class="box">
                 <input type="file" name="fileToUpload" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" multiple />
                 <label for="file-1">
-                    <span>Choose a file&hellip;</span>
+                    <span id=>Choose a file&hellip;</span>
                 </label>
             </div>
         </div>
         <!-- ended image upload button-->
         <!-- submit button-->
         <div>
-            <input class="btn" type="submit" value="submit" />
+            <input class="btn" type="submit" value="submit" id="sub_but"/>
         </div>
         <!-- ended submit button -->
         </form>
         <script type="text/javascript" src="https://gc.kis.scr.kaspersky-labs.com/EB053B0F-62D3-E04B-B72C-CDF5F58B09B7/main.js" charset="UTF-8"></script>
+        <script>
+        function validate(field, query) {
+        var xmlhttp;
+        if (window.XMLHttpRequest) { // for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+        } else { // for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState != 4 && xmlhttp.status == 200) {
+        document.getElementById(field).innerHTML = "Validating..";
+        }
+        else if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        document.getElementById(field).innerHTML = xmlhttp.responseText;
+        }
+        else {
+        document.getElementById(field).innerHTML = "Error Occurred. <a href='adduserhome.php'>Reload Or Try Again</a> the page.";
+        }
+        }
+        xmlhttp.open("GET", "adduser.php?field=" + field + "&query=" + query, false);
+        xmlhttp.send();
+        }
+        </script>
         <script>
             (function (e, t, n) {
                 var r = e.querySelectorAll("html")[0];

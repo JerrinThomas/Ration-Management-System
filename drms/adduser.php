@@ -1,9 +1,33 @@
 
 <?php
 require_once('config.php');
+if(isset($_GET["query"])&&isset($_GET["field"])){
+  if(strlen($_GET["query"]) != 12)
+   echo "Adhar Number Invalid(12 Digits)";
+  else {
+    $ad=$_GET["query"];
+    $chk="SELECT adhar_no,ration_card_no,mem_name FROM cardholder_and_mem WHERE adhar_no='$ad'";
+    $checkmem=mysqli_query($dbC,$chk);
+
+    if(mysqli_num_rows($checkmem) != 0){
+      $checkrow=mysqli_fetch_row($checkmem);
+      echo " The ".$checkrow[2]." with adhar no : ".$ad." is a member of Ration Card : ".$checkrow[1]." ";
+    }
+    else {
+      echo "Valid";
+    }
+ }
+}
+else{
 ob_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
+  function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+  }
   $hofamily=test_input($_POST["hofamily"]);
   $adhar_no=test_input($_POST["adhar_no"]);
   $add1=test_input($_POST["add1"]);
@@ -38,12 +62,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
  }
 }
 
-function test_input($data) {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
-}
 
 try {
 if(!isset($_FILES["fileToUpload"]["tmp_name"])||$hofamily==""||$adhar_no==""||$add1==""||$pan_mun_cor==""||$pincode==""||$wardno==""||$house_no==""||$monthly_in==""||$mob_no==""||$taluk=="") {
@@ -118,13 +136,6 @@ if ($_FILES["fileToUpload"]["size"] > 500000) {
 if($imageFileType != "jpg" && $imageFileType != "jpeg" ) {
     throw new Exception("Sorry, only JPG, JPEG...Go Back... :/ ");
 }
-$chk="SELECT adhar_no,ration_card_no,mem_name FROM cardholder_and_mem WHERE adhar_no='$adhar_no'";
-$checkmem=mysqli_query($dbC,$chk);
-
-if(mysqli_num_rows($checkmem) != 0){
-  $checkrow=mysqli_fetch_row($checkmem);
-  throw new Exception(" The ".$checkrow[2]." with adhar no : ".$adhar_no." is a member of Ration Card : ".$checkrow[1]." ");
-}
 //move file to uploads/
   $move=move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
   if(!$move) {
@@ -159,5 +170,5 @@ if(mysqli_num_rows($checkmem) != 0){
 
 ob_get_contents();
 ob_end_flush();
-
+}
 ?>
