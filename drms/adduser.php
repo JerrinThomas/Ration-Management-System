@@ -17,7 +17,14 @@ if(isset($_GET["query"])&&isset($_GET["field"])){
               echo " The ".$checkrow[2]." with adhar no : ".$val." is a member of Ration Card : ".$checkrow[1]." ";
             }
            else {
-              echo "Valid";
+             $chk1="SELECT ration_card_no FROM rationcard_holder WHERE adhar_no='$val'";
+             $check=mysqli_query($dbC,$chk1);
+             if(mysqli_num_rows($check) != 0){
+               $checkrow=mysqli_fetch_row($check);
+               echo " The Adhar Holder Is H.O.F of ration_card_no : ".$checkrow[0]." ";
+             }
+             else
+                 echo " Valid ";
            }
       }
  }
