@@ -20,7 +20,7 @@ include('includes/nav.php');
         var error = 0,error1 = 0,error2 = 0,error3 = 0,error4 = 0,error5 = 0,error6 = 0,error7 = 0,error8 = 0,error9 = 0,error10 =0,error11 =1,error12 =1,error13 =1;
         var errhofamily = document.getElementsByName('hofamily');
         var selhofamily = document.getElementById('erhoname');
-        if(frm.hofamily.value === "") 
+        if(frm.hofamily.value === "")
         {
             errhofamily[0].placeholder = "Enter a Name";
             errhofamily[0].setAttribute("style","color:#f8001d");
@@ -39,7 +39,7 @@ include('includes/nav.php');
             selhofamily.setAttribute("style","color:#f5edea");
             error = 1;
         }
-       
+
         var erradhar_no = document.getElementsByName('adhar_no');
         var seladhar_no = document.getElementById('erradhar');
         if(frm.adhar_no.value== "")
@@ -60,7 +60,7 @@ include('includes/nav.php');
             seladhar_no.setAttribute("style","color:#f5edea");
             error1 = 1;
         }
-    
+
         var erradd = document.getElementsByName('add1');
         var seladd1 = document.getElementById('erradd');
         if(frm.add1.value==="")
@@ -74,7 +74,7 @@ include('includes/nav.php');
             seladd1.setAttribute("style","color:#f5edea");
             error2 = 1;
         }
-        
+
         var errpan = document.getElementsByName('pan_mun_cor');
         var selpan = document.getElementById('errpan');
         if(frm.pan_mun_cor.value==="")
@@ -88,7 +88,7 @@ include('includes/nav.php');
             selpan.setAttribute("style","color:#f5edea");
             error3 = 1;
         }
-        
+
         var errpin = document.getElementsByName('pincode');
         var selpin = document.getElementById('errpin');
         if(frm.pincode.value == "")
@@ -109,7 +109,7 @@ include('includes/nav.php');
             selpin.setAttribute("style","color:#f5edea");
             error4 = 1;
         }
-        
+
         var errward = document.getElementsByName('wardno');
         var selward = document.getElementById('errward');
         if(frm.wardno.value == "")
@@ -130,7 +130,7 @@ include('includes/nav.php');
             selward.setAttribute("style","color:#f5edea");
             error5 = 1;
         }
-        
+
         var errhouse = document.getElementsByName('house_no');
         var selhouse = document.getElementById('errhouse');
         if(frm.house_no.value == "")
@@ -165,7 +165,7 @@ include('includes/nav.php');
             selmon.setAttribute("style","color:#f5edea");
             error7 = 1;
         }
-        
+
         var errmob = document.getElementsByName('mob_no');
         var selmob = document.getElementById('errmob');
         if(frm.mob_no.value == "")
@@ -248,7 +248,7 @@ include('includes/nav.php');
             error11 = 1;
         }
 
-       
+
         if((errrow[1].value =="")  || (isNaN(errrow[1].value)))
         {
             errrowage.style.visibility = "visible";
@@ -260,7 +260,7 @@ include('includes/nav.php');
             error12 = 1;
         }
 
-        
+
         if((errrow[2].value =="") || (errrow[2].value.length != 12) || (isNaN(errrow[2].value)))
         {
             errrowadhar.style.visibility = "visible";
@@ -293,14 +293,14 @@ include('includes/nav.php');
             <section class="content bgcolor-3">
                 <!-- head of family box starting-->
                 <form action="adduser.php" method="post" enctype="multipart/form-data" name="frm" onsubmit="return val();">
-                    
+
                     <span class="input input--manami">
                         <input class="input__field input__field--manami" type="text" id="input-32" name="hofamily" placeholder="Name of the Head of the Family" />
         <label class="input__label input__label--manami" for="input-32">
           <span class="input__label-content input__label-content--manami" id="erhoname">Name of the Head of the Family</span>
                     </label>
                     </span>
-                    
+
                     <!-- head of family box end-->
                     <span class="input input--manami">
                         <input class="input__field input__field--manami" type="text" id="input-34" name="adhar_no" placeholder="Enter Adhar Number"/>
@@ -308,110 +308,110 @@ include('includes/nav.php');
                     <span class="input__label-content input__label-content--manami" id="erradhar">Adhar Number</span>
                     </label>
                     </span>
-                    
+
                     <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-33" name="add1" placeholder="Enter Address"/>
         <label class="input__label input__label--manami" for="input-33">
           <span class="input__label-content input__label-content--manami" id="erradd">Address 1</span>
                     </label>
                     </span>
-                    
+
                     <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-34" name="add2"/>
         <label class="input__label input__label--manami" for="input-34">
           <span class="input__label-content input__label-content--manami">Address 2</span>
                     </label>
                     </span>
-                    
+
                     <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-34" name="add3"/>
         <label class="input__label input__label--manami" for="input-34">
           <span class="input__label-content input__label-content--manami">Address 3</span>
                     </label>
                     </span>
-                    
+
                     <span class="input input--manami">
                         <input class="input__field input__field--manami" type="text" id="input-34" name="pan_mun_cor" placeholder="Enter Panchayath/Muncipality/Corporation"/>
         <label class="input__label input__label--manami" for="input-34">
           <span class="input__label-content input__label-content--manami" id="errpan">Panchayath/Muncipality/Corporation</span>
                     </label>
                     </span>
-                    
+
                     <span class="input input--manami">
                         <input class="input__field input__field--manami" type="text" id="input-34" name="pincode" placeholder="Enter PINCODE"/>
         <label class="input__label input__label--manami" for="input-34">
           <span class="input__label-content input__label-content--manami" id="errpin">PINCODE</span>
                     </label>
                     </span>
-                    
+
                     <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-34" name="wardno" placeholder="Enter Ward Number"/>
         <label class="input__label input__label--manami" for="input-34">
           <span class="input__label-content input__label-content--manami" id="errward">Ward Number</span>
                     </label>
                     </span>
-                    
+
                     <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-34" name="house_no" placeholder="Enter House Number"/>
         <label class="input__label input__label--manami" for="input-34">
           <span class="input__label-content input__label-content--manami" id="errhouse">House Number</span>
                     </label>
                     </span>
-                    
+
                     <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-34" name="monthly_in" placeholder="Enter Monthly Income"/>
         <label class="input__label input__label--manami" for="input-34">
           <span class="input__label-content input__label-content--manami" id="errmon">Monthly Income</span>
                     </label>
                     </span>
-                    
+
                     <span class="input input--manami">
 				<input class="input__field input__field--manami" type="text" id="input-34" name="mob_no" placeholder="Enter Mobile Number"/>
 				<label class="input__label input__label--manami" for="input-34">
 					<span class="input__label-content input__label-content--manami" id="errmob">Mobile Number</span>
                     </label>
                     </span>
-                    
+
                     <span class="input input--manami input--filled">
 				<input class="input__field input__field--manami" type="text" id="input-34" name="taluk"  placeholder="<?php echo $ro[1]; ?>" value="<?php echo $ro[1]; ?>" readonly="readonly"/>
 				<label class="input__label input__label--manami" for="input-34">
 					<span class="input__label-content input__label-content--manami">Taluk</span>
                     </label>
                     </span>
-                    
+
                     <span class="input input--manami input--filled">
         <input class="input__field input__field--manami" type="text" id="input-34" name="cat" placeholder="Enter Category"/>
         <label class="input__label input__label--manami" for="input-34">
           <span class="input__label-content input__label-content--manami" id="errcat">Category</span>
                     </label>
                     </span>
-                    
+
                     <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-34" name="no_of_mem" placeholder="Enter Number of Members in Family"/>
         <label class="input__label input__label--manami" for="input-34">
           <span class="input__label-content input__label-content--manami" id="errno">Number of Members in Family</span>
                     </label>
                     </span>
-                
+
         <h4>Details of other Family Member(s)</h4>
         </label>
       </span>
-                    <table id="employee_table" align=center>
-                        <tr id="row1">
-                            <td>
-                                <input class="memfam" type="text" name="name[]" placeholder=" Name ">
-                            </td>
-                            <td>
-                                <input class="memfam" type="number" name="age[]" placeholder=" Age ">
-                            </td>
-                            <td>
-                                <input class="memfam" type="number" name="adhar_no2[]" placeholder=" Aadhar Number ">
-                            </td>
-                            <td><input class='btnew' type='button' value='-' onclick=delete_('row1')></td>
+          <table id="employee_table" align=center>
+              <tr id="row1">
+                 <td>
+                  <input  class="memfam" type="text" name="name[]" placeholder=" Name " id="name1">
+                 </td>
+                 <td>
+                       <input class="memfam" type="number" name="age[]" placeholder=" Age " id="age1">
+                </td>
+                <td>
+                      <input class="memfam" type="number" name="adhar_no2[]" placeholder=" Aadhar Number " id="adhar1">
+                </td>
+                <td><input class='btnew' type='button' value='-' onclick=delete_('row1')></td>
 
-                        </tr>
+              </tr>
 
-                    </table>
+        </table>
                     <input class="btnew" type="button" onclick="add_row();" value="+">
                     <br/>
                     <span id="errrowname" class="error">please enter name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
@@ -486,8 +486,7 @@ include('includes/nav.php');
             function add_row() {
                 $rowno = $("#employee_table tr").length;
                 $rowno = $rowno + 1;
-                $("#employee_table tr:last").after("<tr id='row" + $rowno + "'><td><input class='memfam' type='text' name='name[]' placeholder=' Name '></td><td><input class='memfam' type='text' name='age[]' placeholder=' Age '></td><td><input class='memfam' type='text' name='adhar_no2[]' placeholder=' Aadhaar Number '></td><td><input class='btnew' type='button' value='-' onclick=delete_row('row" + $rowno + "')></td></tr>");
-            }
+                $("#employee_table tr:last").after("<tr id='row" + $rowno + "'><td><input class='memfam' type='text' name='name[]' placeholder=' Name ' id='name"+$rowno+"'></td><td><input class='memfam' type='text' name='age[]' placeholder=' Age 'id='age"+$rowno+"'></td><td><input class='memfam' type='text' name='adhar_no2[]' placeholder=' Aadhaar Number 'id='adhar"+$rowno+"'></td><td><input class='btnew' type='button' value='-' onclick=delete_row('row" + $rowno + "')></td></tr>");              }
 
             function delete_row(rowno) {
                 $('#' + rowno).remove();
