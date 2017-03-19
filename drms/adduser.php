@@ -2,22 +2,40 @@
 <?php
 require_once('config.php');
 if(isset($_GET["query"])&&isset($_GET["field"])){
-  if(strlen($_GET["query"]) != 12)
-   echo "Adhar Number Invalid(12 Digits)";
-  else {
-    $ad=$_GET["query"];
-    $chk="SELECT adhar_no,ration_card_no,mem_name FROM cardholder_and_mem WHERE adhar_no='$ad'";
-    $checkmem=mysqli_query($dbC,$chk);
+  $val=$_GET["query"];
+  $f=$_GET["field"];
+  if($f == "message")
+  {
+      if(strlen($_GET["query"]) != 12)
+        echo "Adhar Number Invalid(12 Digits)";
+      else {
+            $chk="SELECT adhar_no,ration_card_no,mem_name FROM cardholder_and_mem WHERE adhar_no='$val'";
+            $checkmem=mysqli_query($dbC,$chk);
 
-    if(mysqli_num_rows($checkmem) != 0){
-      $checkrow=mysqli_fetch_row($checkmem);
-      echo " The ".$checkrow[2]." with adhar no : ".$ad." is a member of Ration Card : ".$checkrow[1]." ";
-    }
-    else {
-      echo "Valid";
-    }
+            if(mysqli_num_rows($checkmem) != 0){
+              $checkrow=mysqli_fetch_row($checkmem);
+              echo " The ".$checkrow[2]." with adhar no : ".$val." is a member of Ration Card : ".$checkrow[1]." ";
+            }
+           else {
+              echo "Valid";
+           }
+      }
  }
+ elseif ($f == "messmob") {
+      if(strlen($val) != 10)
+          echo "InValid Mobile Number";
+      else {
+        $chk="SELECT ration_card_no FROM rationcard_holder WHERE mob_no='$val'";
+        $checkmob=mysqli_query($dbC,$chk);
+        $row2=mysqli_fetch_row($checkmob);
+        if(mysqli_num_rows($checkmob) != 0 )
+              echo " ".$val." Is Already Allocated To Card : ".$row2[0]." ";
+        else
+              echo "Valid";
+       }
+      }
 }
+
 else{
 ob_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST")

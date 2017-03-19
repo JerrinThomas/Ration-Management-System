@@ -423,10 +423,11 @@ include('includes/nav.php');
                     </span>
 
                     <span class="input input--manami">
-				<input class="input__field input__field--manami" type="text" id="input-34" name="mob_no" placeholder="Enter Mobile Number"/>
+				<input class="input__field input__field--manami" type="text" id="input-34" name="mob_no" placeholder="Enter Mobile Number" onblur="validate('messmob',this.value)"/>
 				<label class="input__label input__label--manami" for="input-34">
 					<span class="input__label-content input__label-content--manami" id="errmob">Mobile Number</span>
                     </label>
+                    <span id="messmob"></span>
                     </span>
 
                     <span class="input input--manami input--filled">
