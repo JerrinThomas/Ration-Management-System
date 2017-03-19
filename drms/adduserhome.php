@@ -36,6 +36,7 @@ include('includes/nav.php');
         }
         else
         {
+            errhofamily[0].setAttribute("style","color:#ffffff");
             selhofamily.setAttribute("style","color:#f5edea");
             error = 1;
         }
@@ -57,6 +58,7 @@ include('includes/nav.php');
         }
         else
         {
+            errhofamily[0].setAttribute("style","color:#ffffff");
             seladhar_no.setAttribute("style","color:#f5edea");
             error1 = 1;
         }
@@ -71,6 +73,7 @@ include('includes/nav.php');
         }
         else
         {
+            errhofamily[0].setAttribute("style","color:#ffffff");
             seladd1.setAttribute("style","color:#f5edea");
             error2 = 1;
         }
@@ -85,6 +88,7 @@ include('includes/nav.php');
         }
         else
         {
+            errhofamily[0].setAttribute("style","color:#ffffff");
             selpan.setAttribute("style","color:#f5edea");
             error3 = 1;
         }
@@ -106,6 +110,7 @@ include('includes/nav.php');
         }
         else
         {
+            errhofamily[0].setAttribute("style","color:#ffffff");
             selpin.setAttribute("style","color:#f5edea");
             error4 = 1;
         }
@@ -127,6 +132,7 @@ include('includes/nav.php');
         }
         else
         {
+            errhofamily[0].setAttribute("style","color:#ffffff");
             selward.setAttribute("style","color:#f5edea");
             error5 = 1;
         }
@@ -141,6 +147,7 @@ include('includes/nav.php');
         }
         else
         {
+            errhofamily[0].setAttribute("style","color:#ffffff");
             selhouse.setAttribute("style","color:#f5edea");
             error6 = 1;
         }
@@ -162,6 +169,7 @@ include('includes/nav.php');
         }
         else
         {
+            errhofamily[0].setAttribute("style","color:#ffffff");
             selmon.setAttribute("style","color:#f5edea");
             error7 = 1;
         }
@@ -183,6 +191,7 @@ include('includes/nav.php');
         }
         else
         {
+            errhofamily[0].setAttribute("style","color:#ffffff");
             selmob.setAttribute("style","color:#f5edea");
             error8 = 1;
         }
@@ -204,6 +213,7 @@ include('includes/nav.php');
         }
         else
         {
+            errhofamily[0].setAttribute("style","color:#ffffff");
             selcat.setAttribute("style","color:#f5edea");
             error9 = 1;
         }
@@ -225,53 +235,100 @@ include('includes/nav.php');
         }
         else
         {
+            errhofamily[0].setAttribute("style","color:#ffffff");
             selno.setAttribute("style","color:#f5edea");
             error10 = 1;
         }
+        
+        
+        var x = document.getElementById("employee_table").rows.length;
+        var i;
+        var a=1,b=1,c=1;
+        var erro11 = 0,erro12 = 0,erro13 = 0;
+        if(x>0)
+            for(i=1;i<=x;i++){
+                var y= document.getElementById("name"+i);
 
-        var errrow = document.getElementsByClassName('memfam');
+                    if(y.value=="")
+                    {
+                        y.style.border = "2px solid red";
+                        errrowname.style.visibility = "visible";
+                        erro11 = 0;
+                    }
+                    else if((!(isNaN(y.value))))
+                    {
+                        y.style.border = "2px solid red";
+                        errrowname.innerHTML = "Please enter a valid name";
+                        errrowname.style.visibility = "visible";
+                        erro11 = 0;
+                    }
+                    else
+                    {
+                        y.style.border = "1px solid #ccc";
+                        erro11 = 1;    
+                    }
+                   
+                var y1= document.getElementById("age"+i);
 
-        if(errrow[0].value=="")
-        {
-            errrowname.style.visibility = "visible";
-            error11 = 0;
-        }
-        else if((!(isNaN(errrow[0].value))))
-        {
-            errrowname.innerHTML = "Please enter a valid name";
-            errrowname.style.visibility = "visible";
-            error11 = 0;
-        }
-        else
-        {
-            errrowname.style.visibility = "hidden";
-            error11 = 1;
-        }
-
-
-        if((errrow[1].value =="")  || (isNaN(errrow[1].value)))
-        {
-            errrowage.style.visibility = "visible";
-            error12 = 0;
-        }
-        else
-        {
-            errrowage.style.visibility = "hidden";
-            error12 = 1;
-        }
-
-
-        if((errrow[2].value =="") || (errrow[2].value.length != 12) || (isNaN(errrow[2].value)))
-        {
-            errrowadhar.style.visibility = "visible";
-            error13 = 0;
-        }
-        else
-        {
-            errrowadhar.style.visibility = "hidden";
-            error13 = 1;
-        }
-
+                    if(y1.value =="")
+                    {
+                        y1.style.border = "2px solid red";
+                        errrowage.style.visibility = "visible";
+                        erro12 = 0;
+                    }
+                    else if(isNaN(y1.value))
+                    {
+                        y1.style.border = "2px solid red";
+                        errrowage.innerHTML = "Please enter a valid Age";
+                        errrowage.style.visibility = "visible";
+                        erro12 = 0;
+                    }
+                    else
+                    {
+                        y1.style.border = "1px solid #ccc";
+                        erro12 = 1;
+                    }
+                    
+                var y2= document.getElementById("adhar"+i);
+                    
+                    if(y2.value =="")
+                    {
+                        y2.style.border = "2px solid red";
+                        errrowadhar.style.visibility = "visible";
+                        erro13 = 0;
+                    }
+                    else if((y2.value.length != 12) || (isNaN(y2.value)))
+                    {
+                        y2.style.border = "2px solid red";
+                        errrowadhar.innerHTML = "enter a valid Adhar No.";
+                        errrowadhar.style.visibility = "visible";
+                        erro13 = 0;
+                    }
+                    else
+                    {
+                        y2.style.border = "1px solid #ccc";
+                        erro13 = 1;
+                    }
+                    
+                a = a && erro11;
+                b = b && erro12;
+                c = c && erro13;
+                    if(a==1)
+                        {
+                            errrowname.style.visibility = "hidden";
+                            error11 = 1;
+                        }
+                    if(b==1)
+                        {
+                            errrowage.style.visibility = "hidden";
+                            error12 = 1;
+                        }
+                    if(c==1)
+                        {
+                            errrowadhar.style.visibility = "hidden";
+                            error13 = 1;
+                        }
+            }
         if(((error && error1) && (error2 && error3) && (error4 && error5) && (error6 && error7) && (error8 && error9) && (error10 && error11) && (error12 && error13)) ==0)
         {
             return false;
@@ -415,8 +472,8 @@ include('includes/nav.php');
                     <input class="btnew" type="button" onclick="add_row();" value="+">
                     <br/>
                     <span id="errrowname" class="error">please enter name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-                    <span id="errrowage" class="error"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;please enter age  </span>
-                    <span id="errrowadhar" class="error">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;please enter adhar No</span>
+            <span style="padding-right:30px; padding-left:70px; " id="errrowage" class="error"> please enter age  </span>
+            <span style="padding-left:40px;" id="errrowadhar" class="error">please enter adhar No</span>
             </section>
         </div>
         <!-- ended form container-->
