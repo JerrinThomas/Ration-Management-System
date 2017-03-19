@@ -13,12 +13,12 @@ else {
 $sql1="SELECT ration_card_no,adhar_no,hofamily,add1,add2,add3,pan_mun_cor,pincode,wardno,house_no,monthly_in,mob_no,taluk,category,no_of_mem,hof_img from rationcard_holder where ration_card_no='$cardno'";
 $result=mysqli_query($dbC,$sql1);
 $count=mysqli_num_rows($result);
+$row1=mysqli_fetch_row($result);
 if($count==0)
 header("location:edit_user_home.php?msg=Invalid RationCard Number");
 elseif (strcasecmp($_SESSION['taluk'],$row1[12]) != 0) {
  header("location:edit_user_home.php?msg=Ration Card ".$cardno." Is Not Under Your Taluk");
 }
-$row1=mysqli_fetch_row($result);
 $sql2="SELECT mem_name,age,adhar_no FROM cardholder_and_mem WHERE ration_card_no='$cardno'";
 $res=mysqli_query($dbC,$sql2);
 
