@@ -220,8 +220,10 @@ include('includes/nav.php');
 
         var errno = document.getElementsByName('no_of_mem');
         var selno = document.getElementById('errno');
+        
         if(frm.no_of_mem.value == "")
         {
+            errno[0].placeholder = "Enter Number of Members in Family";
             errno[0].setAttribute("style","color:#f8001d");
             selno.setAttribute("style","color:#ff7f50");
             error10 = 0;
@@ -242,6 +244,27 @@ include('includes/nav.php');
 
 
         var x = document.getElementById("employee_table").rows.length;
+        if(frm.no_of_mem.value == "")
+            {
+                selno.innerHTML = "Enter Number of Members in Family";
+                errno[0].setAttribute("style","color:#f8001d");
+                selno.setAttribute("style","color:#ff7f50");
+                error10 = 0;
+            }
+        else if(frm.no_of_mem.value != x)
+            {
+                errno[0].setAttribute("style","color:#f8001d");
+                selno.innerHTML = "Number of Family Members:Please Enter Correct Data ";
+                selno.setAttribute("style","color:#ff7f50");
+                error10 = 0;
+            }
+        else
+        {
+            selno.innerHTML = "Number of Family Members";
+            errhofamily[0].setAttribute("style","color:#ffffff");
+            selno.setAttribute("style","color:#f5edea");
+            error10 = 1;
+        }
         var i;
         var a=1,b=1,c=1;
         var erro11 = 0,erro12 = 0,erro13 = 0;
@@ -329,6 +352,9 @@ include('includes/nav.php');
                             error13 = 1;
                         }
             }
+        
+        
+        
         if(((error && error1) && (error2 && error3) && (error4 && error5) && (error6 && error7) && (error8 && error9) && (error10 && error11) && (error12 && error13)) ==0)
         {
             return false;
@@ -359,11 +385,10 @@ include('includes/nav.php');
 
                     <!-- head of family box end-->
                     <span class="input input--manami">
-                        <input class="input__field input__field--manami" type="text" id="idadhar" name="adhar_no" placeholder="Enter Adhar Number" onblur="validate('message',this.value)"/>
+                        <input class="input__field input__field--manami" type="text" id="idadhar" name="adhar_no" placeholder="Enter Adhar Number" onblur="validate('erradhar',this.value)"/>
 				<label class="input__label input__label--manami" for="input-34">
                     <span class="input__label-content input__label-content--manami" id="erradhar">Adhar Number</span>
                     </label>
-                    <span id="message"></span>
                     </span>
 
                     <span class="input input--manami">
@@ -423,11 +448,10 @@ include('includes/nav.php');
                     </span>
 
                     <span class="input input--manami">
-				<input class="input__field input__field--manami" type="text" id="input-34" name="mob_no" placeholder="Enter Mobile Number" onblur="validate('messmob',this.value)"/>
+				<input class="input__field input__field--manami" type="text" id="input-34" name="mob_no" placeholder="Enter Mobile Number" onblur="validate('errmob',this.value)"/>
 				<label class="input__label input__label--manami" for="input-34">
 					<span class="input__label-content input__label-content--manami" id="errmob">Mobile Number</span>
                     </label>
-                    <span id="messmob"></span>
                     </span>
 
                     <span class="input input--manami input--filled">
@@ -507,12 +531,15 @@ include('includes/nav.php');
         xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState != 4 && xmlhttp.status == 200) {
         document.getElementById(field).innerHTML = "Validating..";
+        
         }
         else if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        document.getElementById(field).innerHTML = xmlhttp.responseText;
+            var sal = document.getElementById(field);
+            sal.setAttribute("style","color:#ff7f50");
+            document.getElementById(field).innerHTML = xmlhttp.responseText;
         }
         else {
-        document.getElementById(field).innerHTML = "Error Occurred. <a href='adduserhome.php'>Reload Or Try Again</a> the page.";
+        document.getElementById(field).value = "Error Occurred. <a href='adduserhome.php'>Reload Or Try Again</a> the page.";
         }
         }
         xmlhttp.open("GET", "adduser.php?field=" + field + "&query=" + query, false);

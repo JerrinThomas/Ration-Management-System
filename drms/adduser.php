@@ -4,7 +4,7 @@ require_once('config.php');
 if(isset($_GET["query"])&&isset($_GET["field"])){
   $val=$_GET["query"];
   $f=$_GET["field"];
-  if($f == "message")
+  if($f == "erradhar")
   {
       if(strlen($_GET["query"]) != 12)
         echo "Adhar Number Invalid(12 Digits)";
@@ -14,31 +14,31 @@ if(isset($_GET["query"])&&isset($_GET["field"])){
 
             if(mysqli_num_rows($checkmem) != 0){
               $checkrow=mysqli_fetch_row($checkmem);
-              echo " The ".$checkrow[2]." with adhar no : ".$val." is a member of Ration Card : ".$checkrow[1]." ";
+              echo "The ".$checkrow[2]." with adhar no : ".$val." is a member of Ration Card : ".$checkrow[1]." ";
             }
            else {
              $chk1="SELECT ration_card_no FROM rationcard_holder WHERE adhar_no='$val'";
              $check=mysqli_query($dbC,$chk1);
              if(mysqli_num_rows($check) != 0){
                $checkrow=mysqli_fetch_row($check);
-               echo " The Adhar Holder Is H.O.F of ration_card_no : ".$checkrow[0]." ";
+               echo "Adhar No( The Adhar Holder Is H.O.F of ration_card_no : ".$checkrow[0]." )";
              }
              else
-                 echo " Valid ";
+                 echo "Adhar Number Valid ";
            }
       }
  }
- elseif ($f == "messmob") {
+ elseif ($f == "errmob") {
       if(strlen($val) != 10)
-          echo "InValid Mobile Number";
+          echo "Mobile Number(InValid Mobile Number)";
       else {
         $chk="SELECT ration_card_no FROM rationcard_holder WHERE mob_no='$val'";
         $checkmob=mysqli_query($dbC,$chk);
         $row2=mysqli_fetch_row($checkmob);
         if(mysqli_num_rows($checkmob) != 0 )
-              echo " ".$val." Is Already Allocated To Card : ".$row2[0]." ";
+              echo " Mobile No.( ".$val." Is Already Allocated To Card : ".$row2[0]." )";
         else
-              echo "Valid";
+              echo "Mobile Number Valid";
        }
       }
 }
