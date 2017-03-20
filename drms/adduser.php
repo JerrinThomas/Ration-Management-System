@@ -60,7 +60,8 @@ if(isset($_GET["query"])&&isset($_GET["field"])){
               $checkrow=mysqli_fetch_row($check);
               echo "Adhar No( The Adhar Holder Is H.O.F of ration_card_no : ".$checkrow[0]." )";
             }
-
+            else
+              echo "Adhar Number ".$val." Is Valid";
           }
      }
  }
