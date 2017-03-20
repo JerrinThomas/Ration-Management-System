@@ -40,9 +40,32 @@ if(isset($_GET["query"])&&isset($_GET["field"])){
         else
               echo "Mobile Number Valid";
        }
-      }
-}
+ }
+ elseif($f == "check")
+ {
+     if((strlen($_GET["query"]) != 12) || !(ctype_digit($val)))
+       echo "Adhar Number Invalid(12 Digits)";
+     else {
+           $chk="SELECT adhar_no,ration_card_no,mem_name FROM cardholder_and_mem WHERE adhar_no='$val'";
+           $checkmem=mysqli_query($dbC,$chk);
 
+           if(mysqli_num_rows($checkmem) != 0){
+             $checkrow=mysqli_fetch_row($checkmem);
+             echo "The ".$checkrow[2]." with adhar no : ".$val." is a member of Ration Card : ".$checkrow[1]." ";
+           }
+          else {
+            $chk1="SELECT ration_card_no FROM rationcard_holder WHERE adhar_no='$val'";
+            $check=mysqli_query($dbC,$chk1);
+            if(mysqli_num_rows($check) != 0){
+              $checkrow=mysqli_fetch_row($check);
+              echo "Adhar No( The Adhar Holder Is H.O.F of ration_card_no : ".$checkrow[0]." )";
+            }
+            else
+             echo "true";
+          }
+     }
+ }
+}
 else{
 ob_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST")
@@ -166,8 +189,9 @@ if($imageFileType != "jpg" && $imageFileType != "jpeg" ) {
   if(!$move) {
       throw new Exception("Error Uploading File...\n Try Again By Going Back....");
   }
-  $sql="INSERT INTO rationcard_holder(`adhar_no`,`hofamily`,`add1`,`add2`,`add3`,`pan_mun_cor`,`pincode`,`wardno`,`house_no`,`monthly_in`,`no_of_mem`,`hof_img`,`hof_img_type`,`mob_no`,`taluk`,`category`) VALUES('".$adhar_no."' , '".$hofamily."' , '".$add1."','".$add2."'
-  ,'".$add3."','".$pan_mun_cor."','".$pincode."','".$wardno."','".$house_no."','".$monthly_in."','".$no_of_mem."','".$target_file."','".$imageFileType."','".$mob_no."','".$taluk."','".$cat."')";
+  $sql="INSERT INTO rationcard_holder(`adhar_no`,`hofamily`,`add1`,`add2`,`add3`,`pan_mun_cor`,`pincode`,`wardno`,`house_no`,`monthly_in`,`no_of_mem`,`hof_img`,`hof_img_type`,`mob_no`,`taluk`,`category`)
+  VALUES('".$adhar_no."' , '".$hofamily."' , '".$add1."','".$add2."','".$add3."','".$pan_mun_cor."','".$pincode."','".$wardno."','".$house_no."','".$monthly_in."','".$no_of_mem."','".$target_file."','".$imageFileType."',
+  '".$mob_no."','".$taluk."','".$cat."')";
 
   $result=mysqli_query($dbC,$sql);
   if(!$result) {
