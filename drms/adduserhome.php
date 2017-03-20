@@ -52,7 +52,6 @@ include('includes/nav.php');
         else if((frm.adhar_no.value.length != 12) || (isNaN(frm.adhar_no.value)))
         {
             erradhar_no[0].setAttribute("style","color:#f8001d");
-            erradhar_no[0].placeholder = "Please Enter a Valid Adhar Number";
             seladhar_no.setAttribute("style","color:#ff7f50");
             error1 = 0;
         }
@@ -182,10 +181,9 @@ include('includes/nav.php');
             selmob.setAttribute("style","color:#ff7f50");
             error8 = 0;
         }
-        else if( (frm.mob_no.value.length != 10) || (isNaN(frm.mob_no.value)))
+        else if((isNaN(frm.mob_no.value)))
         {
             errmob[0].setAttribute("style","color:#f8001d");
-            errmob[0].placeholder = "Please Enter A Valid Mobile Number";
             selmob.setAttribute("style","color:#ff7f50");
             error8 = 0;
         }
@@ -352,8 +350,6 @@ include('includes/nav.php');
                             error13 = 1;
                         }
             }
-        
-        
         
         if(((error && error1) && (error2 && error3) && (error4 && error5) && (error6 && error7) && (error8 && error9) && (error10 && error11) && (error12 && error13)) ==0)
         {
@@ -590,6 +586,15 @@ include('includes/nav.php');
             })();
         </script>
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <!--<script type="text/javascript">
+
+            $('#sub_but').click(function(){
+                $("html, body").animate({ scrollTop: 0 }, 600);
+                return false;
+            });
+
+
+        </script>-->
         <script type="text/javascript">
             function add_row() {
                 $rowno = $("#employee_table tr").length;

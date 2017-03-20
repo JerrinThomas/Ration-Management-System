@@ -6,7 +6,7 @@ if(isset($_GET["query"])&&isset($_GET["field"])){
   $f=$_GET["field"];
   if($f == "erradhar")
   {
-      if(strlen($_GET["query"]) != 12)
+      if((strlen($_GET["query"]) != 12) || !(ctype_digit($val)))
         echo "Adhar Number Invalid(12 Digits)";
       else {
             $chk="SELECT adhar_no,ration_card_no,mem_name FROM cardholder_and_mem WHERE adhar_no='$val'";
@@ -29,8 +29,8 @@ if(isset($_GET["query"])&&isset($_GET["field"])){
       }
  }
  elseif ($f == "errmob") {
-      if(strlen($val) != 10)
-          echo "Mobile Number(InValid Mobile Number)";
+      if((strlen($val) != 10) || !(ctype_digit($val)))
+          echo "Mobile Number(InValid)";
       else {
         $chk="SELECT ration_card_no FROM rationcard_holder WHERE mob_no='$val'";
         $checkmob=mysqli_query($dbC,$chk);
