@@ -6,6 +6,7 @@ function val(){
     {
         errhofamily[0].placeholder = "Enter A Name";
         errhofamily[0].setAttribute("style","color:#f8001d");
+        selhofamily.innerHTML = "Name of the Head of the Family (Enter Name)";
         selhofamily.setAttribute("style","color:#ff7f50");
         error = 0;
     }
@@ -13,11 +14,13 @@ function val(){
     {
         errhofamily[0].placeholder = "Please Enter A Valid Name";
         errhofamily[0].setAttribute("style","color:#f8001d");
+        selhofamily.innerHTML = "Name of the Head of the Family (Enter a Valid Name)";
         selhofamily.setAttribute("style","color:#ff7f50");
         error = 0;
     }
     else
     {
+        selhofamily.innerHTML = "Name of the Head of the Family";
         errhofamily[0].setAttribute("style","color:#ffffff");
         selhofamily.setAttribute("style","color:#f5edea");
         error = 1;
@@ -49,11 +52,13 @@ function val(){
     if(frm.add1.value==="")
     {
         erradd[0].setAttribute("style","color:#f8001d");
+        seladd1.innerHTML = "Address1 (Enter Address1)";
         seladd1.setAttribute("style","color:#ff7f50");
         error2 = 0;
     }
     else
     {
+        seladd1.innerHTML = "Address1";
         errhofamily[0].setAttribute("style","color:#ffffff");
         seladd1.setAttribute("style","color:#f5edea");
         error2 = 1;
@@ -64,11 +69,13 @@ function val(){
     if(frm.pan_mun_cor.value==="")
     {
         errpan[0].setAttribute("style","color:#f8001d");
+        selpan.innerHTML = "Panchayath/Muncipality/Corporation (Enter a Data)";
         selpan.setAttribute("style","color:#ff7f50");
         error3 = 0;
     }
     else
     {
+        selpan.innerHTML = "Panchayath/Muncipality/Corporation";
         errhofamily[0].setAttribute("style","color:#ffffff");
         selpan.setAttribute("style","color:#f5edea");
         error3 = 1;
@@ -79,6 +86,7 @@ function val(){
     if(frm.pincode.value == "")
     {
         errpin[0].setAttribute("style","color:#f8001d");
+        selpin.innerHTML ="Pincode (Enter a Pincode)";
         selpin.setAttribute("style","color:#ff7f50");
         error4 = 0;
     }
@@ -86,11 +94,13 @@ function val(){
     {
         errpin[0].setAttribute("style","color:#f8001d");
         errpin[0].placeholder = "Pleas Enter A valid Pincode";
+        selpin.innerHTML ="Pincode (Enter a Valid Pincode)";
         selpin.setAttribute("style","color:#ff7f50");
         error4 = 0;
     }
     else
     {
+        selpin.innerHTML ="Pincode";
         errhofamily[0].setAttribute("style","color:#ffffff");
         selpin.setAttribute("style","color:#f5edea");
         error4 = 1;
@@ -101,6 +111,7 @@ function val(){
     if(frm.wardno.value == "")
     {
         errward[0].setAttribute("style","color:#f8001d");
+        selward.innerHTML = "Ward Number (Enter Ward No.)";
         selward.setAttribute("style","color:#ff7f50");
         error5 = 0;
     }
@@ -108,11 +119,13 @@ function val(){
     {
         errward[0].setAttribute("style","color:#f8001d");
         errward[0].placeholder = "Pleas Enter A valid Ward Number";
+        selward.innerHTML = "Ward Number (Enter a Valid Ward No.)";
         selward.setAttribute("style","color:#ff7f50");
         error5 = 0;
     }
     else
     {
+        selward.innerHTML = "Ward Number";
         errhofamily[0].setAttribute("style","color:#ffffff");
         selward.setAttribute("style","color:#f5edea");
         error5 = 1;
@@ -123,11 +136,13 @@ function val(){
     if(frm.house_no.value == "")
     {
         errhouse[0].setAttribute("style","color:#f8001d");
+        selhouse.innerHTML = "House Number (Enter House No.)";
         selhouse.setAttribute("style","color:#ff7f50");
         error6 = 0;
     }
     else
     {
+        selhouse.innerHTML = "House Number";
         errhofamily[0].setAttribute("style","color:#ffffff");
         selhouse.setAttribute("style","color:#f5edea");
         error6 = 1;
@@ -138,6 +153,7 @@ function val(){
     if(frm.monthly_in.value == "")
     {
         errmon[0].setAttribute("style","color:#f8001d");
+        selmon.innerHTML = "Monthly Income (Enter Monthly Income)";
         selmon.setAttribute("style","color:#ff7f50");
         error7 = 0;
     }
@@ -145,11 +161,13 @@ function val(){
     {
         errmon[0].setAttribute("style","color:#f8001d");
         errmon[0].placeholder = "Pleas Enter a valid Income";
+        selmon.innerHTML = "Monthly Income (Enter a Valid Monthly Income)";
         selmon.setAttribute("style","color:#ff7f50");
         error7 = 0;
     }
     else
     {
+        selmon.innerHTML = "Monthly Income";
         errhofamily[0].setAttribute("style","color:#ffffff");
         selmon.setAttribute("style","color:#f5edea");
         error7 = 1;
@@ -181,6 +199,7 @@ function val(){
     if(frm.cat.value == "")
     {
         errcat[0].setAttribute("style","color:#f8001d");
+        selcat.innerHTML = "Category (Enter a Category)";
         selcat.setAttribute("style","color:#ff7f50");
         error9 = 0;
     }
@@ -188,11 +207,13 @@ function val(){
     {
         errcat[0].setAttribute("style","color:#f8001d");
         errcat[0].placeholder = "Please Enter A Valid Category(1-5)";
+        selcat.innerHTML = "Category (Enter a Valid Category btw 1-5 )";
         selcat.setAttribute("style","color:#ff7f50");
         error9 = 0;
     }
     else
     {
+        selcat.innerHTML = "Category";
         errhofamily[0].setAttribute("style","color:#ffffff");
         selcat.setAttribute("style","color:#f5edea");
         error9 = 1;
@@ -205,6 +226,7 @@ function val(){
     {
         errno[0].placeholder = "Enter Number of Members in Family";
         errno[0].setAttribute("style","color:#f8001d");
+        selno.innerHTML = "Number Of Members Family(Enter a Data)";
         selno.setAttribute("style","color:#ff7f50");
         error10 = 0;
     }
@@ -212,11 +234,13 @@ function val(){
     {
         errno[0].setAttribute("style","color:#f8001d");
         errno[0].placeholder = "Please Enter Data";
+        selno.innerHTML = "Number Of Members Family(Enter a Valid Data)";
         selno.setAttribute("style","color:#ff7f50");
         error10 = 0;
     }
     else
     {
+        selno.innerHTML = "Number Of Members Family";
         errhofamily[0].setAttribute("style","color:#ffffff");
         selno.setAttribute("style","color:#f5edea");
         error10 = 1;
