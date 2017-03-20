@@ -1,5 +1,56 @@
 <?php
 require_once('config.php');
+if(isset($_GET["field"]) && isset($_GET["query"]))
+{
+  $f=$_GET["field"];
+  $val=$_GET["query"];
+  if($f=="aduname"){  
+      if($val=="")
+          echo "Username (Fill A Valid Data)";
+      else {
+            $chk="SELECT role FROM admindetails WHERE username='$val'";
+            $checkmem=mysqli_query($dbC,$chk);
+            if(mysqli_num_rows($checkmem) != 0)
+                echo "Username ( Already Exist. )";
+            else
+                echo "Username ( Is Valid )";
+        }
+      }
+  elseif($f=="adname"){ 
+      if($val=="")
+          echo "Name (Fill A Valid Data)";
+      elseif(ctype_digit($val))
+          echo "Name Is InValid ";
+      else
+          echo "Name Is Valid "; 
+  }
+  elseif($f=="adpass"){
+      if(preg_match("/^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$/", $val) === 0)
+          echo "Password ( Invalid )";
+      else
+          echo "Password (Strong)";
+  }
+  else{  
+      if($val=="")
+          echo "Taluk (Fill A Valid Data)";
+      else{
+        if(ctype_digit($val))
+           echo "Taluk Is InValid ";
+        else{
+# also include code to check where the taluk exist in Taluk Table which is not implemnted yet......
+          $VAL=strtolower($val);
+          $chk="SELECT role FROM admindetails WHERE taluk='$VAL'";
+          $checkmem=mysqli_query($dbC,$chk);
+         if(mysqli_num_rows($checkmem) != 0)
+                echo "Taluk ( Already An Admin Exists In This Taluk. )";
+            else
+                echo "Taluk ( Is Valid )";   
+        } 
+      }
+}
+}
+
+else {
 ob_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
@@ -14,6 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
   $pass=test_input($_POST["password"]);
   $taluk=test_input($_POST["taluk"]);
   $name=test_input($_POST["name"]);
+  $taluk=(strtolower($taluk));   
 
 try {
   if($uname==""||$name==""||$pass==""||$taluk==""){
@@ -42,4 +94,5 @@ try {
 }
 ob_get_contents();
 ob_end_flush();
+}
 ?>

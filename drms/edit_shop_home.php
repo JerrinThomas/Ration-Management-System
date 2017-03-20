@@ -13,7 +13,6 @@ if(isset($_GET['msg']))
    header("Location: adminlogin.php?msg=Sign In Again");
 ?>
 
-</body>
 <h2>Modify RationShops</h2>
 
 <div class="bfore">

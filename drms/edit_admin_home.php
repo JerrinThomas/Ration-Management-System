@@ -13,7 +13,7 @@ if(isset($_GET['msg']))
  }
 ?>
 
-</body>
+<body>
 <h2>Modify Admin</h2>
 
 <div class="bfore">

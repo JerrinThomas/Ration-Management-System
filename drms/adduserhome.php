@@ -2,7 +2,7 @@
 include('includes/checksuper.php');
 include('includes/header.php');
 include('includes/nav.php');
-/*header("Cache-Control: public, must-revalidate"); */
+header("Cache-Control: no-cache, must-revalidate"); 
     if(!isset($_SESSION['name']))
       header("Location: adminlogin.php");
 

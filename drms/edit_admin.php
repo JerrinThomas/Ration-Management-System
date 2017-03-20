@@ -3,7 +3,7 @@ include('includes/checksuper.php');
 include('includes/header.php');
 include('includes/nav.php');
 require_once('config.php');
-header("Cache-Control: public, must-revalidate");
+header("Cache-Control: no-cache, must-revalidate");
 if(isset($_POST["Submit"])) {
   $uname = $_POST["uname"];
 }
@@ -35,25 +35,25 @@ $row=mysqli_fetch_row($result);
                     </span>
                     <!-- head of family box end-->
                     <span class="input input--manami">
-				<input class="input__field input__field--manami" type="text" id="input-34" name="pass" placeholder="<?php echo $row[1]; ?>" value="<?php echo $row[1]; ?>"/>
-				<label class="input__label input__label--manami" for="input-34">
-					<span class="input__label-content input__label-content--manami">Password</span>
+				<input class="input__field input__field--manami" type="text" id="input-34" name="pass" placeholder="<?php echo $row[1]; ?>" value="<?php echo $row[1]; ?>" onblur="validate('adpass',this.value)"/>
+				<label class="input__label input__label--manami" for="input-34" >
+					<span class="input__label-content input__label-content--manami" id="adpass">Password</span>
                     </label>
                     </span>
                     <span class="input input--manami input--filled">
-        <input class="input__field input__field--manami" type="text" id="input-33" name="name"  placeholder="<?php echo $row[2]; ?>" value="<?php echo $row[2]; ?>"/>
+        <input class="input__field input__field--manami" type="text" id="input-33" name="name"  placeholder="<?php echo $row[2]; ?>" value="<?php echo $row[2]; ?>" onblur="validate('adname',this.value)"/>
         <label class="input__label input__label--manami" for="input-33">
-          <span class="input__label-content input__label-content--manami">Name</span>
+          <span class="input__label-content input__label-content--manami" id="adname">Name</span>
                     </label>
                     </span>
                     <span class="input input--manami input--filled">
-        <input class="input__field input__field--manami" type="text" id="input-34" name="taluk"  placeholder="<?php echo $row[3]; ?>" value="<?php echo $row[3]; ?>"/>
+        <input class="input__field input__field--manami" type="text" id="input-34" name="taluk"  placeholder="<?php echo $row[3]; ?>" value="<?php echo $row[3]; ?>" readonly="readonly"/>
         <label class="input__label input__label--manami" for="input-34">
           <span class="input__label-content input__label-content--manami">Taluk</span>
                     </label>
                     </span>
                     <span class="input input--manami input--filled">
-        <input class="input__field input__field--manami" type="text" id="input-34" name=""  placeholder="0"/>
+        <input class="input__field input__field--manami" type="text" id="input-34" name=""  placeholder="0" readonly="readonly"/>
         <label class="input__label input__label--manami" for="input-34">
           <span class="input__label-content input__label-content--manami">Role</span>
         </label>
@@ -62,7 +62,11 @@ $row=mysqli_fetch_row($result);
           <div>
                <input class="btn" type="submit" value="submit" name="Submit" />
            </div>
-
+                </form>
+            </section>
+        </div>
+        </div>
+</body>
 
 
           <script src="js/custom-file-input.js"></script>
@@ -102,4 +106,28 @@ $row=mysqli_fetch_row($result);
                           }
                       })();
                   </script>
-          </body>
+                            <script>
+            function validate(field, query) {
+                var xmlhttp;
+                if (window.XMLHttpRequest) { // for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                } else { // for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function() {
+                    if (xmlhttp.readyState != 4 && xmlhttp.status == 200) {
+                        document.getElementById(field).innerHTML = "Validating..";
+
+                    } else if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        var sal = document.getElementById(field);
+                        sal.setAttribute("style", "color:#ff7f50");
+                        document.getElementById(field).innerHTML = xmlhttp.responseText;
+                    } else {
+                        document.getElementById(field).value = "Error Occurred. <a href='edit_admin_home.php'>Reload Or Try Again</a> the page.";
+                    }
+                }
+                xmlhttp.open("GET", "add_admin.php?field=" + field + "&query=" + query, false);
+                xmlhttp.send();
+            }
+
+        </script>
