@@ -23,7 +23,16 @@ $sql2="SELECT mem_name,age,adhar_no FROM cardholder_and_mem WHERE ration_card_no
 $res=mysqli_query($dbC,$sql2);
 
 ?>
-    <body>
+<body>
+    <style>
+    .error{
+        color: coral;
+        font-size: 25px;
+        visibility: hidden;
+    }
+
+</style>
+        <script type="text/javascript" src="js/validateedituser.js"></script>
     <h2>Modify User</h2>
     <!-- container containing form code-->
 
@@ -33,7 +42,7 @@ $res=mysqli_query($dbC,$sql2);
             <section class="content bgcolor-3">
                 <!-- head of family box starting-->
                 <img src="<?php echo $row1[15];?>"/>
-                <form action="edit_user_db.php" method="post" enctype="multipart/form-data">
+                <form action="edit_user_db.php" method="post" enctype="multipart/form-data" name="frm" onsubmit="return vali();">
                     <span class="input input--manami input--filled" >
         <input class="input__field input__field--manami" type="text" id="input-32" name="cardno" placeholder="<?php echo $row1[0]; ?>" value="<?php echo $row1[0]; ?>" readonly="readonly"/>
         <label class="input__label input__label--manami" for="input-32">
@@ -42,21 +51,21 @@ $res=mysqli_query($dbC,$sql2);
                     </span>
                     <!-- head of family box end-->
                     <span class="input input--manami input--filled">
-				<input class="input__field input__field--manami" type="text" id="input-34" name="adhar_no" placeholder="<?php echo $row1[1]; ?>" value="<?php echo $row1[1]; ?>"/>
+                        <input class="input__field input__field--manami" type="text" id="input-34" name="adhar_no" placeholder="<?php echo $row1[1]; ?>" value="<?php echo $row1[1]; ?>" onblur="validate('erradhar',this.value)" />
 				<label class="input__label input__label--manami" for="input-34">
-					<span class="input__label-content input__label-content--manami">Adhar Number</span>
+                    <span class="input__label-content input__label-content--manami" id="erradhar">Adhar Number</span>
                     </label>
                     </span>
                     <span class="input input--manami input--filled">
         <input class="input__field input__field--manami" type="text" id="input-33" name="hofamily"  placeholder="<?php echo $row1[2]; ?>" value="<?php echo $row1[2]; ?>"/>
         <label class="input__label input__label--manami" for="input-33">
-          <span class="input__label-content input__label-content--manami">Head Of Family</span>
+            <span class="input__label-content input__label-content--manami" id="erhoname">Head Of Family</span>
                     </label>
                     </span>
                     <span class="input input--manami input--filled">
         <input class="input__field input__field--manami" type="text" id="input-34" name="add1"  placeholder="<?php echo $row1[3]; ?>" value="<?php echo $row1[3]; ?>"/>
         <label class="input__label input__label--manami" for="input-34">
-          <span class="input__label-content input__label-content--manami">Address 1</span>
+            <span class="input__label-content input__label-content--manami" id="erradd">Address 1</span>
                     </label>
                     </span>
                     <span class="input input--manami input--filled">
@@ -74,37 +83,37 @@ $res=mysqli_query($dbC,$sql2);
                     <span class="input input--manami input--filled">
         <input class="input__field input__field--manami" type="text" id="input-34" name="pan_mun_cor"  placeholder="<?php echo $row1[6]; ?>" value="<?php echo $row1[6]; ?>"/>
         <label class="input__label input__label--manami" for="input-34">
-          <span class="input__label-content input__label-content--manami">Panchayath/Muncipality/Corporation</span>
+            <span class="input__label-content input__label-content--manami" id="errpan">Panchayath/Muncipality/Corporation</span>
                     </label>
                     </span>
                     <span class="input input--manami input--filled">
         <input class="input__field input__field--manami" type="text" id="input-34" name="pincode"  placeholder="<?php echo $row1[7]; ?>" value="<?php echo $row1[7]; ?>"/>
         <label class="input__label input__label--manami" for="input-34">
-          <span class="input__label-content input__label-content--manami">Pincode</span>
+            <span class="input__label-content input__label-content--manami" id="errpin">Pincode</span>
                     </label>
                     </span>
                     <span class="input input--manami input--filled">
         <input class="input__field input__field--manami" type="text" id="input-34" name="wardno"  placeholder="<?php echo $row1[8]; ?>" value="<?php echo $row1[8]; ?>"/>
         <label class="input__label input__label--manami" for="input-34">
-          <span class="input__label-content input__label-content--manami">Ward Number</span>
+            <span class="input__label-content input__label-content--manami" id="errward">Ward Number</span>
                     </label>
                     </span>
                     <span class="input input--manami input--filled">
         <input class="input__field input__field--manami" type="text" id="input-34" name="house_no"  placeholder="<?php echo $row1[9]; ?>" value="<?php echo $row1[9]; ?>"/>
         <label class="input__label input__label--manami" for="input-34">
-          <span class="input__label-content input__label-content--manami">House Number</span>
+            <span class="input__label-content input__label-content--manami" id="errhouse">House Number</span>
                     </label>
                     </span>
                     <span class="input input--manami input--filled">
         <input class="input__field input__field--manami" type="text" id="input-34" name="monthly_in"  placeholder="<?php echo $row1[10]; ?>" value="<?php echo $row1[10]; ?>"/>
         <label class="input__label input__label--manami" for="input-34">
-          <span class="input__label-content input__label-content--manami">Monthly Income</span>
+            <span class="input__label-content input__label-content--manami" id="errmon">Monthly Income</span>
                     </label>
                     </span>
                     <span class="input input--manami input--filled">
-				<input class="input__field input__field--manami" type="text" id="input-34" name="mob_no"  placeholder="<?php echo $row1[11]; ?>" value="<?php echo $row1[11]; ?>"/>
+                        <input class="input__field input__field--manami" type="text" id="input-34" name="mob_no"  placeholder="<?php echo $row1[11]; ?>" value="<?php echo $row1[11]; ?>" onblur="validate('errmob',this.value)"/>
 				<label class="input__label input__label--manami" for="input-34">
-					<span class="input__label-content input__label-content--manami">Mobile Number</span>
+                    <span class="input__label-content input__label-content--manami" id="errmob">Mobile Number</span>
                     </label>
                     </span>
                     <span class="input input--manami input--filled">
@@ -116,16 +125,16 @@ $res=mysqli_query($dbC,$sql2);
                     <span class="input input--manami input--filled">
 				<input class="input__field input__field--manami" type="text" id="input-34" name="cat"  placeholder="<?php echo $row1[13]; ?>" value="<?php echo $row1[13]; ?>" readonly="readonly"/>
 				<label class="input__label input__label--manami" for="input-34">
-					<span class="input__label-content input__label-content--manami">Category</span>
+                    <span class="input__label-content input__label-content--manami" id="errcat">Category</span>
                     </label>
                     </span>
                     <span class="input input--manami input--filled">
         <input class="input__field input__field--manami" type="text" id="input-34" name="no_of_mem"  placeholder="<?php echo $row1[14]; ?>" value="<?php echo $row1[14]; ?>"/>
         <label class="input__label input__label--manami" for="input-34">
-          <span class="input__label-content input__label-content--manami">Number Of Members Family</span>
+            <span class="input__label-content input__label-content--manami" id="errno">Number Of Members Family</span>
                     </label>
                     </span>
-                    <span class="input input--manami">
+                    
         <h4>Details of other Family Member(s)</h4>
         </label>
       </span>
@@ -133,13 +142,18 @@ $res=mysqli_query($dbC,$sql2);
                           <?php while ($row2=mysqli_fetch_row($res))
                             {
                               $i=1;
-                              echo "<tr id=\"row".$i."\"><td><input class=\"memfam\" type=\"text\" name=\"name[]\" placeholder=\"".$row2[0]."\" value=\"".$row2[0]."\"></td><td><input class=\"memfam\" type=\"number\" name=\"age[]\" placeholder=\"".$row2[1]."\" value=\"".$row2[1]."\"></td><td><input class=\"memfam\" type=\"number\" name=\"adhar_no2[]\" placeholder=\"".$row2[2]
-                              ."\" value=\"".$row2[2]."\"></td><td><input class='btnew' type='button' value='-' onclick=delete_('row1')></td></tr>";
+                              echo "<tr id=\"row".$i."\"><td><input class=\"memfam\" type=\"text\" name=\"name[]\" placeholder=\"".$row2[0]."\" value=\"".$row2[0]."\" id=\"name".$i."\"
+                              ></td><td><input class=\"memfam\" type=\"number\" name=\"age[]\" placeholder=\"".$row2[1]."\" value=\"".$row2[1]."\" id=\"age".$i."\"></td><td><input class=\"memfam\" type=\"number\" name=\"adhar_no2[]\" placeholder=\"".$row2[2]
+                              ."\" value=\"".$row2[2]."\" id=\"adhar".$i."\" onblur=\"valid('check',this.value)\"></td><td><input class='btnew' type='button' value='-' onclick=delete_('row1')></td></tr>";
                               $i++;
                             }
                           ?>
                     </table>
                     <input class="btnew" type="button" onclick="add_row();" value="+">
+                    <br/>
+                    <span id="errrowname" class="error">Please Enter Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+            <span style="padding-right:30px; padding-left:70px; " id="errrowage" class="error"> Please Enter Age  </span>
+            <span style="padding-left:40px;" id="errrowadhar" class="error">Please Enter Aadhar No</span>
             </section>
         </div>
         <!-- ended form container-->
@@ -161,6 +175,51 @@ $res=mysqli_query($dbC,$sql2);
         <!-- ended submit button -->
         </form>
         <script type="text/javascript" src="https://gc.kis.scr.kaspersky-labs.com/EB053B0F-62D3-E04B-B72C-CDF5F58B09B7/main.js" charset="UTF-8"></script>
+        <script>
+        function validate(field, query) {
+        var xmlhttp;
+        if (window.XMLHttpRequest) { // for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+        } else { // for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState != 4 && xmlhttp.status == 200) {
+        document.getElementById(field).innerHTML = "Validating..";
+
+        }
+        else if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var sal = document.getElementById(field);
+            sal.setAttribute("style","color:#ff7f50");
+            document.getElementById(field).innerHTML = xmlhttp.responseText;
+        }
+        else {
+        document.getElementById(field).value = "Error Occurred. <a href='adduserhome.php'>Reload Or Try Again</a> the page.";
+        }
+        }
+        xmlhttp.open("GET", "adduser.php?field=" + field + "&query=" + query, false);
+        xmlhttp.send();
+        }
+        </script>
+<!-- Error Section -->
+      <script>
+        function valid(field, query) {
+        var xmlhttp;
+        if (window.XMLHttpRequest) { // for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        }
+        else { // for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+           if(xmlhttp.responseText != "")
+              alert(xmlhttp.responseText);
+        }
+        xmlhttp.open("GET", "adduser.php?field=" + field + "&query=" + query, false);
+        xmlhttp.send();
+        }
+      </script>
         <script>
             (function (e, t, n) {
                 var r = e.querySelectorAll("html")[0];
