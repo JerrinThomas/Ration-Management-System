@@ -134,6 +134,13 @@ margin-top: 0px;
 	    margin-top: 90px;
 	    z-index: -200;
 	    margin-left: -794px;
+	user-drag: none; 
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	pointer-events: none;
 }
 #rbttn {
     width: 50%;
