@@ -172,6 +172,8 @@ $res=mysqli_query($dbC,$sql2);
         <div>
             <input class="btn" type="submit" value="submit" />
         </div>
+        
+    <a href="#0" class="cd-top">Top</a>
         <!-- ended submit button -->
         </form>
         <script type="text/javascript" src="https://gc.kis.scr.kaspersky-labs.com/EB053B0F-62D3-E04B-B72C-CDF5F58B09B7/main.js" charset="UTF-8"></script>
@@ -278,6 +280,7 @@ $res=mysqli_query($dbC,$sql2);
                 $('#' + rowno).empty();
             }
         </script>
+        <script src="js/main.js"></script>
     </div>
 
     </body>
