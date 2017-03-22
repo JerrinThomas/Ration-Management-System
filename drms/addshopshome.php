@@ -3,6 +3,9 @@ include('includes/checksuper.php');
 include('includes/header.php');
 include('includes/nav.php');
 include('add_admin.php');
+header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1.
+header("Pragma: no-cache"); // HTTP 1.0.
+header("Expires: 0"); // Proxies.
 if(!isset($_SESSION['name']))
   header("Location: adminlogin.php?msg=Sign In Again");
 ?>

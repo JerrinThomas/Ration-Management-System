@@ -3,7 +3,9 @@ include('includes/checksuper.php');
 include('includes/header.php');
 include('includes/nav.php');
 require_once('config.php');
-header("Cache-Control: no-cache, must-revalidate");
+header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1.
+header("Pragma: no-cache"); // HTTP 1.0.
+header("Expires: 0"); // Proxies.
 if(isset($_POST["Submit"])) {
   $cardno = $_POST["cardno"];
 }
@@ -21,7 +23,7 @@ elseif (strcasecmp($_SESSION['taluk'],$row1[12]) != 0) {
 }
 $sql2="SELECT mem_name,age,adhar_no FROM cardholder_and_mem WHERE ration_card_no='$cardno'";
 $res=mysqli_query($dbC,$sql2);
-
+$i=1;
 ?>
 <body>
     <style>
@@ -141,7 +143,6 @@ $res=mysqli_query($dbC,$sql2);
                     <table id="employee_table" align=center>
                           <?php while ($row2=mysqli_fetch_row($res))
                             {
-                              $i=1;
                               echo "<tr id=\"row".$i."\"><td><input class=\"memfam\" type=\"text\" name=\"name[]\" placeholder=\"".$row2[0]."\" value=\"".$row2[0]."\" id=\"name".$i."\"
                               ></td><td><input class=\"memfam\" type=\"number\" name=\"age[]\" placeholder=\"".$row2[1]."\" value=\"".$row2[1]."\" id=\"age".$i."\"></td><td><input class=\"memfam\" type=\"number\" name=\"adhar_no2[]\" placeholder=\"".$row2[2]
                               ."\" value=\"".$row2[2]."\" id=\"adhar".$i."\" onblur=\"valid('check',this.value)\"></td><td><input class='btnew' type='button' value='-' onclick=delete_('row1')></td></tr>";
@@ -268,9 +269,9 @@ $res=mysqli_query($dbC,$sql2);
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script type="text/javascript">
             function add_row() {
-                $rowno = $("#employee_table tr").length;
-                $rowno = $rowno + 1;
-                $("#employee_table tr:last").after("<tr id='row" + $rowno + "'><td><input class='memfam' type='text' name='name[]' placeholder=' Name '></td><td><input class='memfam' type='text' name='age[]' placeholder=' Age '></td><td><input class='memfam' type='text' name='adhar_no2[]' placeholder=' Aadhaar Number '></td><td><input class='btnew' type='button' value='-' onclick=delete_row('row" + $rowno + "')></td></tr>");
+                    $rowno = $("#employee_table tr").length;
+                    $rowno = $rowno + 1;
+                    $("#employee_table tr:last").after("<tr id='row" + $rowno + "'><td><input class='memfam' type='text' name='name[]' placeholder=' Name ' id='name" + $rowno + "'></td><td><input class='memfam' type='text' name='age[]' placeholder=' Age 'id='age" + $rowno + "'></td><td><input class='memfam' type='text' name='adhar_no2[]' placeholder=' Aadhaar Number 'id='adhar" + $rowno + "' onblur=valid('check',this.value)></td><td><input class='btnew' type='button' value='-' onclick=delete_row('row" + $rowno + "')></td></tr>");
             }
 
             function delete_row(rowno) {
