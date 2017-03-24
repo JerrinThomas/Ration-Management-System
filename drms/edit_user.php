@@ -12,7 +12,7 @@ if(isset($_POST["Submit"])) {
 else {
   $cardno="";
 }
-$sql1="SELECT ration_card_no,adhar_no,hofamily,add1,add2,add3,pan_mun_cor,pincode,wardno,house_no,monthly_in,mob_no,taluk,category,no_of_mem,hof_img from rationcard_holder where ration_card_no='$cardno'";
+$sql1="SELECT ration_card_no,adhar_no,hofamily,add1,add2,add3,pan_mun_cor,pincode,wardno,house_no,monthly_in,mob_no,taluk,category,no_of_mem,hof_img,shopno from rationcard_holder where ration_card_no='$cardno'";
 $result=mysqli_query($dbC,$sql1);
 $count=mysqli_num_rows($result);
 $row1=mysqli_fetch_row($result);
@@ -130,6 +130,12 @@ $i=1;
                     <span class="input__label-content input__label-content--manami" id="errcat">Category</span>
                     </label>
                     </span>
+                             <span class="input input--manami input--filled">
+        <input class="input__field input__field--manami" type="text" id="input-34" name="shopno" placeholder="<?php echo $row1[16]; ?>" value="<?php echo $row1[16]; ?>"onblur="validate('errshopno',this.value)" />
+        <label class="input__label input__label--manami" for="input-34">
+          <span class="input__label-content input__label-content--manami" id="errshopno">Ration Shop Number</span>
+                        </label>
+                        </span>
                     <span class="input input--manami input--filled">
         <input class="input__field input__field--manami" type="text" id="input-34" name="no_of_mem"  placeholder="<?php echo $row1[14]; ?>" value="<?php echo $row1[14]; ?>"/>
         <label class="input__label input__label--manami" for="input-34">
@@ -157,6 +163,7 @@ $i=1;
             <span style="padding-left:40px;" id="errrowadhar" class="error">Please Enter Aadhar No</span>
             </section>
         </div>
+    <input type="hidden" name="dup" value="<?php echo $row1[15]; ?>">
         <!-- ended form container-->
         <!-- image upload button code-->
         <h4>Upload an Image : </h4>
@@ -200,7 +207,7 @@ $i=1;
         document.getElementById(field).value = "Error Occurred. <a href='adduserhome.php'>Reload Or Try Again</a> the page.";
         }
         }
-        xmlhttp.open("GET", "adduser.php?field=" + field + "&query=" + query, false);
+        xmlhttp.open("GET", "edit_user_db.php?field=" + field + "&query=" + query, false);
         xmlhttp.send();
         }
         </script>
@@ -219,7 +226,7 @@ $i=1;
            if(xmlhttp.responseText != "")
               alert(xmlhttp.responseText);
         }
-        xmlhttp.open("GET", "adduser.php?field=" + field + "&query=" + query, false);
+        xmlhttp.open("GET", "edit_user_db.php?field=" + field + "&query=" + query, false);
         xmlhttp.send();
         }
       </script>

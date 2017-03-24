@@ -65,6 +65,23 @@ if(isset($_GET["query"])&&isset($_GET["field"])){
           }
      }
  }
+ elseif($f == "errshopno")
+ {
+     if((strlen($_GET["query"]) != 6) || !(ctype_digit($val)))
+       echo "Ration Shop Number Invalid(6 Digits)";
+     else {
+           $chk="SELECT shopno FROM rationshops where shopno='$val'";
+           $checkmem=mysqli_query($dbC,$chk);
+
+           if(mysqli_num_rows($checkmem) != 0){
+             $checkrow=mysqli_fetch_row($checkmem);
+             echo "Ration Shop Number ( Valid )";
+           }
+          else {
+              echo "Ration Shop Number (InValid)";
+          }
+     }
+ }
 }
 else{
 ob_start();
@@ -89,6 +106,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
   $mob_no=test_input($_POST["mob_no"]);
   $taluk=test_input($_POST["taluk"]);
   $cat=test_input($_POST["cat"]);
+  $shopno=test_input($_POST["shopno"]);
+    
   $no_of_mem=test_input($_POST["no_of_mem"]);
   if($no_of_mem!=0){
   $name=$_POST["name"];
@@ -189,9 +208,9 @@ if($imageFileType != "jpg" && $imageFileType != "jpeg" ) {
   if(!$move) {
       throw new Exception("Error Uploading File...\n Try Again By Going Back....");
   }
-  $sql="INSERT INTO rationcard_holder(`adhar_no`,`hofamily`,`add1`,`add2`,`add3`,`pan_mun_cor`,`pincode`,`wardno`,`house_no`,`monthly_in`,`no_of_mem`,`hof_img`,`hof_img_type`,`mob_no`,`taluk`,`category`)
+  $sql="INSERT INTO rationcard_holder(`adhar_no`,`hofamily`,`add1`,`add2`,`add3`,`pan_mun_cor`,`pincode`,`wardno`,`house_no`,`monthly_in`,`no_of_mem`,`hof_img`,`hof_img_type`,`mob_no`,`taluk`,`category`,`shopno`)
   VALUES('".$adhar_no."' , '".$hofamily."' , '".$add1."','".$add2."','".$add3."','".$pan_mun_cor."','".$pincode."','".$wardno."','".$house_no."','".$monthly_in."','".$no_of_mem."','".$target_file."','".$imageFileType."',
-  '".$mob_no."','".$taluk."','".$cat."')";
+  '".$mob_no."','".$taluk."','".$cat."','".$shopno."')";
 
   $result=mysqli_query($dbC,$sql);
   if(!$result) {
@@ -211,6 +230,8 @@ if($imageFileType != "jpg" && $imageFileType != "jpeg" ) {
  }
   echo "<img src=\"".$target_file."\"><br>The allotted ration card No : ".$rw[0]."<br><p>The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.</p><br><p>Head Of Family : ".$hofamily;
   echo "</p><br><a href=\"admin.php\">Go Back</a>";
+  echo "</p><br><a href=\"pdf.php?rno=".$rw[0]."\">Print</a>";
+    
 } catch (Exception $e) {
   echo 'Caught exception: ',  $e->getMessage(), "\n  ";
   echo "<input action=\"action\" type=\"button\" value=\"Back\" onclick=\"history.go(-1);\"/>";

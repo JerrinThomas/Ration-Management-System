@@ -36,7 +36,7 @@ if(isset($_GET["query"])&&isset($_GET["field"])){
             $checkmob=mysqli_query($dbC,$chk);
             $row2=mysqli_fetch_row($checkmob);
             if(mysqli_num_rows($checkmob) != 0 )
-                echo " Mobile No.( ".$val." Is Already Allocated To Card : ".$row2[0]." )";
+                echo " Mobile No.( ".$val." Is Already Allocated To Card :- ".$row2[0]."  )";
             else
                 echo "Mobile Number Valid";
         }
@@ -65,6 +65,23 @@ if(isset($_GET["query"])&&isset($_GET["field"])){
             }
         }
     }
+ elseif($f == "errshopno")
+ {
+     if((strlen($_GET["query"]) != 6) || !(ctype_digit($val)))
+       echo "Ration Shop Number Invalid(6 Digits)";
+     else {
+           $chk="SELECT shopno FROM rationshops where shopno='$val'";
+           $checkmem=mysqli_query($dbC,$chk);
+
+           if(mysqli_num_rows($checkmem) != 0){
+             $checkrow=mysqli_fetch_row($checkmem);
+             echo "Ration Shop Number ( Valid )";
+           }
+          else {
+              echo "Ration Shop Number (InValid)";
+          }
+     }
+ }   
 }
 else{
 ob_start();
@@ -91,6 +108,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
   $taluk=test_input($_POST["taluk"]);
   $no_of_mem=test_input($_POST["no_of_mem"]);
   $cat=test_input($_POST["cat"]);
+  $shopno=$_POST["shopno"];
+  $dup=$_POST["dup"];
   if($no_of_mem!=0){
   $name=$_POST["name"];
   $age=$_POST["age"];
@@ -168,9 +187,11 @@ if($Ydetails){
 // Check if image file is a actual image or fake image
 if(empty($_FILES["fileToUpload"]["name"]))
    {
-     throw new Exception(" No Image Found...");
-
+     $yes_img=false;
    }
+else
+{
+$yes_img=true;
 $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
@@ -199,11 +220,21 @@ if(mysqli_num_rows($checkmem) != 0){
       throw new Exception("Error Uploading File...\n Try Again By Going Back....");
   }
   $sql="UPDATE rationcard_holder SET adhar_no=\"$adhar_no\",hofamily=\"$hofamily\",add1=\"$add1\",add2=\"$add2\",add3=\"$add3\",pan_mun_cor=\"$pan_mun_cor\",pincode=\"$pincode\",wardno=\"$wardno\",house_no=\"$house_no\",monthly_in=\"$monthly_in\",no_of_mem=\"$no_of_mem\"
-  ,hof_img=\"$target_file\",hof_img_type=\"$imageFileType\",mob_no=\"$mob_no\",taluk=\"$taluk\",category=\"$cat\" WHERE ration_card_no=$cardno";
+  ,hof_img=\"$target_file\",hof_img_type=\"$imageFileType\",mob_no=\"$mob_no\",taluk=\"$taluk\",category=\"$cat\",shopno=\"$shopno\" WHERE ration_card_no=$cardno";
   $result=mysqli_query($dbC,$sql);
   if(!$result) {
      throw new Exception("Error In DataBase row addiction...<br> Please Fill Valid Informations...<br> Try Again By Going Back... :/ ");
   }
+}
+if(!$yes_img)
+{
+  $sql="UPDATE rationcard_holder SET adhar_no=\"$adhar_no\",hofamily=\"$hofamily\",add1=\"$add1\",add2=\"$add2\",add3=\"$add3\",pan_mun_cor=\"$pan_mun_cor\",pincode=\"$pincode\",wardno=\"$wardno\",house_no=\"$house_no\",monthly_in=\"$monthly_in\",no_of_mem=\"$no_of_mem\"
+  ,hof_img=\"$dup\",mob_no=\"$mob_no\",taluk=\"$taluk\",category=\"$cat\",shopno=\"$shopno\" WHERE ration_card_no=$cardno";
+  $result=mysqli_query($dbC,$sql);
+  if(!$result) {
+     throw new Exception("Error In DataBase row addiction...<br> Please Fill Valid Informations...<br> Try Again By Going Back... :/ ");
+  }  
+}
   $sq="DELETE FROM cardholder_and_mem WHERE ration_card_no='$cardno'";
   $res=mysqli_query($dbC,$sq);
   for($i=0;$i<count($name);$i++)
@@ -215,9 +246,11 @@ if(mysqli_num_rows($checkmem) != 0){
        }
 
  }
-
+if($yes_img)
   echo "<img src=\"".$target_file."\"><br>The allotted ration card No : ".$cardno." has been Modified<br>The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.<br>Head Of Family : ".$hofamily."<br><input action=\"action\" type=\"button\" value=\"Back\" onclick=\"history.go(-2);\"/>";
-
+else
+      echo "<img src=\"".$dup."\"><br>The allotted ration card No : ".$cardno." has been Modified<br>The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.<br>Head Of Family : ".$hofamily."<br><input action=\"action\" type=\"button\" value=\"Back\" onclick=\"history.go(-2);\"/>";
+      echo "</p><br><a href=\"pdf.php?rno=".$cardno."\">Print</a>";
 } catch (Exception $e) {
   echo 'Caught exception: ',  $e->getMessage(), "\n  ";
   echo "<input action=\"action\" type=\"button\" value=\"Back\" onclick=\"history.go(-1);\"/>";

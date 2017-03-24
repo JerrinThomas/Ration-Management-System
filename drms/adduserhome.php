@@ -121,6 +121,12 @@ header("Expires: 0"); // Proxies.
           <span class="input__label-content input__label-content--manami" id="errcat">Category</span>
                         </label>
                         </span>
+         <span class="input input--manami input--filled">
+        <input class="input__field input__field--manami" type="text" id="input-34" name="shopno" placeholder="Enter Shop Number" onblur="validate('errshopno',this.value)"/>
+        <label class="input__label input__label--manami" for="input-34">
+          <span class="input__label-content input__label-content--manami" id="errshopno">Ration Shop Number</span>
+                        </label>
+                        </span>
 
                         <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-34" name="no_of_mem" placeholder="Enter Number of Members in Family"/>
