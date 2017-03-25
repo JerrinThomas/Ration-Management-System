@@ -61,7 +61,8 @@ if(isset($_GET["query"])&&isset($_GET["field"])){
               echo "Aadhar No( The Aadhar Holder Is H.O.F of ration_card_no : ".$checkrow[0]." )";
             }
             else
-              echo "Aadhar Number ".$val." Is Valid";
+              //echo "Aadhar Number ".$val." Is Valid"; 
+                die("0");
           }
      }
  }

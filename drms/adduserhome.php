@@ -115,13 +115,13 @@ header("Expires: 0"); // Proxies.
                         </label>
                         </span>
 
-                        <span class="input input--manami">
+                        <span class="input input--manami input--filled">
         <input class="input__field input__field--manami" type="text" id="input-34" name="cat" placeholder="Enter Category"/>
         <label class="input__label input__label--manami" for="input-34">
           <span class="input__label-content input__label-content--manami" id="errcat">Category</span>
                         </label>
                         </span>
-         <span class="input input--manami">
+         <span class="input input--manami input--filled">
         <input class="input__field input__field--manami" type="text" id="input-34" name="shopno" placeholder="Enter Shop Number" onblur="validate('errshopno',this.value)"/>
         <label class="input__label input__label--manami" for="input-34">
           <span class="input__label-content input__label-content--manami" id="errshopno">Ration Shop Number</span>
@@ -218,7 +218,7 @@ header("Expires: 0"); // Proxies.
                     }
                     xmlhttp.onreadystatechange = function () {
                         if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
-                            if (xmlhttp.responseText != "")
+                            if (parseInt(xmlhttp.responseText) != 0)
                                 alert(xmlhttp.responseText);
                     }
                     xmlhttp.open("GET", "adduser.php?field=" + field + "&query=" + query, false);

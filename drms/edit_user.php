@@ -223,7 +223,7 @@ $i=1;
         }
         xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
-           if(xmlhttp.responseText != "")
+           if(parseInt(xmlhttp.responseText) != 0)
               alert(xmlhttp.responseText);
         }
         xmlhttp.open("GET", "edit_user_db.php?field=" + field + "&query=" + query, false);
