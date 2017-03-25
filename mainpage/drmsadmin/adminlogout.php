@@ -2,5 +2,5 @@
 session_start();
  //Start the current session
 session_destroy(); //Destroy it! So we are logged out now
-header("location:../mainpage/index.html");
+header("location: ../index.php");
 ?>
