@@ -39,9 +39,9 @@ header("Expires: 0"); // Proxies.
 
                         <!-- head of family box end-->
                         <span class="input input--manami">
-                        <input class="input__field input__field--manami" type="text" id="idadhar" name="adhar_no" placeholder="Enter Adhar Number" onblur="validate('erradhar',this.value)"/>
+                        <input class="input__field input__field--manami" type="text" id="idAadhar" name="Aadhar_no" placeholder="Enter Aadhar Number" onblur="validate('errAadhar',this.value)"/>
 				<label class="input__label input__label--manami" for="input-34">
-                    <span class="input__label-content input__label-content--manami" id="erradhar">Adhar Number</span>
+                    <span class="input__label-content input__label-content--manami" id="errAadhar">Aadhar Number</span>
                         </label>
                         </span>
 
@@ -147,7 +147,7 @@ header("Expires: 0"); // Proxies.
                                     <input class="memfam" type="number" name="age[]" placeholder=" Age " id="age1">
                                 </td>
                                 <td>
-                                    <input class="memfam" type="number" name="adhar_no2[]" placeholder=" Aadhar Number " id="adhar1" onblur="valid('check',this.value)">
+                                    <input class="memfam" type="number" name="Aadhar_no2[]" placeholder=" AAadhar Number " id="Aadhar1" onblur="valid('check',this.value)">
                                 </td>
                                 <td>
                                     <input class='btnew' type='button' value='-' onclick=delete_( 'row1')>
@@ -159,7 +159,7 @@ header("Expires: 0"); // Proxies.
                         <br/>
                         <span id="errrowname" class="error">Please Enter Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
                         <span style="padding-right:30px; padding-left:70px; " id="errrowage" class="error"> Please Enter Age  </span>
-                        <span style="padding-left:40px;" id="errrowadhar" class="error">Please Enter Aadhar No</span>
+                        <span style="padding-left:40px;" id="errrowAadhar" class="error">Please Enter AAadhar No</span>
                 </section>
             </div>
             <!-- ended form container-->
@@ -283,7 +283,7 @@ header("Expires: 0"); // Proxies.
                 function add_row() {
                     $rowno = $("#employee_table tr").length;
                     $rowno = $rowno + 1;
-                    $("#employee_table tr:last").after("<tr id='row" + $rowno + "'><td><input class='memfam' type='text' name='name[]' placeholder=' Name ' id='name" + $rowno + "'></td><td><input class='memfam' type='text' name='age[]' placeholder=' Age 'id='age" + $rowno + "'></td><td><input class='memfam' type='text' name='adhar_no2[]' placeholder=' Aadhaar Number 'id='adhar" + $rowno + "' onblur=valid('check',this.value)></td><td><input class='btnew' type='button' value='-' onclick=delete_row('row" + $rowno + "')></td></tr>");
+                    $("#employee_table tr:last").after("<tr id='row" + $rowno + "'><td><input class='memfam' type='text' name='name[]' placeholder=' Name ' id='name" + $rowno + "'></td><td><input class='memfam' type='text' name='age[]' placeholder=' Age 'id='age" + $rowno + "'></td><td><input class='memfam' type='text' name='Aadhar_no2[]' placeholder=' Aadhaar Number 'id='Aadhar" + $rowno + "' onblur=valid('check',this.value)></td><td><input class='btnew' type='button' value='-' onclick=delete_row('row" + $rowno + "')></td></tr>");
                 }
 
                 function delete_row(rowno) {

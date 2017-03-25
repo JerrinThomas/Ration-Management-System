@@ -12,7 +12,7 @@ if(isset($_POST["Submit"])) {
 else {
   $cardno="";
 }
-$sql1="SELECT ration_card_no,adhar_no,hofamily,add1,add2,add3,pan_mun_cor,pincode,wardno,house_no,monthly_in,mob_no,taluk,category,no_of_mem,hof_img,shopno from rationcard_holder where ration_card_no='$cardno'";
+$sql1="SELECT ration_card_no,Aadhar_no,hofamily,add1,add2,add3,pan_mun_cor,pincode,wardno,house_no,monthly_in,mob_no,taluk,category,no_of_mem,hof_img,shopno from rationcard_holder where ration_card_no='$cardno'";
 $result=mysqli_query($dbC,$sql1);
 $count=mysqli_num_rows($result);
 $row1=mysqli_fetch_row($result);
@@ -21,7 +21,7 @@ header("location:edit_user_home.php?msg=Invalid RationCard Number");
 elseif (strcasecmp($_SESSION['taluk'],$row1[12]) != 0) {
  header("location:edit_user_home.php?msg=Ration Card ".$cardno." Is Not Under Your Taluk");
 }
-$sql2="SELECT mem_name,age,adhar_no FROM cardholder_and_mem WHERE ration_card_no='$cardno'";
+$sql2="SELECT mem_name,age,Aadhar_no FROM cardholder_and_mem WHERE ration_card_no='$cardno'";
 $res=mysqli_query($dbC,$sql2);
 $i=1;
 ?>
@@ -53,9 +53,9 @@ $i=1;
                     </span>
                     <!-- head of family box end-->
                     <span class="input input--manami input--filled">
-                        <input class="input__field input__field--manami" type="text" id="input-34" name="adhar_no" placeholder="<?php echo $row1[1]; ?>" value="<?php echo $row1[1]; ?>" onblur="validate('erradhar',this.value)" />
+                        <input class="input__field input__field--manami" type="text" id="input-34" name="Aadhar_no" placeholder="<?php echo $row1[1]; ?>" value="<?php echo $row1[1]; ?>" onblur="validate('errAadhar',this.value)" />
 				<label class="input__label input__label--manami" for="input-34">
-                    <span class="input__label-content input__label-content--manami" id="erradhar">Adhar Number</span>
+                    <span class="input__label-content input__label-content--manami" id="errAadhar">Aadhar Number</span>
                     </label>
                     </span>
                     <span class="input input--manami input--filled">
@@ -142,7 +142,7 @@ $i=1;
             <span class="input__label-content input__label-content--manami" id="errno">Number Of Members Family</span>
                     </label>
                     </span>
-                    
+
         <h4>Details of other Family Member(s)</h4>
         </label>
       </span>
@@ -150,8 +150,8 @@ $i=1;
                           <?php while ($row2=mysqli_fetch_row($res))
                             {
                               echo "<tr id=\"row".$i."\"><td><input class=\"memfam\" type=\"text\" name=\"name[]\" placeholder=\"".$row2[0]."\" value=\"".$row2[0]."\" id=\"name".$i."\"
-                              ></td><td><input class=\"memfam\" type=\"number\" name=\"age[]\" placeholder=\"".$row2[1]."\" value=\"".$row2[1]."\" id=\"age".$i."\"></td><td><input class=\"memfam\" type=\"number\" name=\"adhar_no2[]\" placeholder=\"".$row2[2]
-                              ."\" value=\"".$row2[2]."\" id=\"adhar".$i."\" onblur=\"valid('check',this.value)\"></td><td><input class='btnew' type='button' value='-' onclick=delete_('row1')></td></tr>";
+                              ></td><td><input class=\"memfam\" type=\"number\" name=\"age[]\" placeholder=\"".$row2[1]."\" value=\"".$row2[1]."\" id=\"age".$i."\"></td><td><input class=\"memfam\" type=\"number\" name=\"Aadhar_no2[]\" placeholder=\"".$row2[2]
+                              ."\" value=\"".$row2[2]."\" id=\"Aadhar".$i."\" onblur=\"valid('check',this.value)\"></td><td><input class='btnew' type='button' value='-' onclick=delete_('row1')></td></tr>";
                               $i++;
                             }
                           ?>
@@ -160,7 +160,7 @@ $i=1;
                     <br/>
                     <span id="errrowname" class="error">Please Enter Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
             <span style="padding-right:30px; padding-left:70px; " id="errrowage" class="error"> Please Enter Age  </span>
-            <span style="padding-left:40px;" id="errrowadhar" class="error">Please Enter Aadhar No</span>
+            <span style="padding-left:40px;" id="errrowAadhar" class="error">Please Enter AAadhar No</span>
             </section>
         </div>
     <input type="hidden" name="dup" value="<?php echo $row1[15]; ?>">
@@ -180,7 +180,7 @@ $i=1;
         <div>
             <input class="btn" type="submit" value="submit" />
         </div>
-        
+
     <a href="#0" class="cd-top">Top</a>
         <!-- ended submit button -->
         </form>
@@ -278,7 +278,7 @@ $i=1;
             function add_row() {
                     $rowno = $("#employee_table tr").length;
                     $rowno = $rowno + 1;
-                    $("#employee_table tr:last").after("<tr id='row" + $rowno + "'><td><input class='memfam' type='text' name='name[]' placeholder=' Name ' id='name" + $rowno + "'></td><td><input class='memfam' type='text' name='age[]' placeholder=' Age 'id='age" + $rowno + "'></td><td><input class='memfam' type='text' name='adhar_no2[]' placeholder=' Aadhaar Number 'id='adhar" + $rowno + "' onblur=valid('check',this.value)></td><td><input class='btnew' type='button' value='-' onclick=delete_row('row" + $rowno + "')></td></tr>");
+                    $("#employee_table tr:last").after("<tr id='row" + $rowno + "'><td><input class='memfam' type='text' name='name[]' placeholder=' Name ' id='name" + $rowno + "'></td><td><input class='memfam' type='text' name='age[]' placeholder=' Age 'id='age" + $rowno + "'></td><td><input class='memfam' type='text' name='Aadhar_no2[]' placeholder=' Aadhaar Number 'id='Aadhar" + $rowno + "' onblur=valid('check',this.value)></td><td><input class='btnew' type='button' value='-' onclick=delete_row('row" + $rowno + "')></td></tr>");
             }
 
             function delete_row(rowno) {

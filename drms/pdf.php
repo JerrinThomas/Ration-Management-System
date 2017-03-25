@@ -4,7 +4,7 @@ require_once('config.php');
 if(!isset($_GET["rno"]))
     die("Error");
 $rno=$_GET["rno"];
-$sql1="SELECT hof_img,ration_card_no,hofamily,adhar_no,shopno,add1,add2,add3,pan_mun_cor,pincode,wardno,house_no,monthly_in,mob_no,taluk,category,no_of_mem from rationcard_holder where ration_card_no='$rno'";
+$sql1="SELECT hof_img,ration_card_no,hofamily,Aadhar_no,shopno,add1,add2,add3,pan_mun_cor,pincode,wardno,house_no,monthly_in,mob_no,taluk,category,no_of_mem from rationcard_holder where ration_card_no='$rno'";
 $result=mysqli_query($dbC,$sql1);
 $count=mysqli_num_rows($result);
 $pt=mysqli_fetch_row($result);
@@ -36,7 +36,7 @@ $pdf->SetFont('Times','B',12);
 $pdf->Cell(46,10,'Photo',0,1,'R');
 
 $pdf->SetFont('Times','B',15);
-$pdf->Cell(20,10,'Adhar Number : ',0,0,'L');
+$pdf->Cell(20,10,'Aadhar Number : ',0,0,'L');
 $pdf->Cell(70,10,$pt[3],0,1,'R');
 
 $pdf->Cell(20,10,'Ration Shop Number : ',0,0,'L');
@@ -102,7 +102,7 @@ $pdf->SetFont('Times','',12);
 $pdf->Cell(0,10,$pt[16],0,1,'R');
 
 
-    $sql="SELECT mem_name,age,adhar_no FROM cardholder_and_mem WHERE ration_card_no='$rno'";
+    $sql="SELECT mem_name,age,Aadhar_no FROM cardholder_and_mem WHERE ration_card_no='$rno'";
     $re=mysqli_query($dbC,$sql);
   if(mysqli_num_rows($re)>4)
       $pdf->AddPage();
@@ -111,7 +111,7 @@ $pdf->Cell(0,15,'Details Of Members',0,1,'C');
 $pdf->SetFont('Times','B',12);
 $pdf->Cell(63,7,'Name Of Member',1);
 $pdf->Cell(63,7,'Age',1);
-$pdf->Cell(63,7,'Adhar Number',1);
+$pdf->Cell(63,7,'Aadhar Number',1);
 $pdf->ln();
 $pdf->SetFont('Times','',12);
   while($r=mysqli_fetch_row($re)){

@@ -26,24 +26,24 @@ function val(){
         error = 1;
     }
 
-    var erradhar_no = document.getElementsByName('adhar_no');
-    var seladhar_no = document.getElementById('erradhar');
-    if(frm.adhar_no.value== "")
+    var errAadhar_no = document.getElementsByName('Aadhar_no');
+    var selAadhar_no = document.getElementById('errAadhar');
+    if(frm.Aadhar_no.value== "")
     {
-        erradhar_no[0].setAttribute("style","color:#f8001d");
-        seladhar_no.setAttribute("style","color:#ff7f50");
+        errAadhar_no[0].setAttribute("style","color:#f8001d");
+        selAadhar_no.setAttribute("style","color:#ff7f50");
         error1 = 0;
     }
-    else if((frm.adhar_no.value.length != 12) || (isNaN(frm.adhar_no.value)))
+    else if((frm.Aadhar_no.value.length != 12) || (isNaN(frm.Aadhar_no.value)))
     {
-        erradhar_no[0].setAttribute("style","color:#f8001d");
-        seladhar_no.setAttribute("style","color:#ff7f50");
+        errAadhar_no[0].setAttribute("style","color:#f8001d");
+        selAadhar_no.setAttribute("style","color:#ff7f50");
         error1 = 0;
     }
     else
     {
         errhofamily[0].setAttribute("style","color:#ffffff");
-        seladhar_no.setAttribute("style","color:#f5edea");
+        selAadhar_no.setAttribute("style","color:#f5edea");
         error1 = 1;
     }
 
@@ -316,19 +316,19 @@ function val(){
                     erro12 = 1;
                 }
 
-            var y2= document.getElementById("adhar"+i);
+            var y2= document.getElementById("Aadhar"+i);
 
                 if(y2.value =="")
                 {
                     y2.style.border = "2px solid red";
-                    errrowadhar.style.visibility = "visible";
+                    errrowAadhar.style.visibility = "visible";
                     erro13 = 0;
                 }
                 else if((y2.value.length != 12) || (isNaN(y2.value)))
                 {
                     y2.style.border = "2px solid red";
-                    errrowadhar.innerHTML = "Enter A Valid Adhar No.";
-                    errrowadhar.style.visibility = "visible";
+                    errrowAadhar.innerHTML = "Enter A Valid Aadhar No.";
+                    errrowAadhar.style.visibility = "visible";
                     erro13 = 0;
                 }
                 else
@@ -352,7 +352,7 @@ function val(){
                     }
                 if(c==1)
                     {
-                        errrowadhar.style.visibility = "hidden";
+                        errrowAadhar.style.visibility = "hidden";
                         error13 = 1;
                     }
         }
