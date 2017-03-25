@@ -1,0 +1,178 @@
+.with-nav-tabs.panel-primary .nav-tabs > li > a,
+.with-nav-tabs.panel-primary .nav-tabs > li > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li > a:focus {
+    color: #fff;
+} 
+/*.with-nav-tabs.panel-primary .nav-tabs > .open > a
+,.with-nav-tabs.panel-primary .nav-tabs > .open > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > .open > a:focus,
+.with-nav-tabs.panel-primary .nav-tabs > li > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li > a:focus {
+    color: #3071a9;
+    background-color:#fff ;
+    border-color: transparent;
+} */
+.with-nav-tabs.panel-primary .nav-tabs > li.active > a,
+.with-nav-tabs.panel-primary .nav-tabs > li.active > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li.active > a:focus {
+    color: #47a3da;
+    background-color: #fff;
+    border-color: #47a3da;
+    border-bottom-color: transparent;
+} 
+
+
+.panel.with-nav-tabs .panel-heading{
+    padding: 5px 5px 0 5px;
+}
+.panel.with-nav-tabs .nav-tabs{
+    border-bottom: none;
+}
+.panel.with-nav-tabs .nav-justified{
+    margin-bottom: -1px;
+}
+
+a{
+    height: 55px;
+    font-size: 25px;
+    font-family: Roboto Regular;
+    letter-spacing: 5px;
+    color: white;
+}
+
+
+/* Reveal */
+.hvr-reveal {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px transparent;
+    position: relative;
+    overflow: hidden;
+    
+}
+.hvr-reveal:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-color: white;
+    
+    border-style: solid;
+    border-width: 0;
+    -webkit-transition-property: border-width;
+    transition-property: border-width;
+    -webkit-transition-duration: 0.1s;
+    transition-duration: 0.1s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+
+
+.hvr-reveal:hover:before {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    border-width: 4px;
+    background-color: #47a3da;
+
+}
+
+#srcht{
+    width: 100%;
+    position: relative;
+    top: 30%;
+    box-sizing: border-box;
+    border: 2px solid white;
+    border-radius: 25px;
+    font-size: 20px;
+    color: white;
+    background-color: transparent;
+    background-image: url('srchicon.png');
+    background-position: 20px 18px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+#srcht:focus{
+    background-color: #ffffff;
+    color: #47a3da;
+}
+
+#srcht::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #ffffff;
+}
+#srcht:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #ffffff;
+    opacity:  1;
+}
+#srcht::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #ffffff;
+    opacity:  1;
+}
+#srcht:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color:    #ffffff;
+}
+
+#srchb {
+    width: 50%;
+    height: 18%;
+    display: inline;
+    position: relative;
+    top: 40%;
+    box-sizing: border-box;
+    border: 2px solid white;
+    border-radius: 25px;
+    font-size: 20px;
+    color: white;
+    background-color: transparent;
+    margin-left: 25%;
+}
+#srchb:hover {
+    background-color: #ffffff; /* white */
+    color: #47a3da;
+}
+
+.card-container.card {
+    
+    width: 550px;
+    height: 350px;
+    padding: 40px 40px;
+}
+
+.card {
+    
+    display: table-cell;
+    vertical-align: middle;
+    
+    background-color: #47a3da;
+    /* just in case there no content*/
+    padding: 20px 25px 30px;
+    margin: 0 auto 25px;
+    margin-top: 50px;
+    /* shadows and rounded borders */
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.vertical-align {
+    display: flex;
+    align-items: center;
+}
+
+.row {
+    height: 550px;
+}
+
+/*a:hover:before {
+    color: white;
+} */

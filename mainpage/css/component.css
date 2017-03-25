@@ -123,19 +123,17 @@ body {
 	width: 100%;
 	margin-top: 40%;
 }
+/*#headimg{
+width: 100%;
+margin-left: 47%;
+margin-top: 0px;
+}*/
 
 #headimgr{
-	width: 100%;
-	margin-top: 90px;
-	z-index: -200;
-	margin-left: -794px;
-	user-drag: none; 
-	user-select: none;
-	-moz-user-select: none;
-	-webkit-user-drag: none;
-	-webkit-user-select: none;
-	-ms-user-select: none;
-	pointer-events: none;
+		width: 100%;
+	    margin-top: 90px;
+	    z-index: -200;
+	    margin-left: -794px;
 }
 #rbttn {
     width: 50%;
