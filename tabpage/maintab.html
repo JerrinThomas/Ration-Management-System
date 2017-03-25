@@ -1,60 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>Bootstrap 101 Template</title>
 
-        <!-- Bootstrap -->
-        <link href="css/bootstrap.css" rel="stylesheet">
-        <link href="css/styles.css" rel="stylesheet">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Bootstrap 101 Template</title>
 
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
-    </head>
-    <body>
-        
-        <div class="col-md-12">
-            <div class=" with-nav-tabs panel-primary">
-                <div class="panel-heading">
-                    <ul class="nav nav-tabs nav-justified">
-                        <li class="active hvr-reveal"><a href="#tab1primary " data-toggle="tab">Home</a></li>
-                        <li class="hvr-reveal"><a href="#tab2primary " data-toggle="tab">Sales History</a></li>
-                        <li class="hvr-reveal"><a href="#tab3primary " data-toggle="tab">Stock</a></li>
-                        
-                    </ul>
-                </div>
-                <div class="panel-body">
-                    <div class="tab-content">
-                        <div class="tab-pane fade in active " id="tab1primary">
-                            
-                                <div class="container">
-                                    <div class="row vertical-align">
-                                        <div class="card card-container">
-                                            <input type="text" name="srcht" id="srcht" style="text-align:center;" placeholder="Enter card number...">
-                                            <input type="submit" name="srchb" id="srchb" value="Search">
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                        </div>
-                        <div class="tab-pane fade" id="tab2primary">Primary 2</div>
-                        <div class="tab-pane fade" id="tab3primary">Primary 3</div>
-                        <div class="tab-pane fade" id="tab4primary">Primary 4</div>
-                        <div class="tab-pane fade" id="tab5primary">Primary 5</div>
-                    </div>
-                </div>
-            </div>
+</head>
 
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="js/bootstrap.min.js"></script>
-    </body>
+<body>
+
+    <div class="col-md-12">
+        <div class=" with-nav-tabs panel-primary">
+            <div class="panel-heading">
+                <ul class="nav nav-tabs nav-justified">
+                    <li class="active hvr-reveal"><a href="#tab1primary " data-toggle="tab">Home</a></li>
+                    <li class="hvr-reveal"><a href="#tab2primary " data-toggle="tab">Sales History</a></li>
+                    <li class="hvr-reveal"><a href="#tab3primary " data-toggle="tab">Stock</a></li>
+
+                </ul>
+            </div>
+            <div class="panel-body">
+                <div class="tab-content">
+                    <div class="tab-pane fade in active " id="tab1primary">
+
+                        <div class="container">
+                            <div class="row vertical-align">
+                                <div class="card card-container">
+                                    <input type="text" name="srcht" id="srcht" style="text-align:center;" placeholder="Enter card number...">
+                                    <input type="submit" name="srchb" id="srchb" value="Search" onclick="return ld();">
+                                </div>
+                                <div class="card1 card-container1" id="tabl">
+                                    <h2>CART</h2>
+
+                                    <table class="table ">
+                                        <thead>
+                                            <tr>
+                                                <th>Items</th>
+                                                <th>Price</th>
+                                                <th>Remaining Quantity</th>
+                                                <th>Quantity Purchased</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td> </td>
+                                                <td> </td>
+                                                <td> </td>
+                                                <td> </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Rice</td>
+                                                <td>Rs.20/-</td>
+                                                <td>100 Kg</td>
+                                                <td>
+                                                    <input type="text">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td> </td>
+                                                <td> </td>
+                                                <td> </td>
+                                                <td> </td>
+                                            </tr>
+                                            <tr>
+                                                <td>wheat</td>
+                                                <td>Rs.20/-</td>
+                                                <td>100 Kg</td>
+                                                <td>
+                                                    <input type="text">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td> </td>
+                                                <td> </td>
+                                                <td> </td>
+                                                <td> </td>
+                                            </tr>
+                                            <tr>
+                                                <td>kerosene</td>
+                                                <td>Rs.20/-</td>
+                                                <td>100 L</td>
+                                                <td>
+                                                    <input type="text">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td> </td>
+                                                <td> </td>
+                                                <td> </td>
+                                                <td> </td>
+                                            </tr>
+                                            <tr>
+                                                <td> </td>
+                                                <td> </td>
+                                                <td>Total Amount </td>
+                                                <td>
+                                                    <input type="text">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td> </td>
+                                                <td> </td>
+                                                <td> </td>
+                                                <td> </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                
+                <div class="tab-pane fade" id="tab2primary">Primary 2</div>
+                <div class="tab-pane fade" id="tab3primary">Primary 3</div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script type="text/javascript">
+        function ld(){
+            var chng = document.getElementsByClassName('card1');
+            chng[0].style.display = "table-cell";
+            chng[0].style.zIndex = "0";
+            return true;
+        }
+    </script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
 </html>

@@ -171,8 +171,78 @@ a{
 
 .row {
     height: 550px;
+    margin-left: 4%;
+}
+
+.table {
+    border-bottom:0px !important;
+}
+.table th, .table td {
+    border: 1px !important;
+}
+.fixed-table-container {
+    border:0px !important;
+}
+
+.card1 {
+
+    display: none;
+    vertical-align: middle;
+    position: absolute;
+    background-color: #47a3da;
+    /* just in case there no content*/
+    padding: 20px 25px 30px;
+    margin: 0 auto 25px;
+    margin-top: 50px;
+    /* shadows and rounded borders */
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    color: white;
+    font-size: 25px;
+    text-align: center;
+    z-index: -1;
+    
+}
+
+.card-container1.card1 {
+
+    width: 1050px;
+    height: 550px;
+}
+
+th {
+    text-align: center;
+}
+
+h2{
+    margin-bottom: 30px;
+    font-size: 80px;
+    letter-spacing: 8px;
+}
+
+tbody{
+    background-color: white;
+    color: #47a3da;
+}
+
+tr input {
+    border: 2px solid #47a3da;
+}
+
+tr input:focus {
+    background-color: #47a3da;
+    color: white;
+    border: 5px solid white;
 }
 
 /*a:hover:before {
     color: white;
 } */
+
+input {
+    
+}
