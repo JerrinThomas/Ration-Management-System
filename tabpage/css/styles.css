@@ -211,7 +211,8 @@ a{
 .card-container1.card1 {
 
     width: 1050px;
-    height: 550px;
+    height: 600px;
+    margin-top: 8%;
 }
 
 th {
@@ -219,7 +220,7 @@ th {
 }
 
 h2{
-    margin-bottom: 30px;
+
     font-size: 80px;
     letter-spacing: 8px;
 }
@@ -239,10 +240,58 @@ tr input:focus {
     border: 5px solid white;
 }
 
+#srchb1 {
+    width: 40%;
+    height: 100%;
+    display: inline;
+    position: relative;
+    top: 12%;
+    box-sizing: border-box;
+    border: 2px solid white;
+    border-radius: 10px;
+    font-size: 20px;
+    color: #ffffff;
+    background-color: transparent;
+    margin-left: 5%;
+}
+#srchb1:hover {
+    background-color: #ffffff; /* white */
+    color: #47a3da;
+}
+
+.lst td {
+    background-color: #47a3da;
+    height: 60px;
+}
+
+.ttl td {
+    background-color: #47a3da;
+    height: 60px;
+    color: white;
+    margin-top: 10px;
+    border: 2px solid white;
+}
+
+#srchb2 {
+    width: 100%;
+    height: 100%;
+    display: inline;
+    position: relative;
+    top: 12%;
+    box-sizing: border-box;
+    border: 2px solid white;
+    border-radius: 10px;
+    font-size: 20px;
+    color: #ffffff;
+    background-color: transparent;
+    margin-left: 5%;
+}
+#srchb2:hover {
+    background-color: #ffffff; /* white */
+    color: #47a3da;
+}
 /*a:hover:before {
     color: white;
 } */
 
-input {
-    
-}
+
