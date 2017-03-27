@@ -56,7 +56,7 @@ if(!isset($_SESSION['lname']))
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> 
 
 
                 
@@ -73,6 +73,7 @@ if(!isset($_SESSION['lname']))
             var ldgif=document.getElementById('loading');
             var v=document.getElementById('srcht');
             var val=v.value;
+            window.value=val;
             var sno='<?php echo $_SESSION['shopno'] ?>'; 
             var sal = document.getElementById('tabl');
             ldgif.setAttribute("style","visibility:visible");
@@ -132,6 +133,74 @@ if(!isset($_SESSION['lname']))
             return true;
         } 
         
+        function otpcheck()
+        {
+          var v=document.getElementById('votp');
+          var val=v.value; 
+          var error = document.getElementById('otpcheckresult');
+          var sal = document.getElementById('tabl');
+          var sno='<?php echo $_SESSION['shopno'] ?>'; 
+          var xmlhttp;
+                if (window.XMLHttpRequest) { // for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                } else { // for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function() {
+                    if (xmlhttp.readyState != 4 && xmlhttp.status == 200) {
+                        error.innerHTML='<center><img id="loading" src="load.gif" alt="loading"/></center>';
+                    } else if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        if(parseInt(xmlhttp.responseText) == 0 ) 
+                        {
+                          sal.innerHTML = 'Invalid OTP or Time Expired.<br><center><a href=\"maintab.php\"><input type=\"button\" value=\"Back\"></center>';
+                        }
+                        else
+                        {
+                           sal.innerHTML = xmlhttp.responseText;
+                        }
+                    } 
+                }
+                xmlhttp.open("GET", "cartarea.php?&otp=" + val + "&spno=" +sno +"&cdno=" + window.value, false);
+                xmlhttp.send();
+            return true;
+        }
+        
+     function countdown( elementName, minutes, seconds )
+     {
+       var element, endTime, hours, mins, msLeft, time;
+
+         function twoDigits( n )
+         {
+            return (n <= 9 ? "0" + n : n);
+         }
+
+         function updateTimer()
+         {
+           msLeft = endTime - (+new Date);
+           if ( msLeft < 1000 ) {
+              element.innerHTML = "countdown's over!";
+           } else {
+            time = new Date( msLeft );
+            hours = time.getUTCHours();
+            mins = time.getUTCMinutes();
+            element.innerHTML = (hours ? hours + ':' + twoDigits( mins ) : mins) + ':' + twoDigits( time.getUTCSeconds() );
+            setTimeout( updateTimer, time.getUTCMilliseconds() + 500 );
+           }
+        }
+    
+
+    element = document.getElementById( elementName );
+    endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
+    updateTimer();
+    }
+  
+  </script>
+    <script src="js/jquery-v1.min.js"></script>
+    <script type="text/javascript">
+    $("#countdown").ready(function() {
+    // call the function after the element has been loaded here
+    countdown( "countdown", 3, 0 );
+    });
         
     </script>
 

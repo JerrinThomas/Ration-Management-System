@@ -1,20 +1,20 @@
 <?php 
 require_once('config.php');
-/*        
+        
 if(isset($_GET["cardno"],$_GET["shopno"])){
     $cno=$_GET["cardno"];
     $sno=$_GET["shopno"];
     $sq="SELECT hofamily FROM rationcard_holder WHERE shopno='$sno' AND ration_card_no='$cno'";
     $res=mysqli_query($dbC,$sq);
     
-    if(!$res)
+    if(mysqli_num_rows($res) == 0)
         die("0");
     else
     {    
         $tap=mysqli_fetch_row($res);
         // card found and belongs to this shop..
         // otp has to be generated and sms blaahh blaaahhh...
-        /*
+        
          $characters = 'abcdefghijklmnopqrstuvwxyz';
          $numbers = '0123456789';
          $otp = '';
@@ -37,10 +37,13 @@ if(isset($_GET["cardno"],$_GET["shopno"])){
          }
         $starttime=time();
         //Integrate sms api here.....
-        
+        //save otp to temp table
+         $sql="INSERT INTO tempotp VALUES('".$otp."','".$cno."','".$sno."','".$starttime."')";
+         $res1=mysqli_query($dbC,$sql);
+         
         // return to called fuction with value 1 indicating otp validation..
         // for time being otp is */
-/*    die("<center><h3>.$tap[0].</h3></center><br><br>The OTP here : <input type=\"text\" style=\"color: #47a3da;\" placeholder=\"01abc0\" value=\"0\" id=\"votp\" onblur=\"otpcheck()\"><input type=\"submit\" value=\"Submit\"><br><div id=\"otpcheckresult\"><div><br><center><a href=\"maintab.php\"><input type=\"button\" value=\"Back\"></center>");
+        die("<center><h3>Card Holder : $tap[0].</h3></center><br><div id=\"countdown\"></div><br>The OTP here : <input type=\"text\" style=\"color: #47a3da;\" placeholder=\"$otp\" value=\"0\" id=\"votp\" onblur=\"otpcheck()\"><input type=\"submit\" value=\"Submit\"><br><div id=\"otpcheckresult\"><div><br><center><a href=\"maintab.php\"><input type=\"button\" value=\"Back\"></center>");
         
     }
     
@@ -49,9 +52,19 @@ if(isset($_GET["cardno"],$_GET["shopno"])){
 
 //echo $otp;echo "<br>$starttime";
 //time() returns current time in sec...can used to expire otp
-
-*/
-echo "<style>
+elseif(isset($_GET["otp"],$_GET["spno"]))
+{        
+         $cno=$_GET["cdno"];
+         $sno=$_GET["spno"];
+         $ootp=$_GET["otp"];
+         $sql="SELECT starttime FROM tempotp WHERE shopno='$sno' AND ration_card_no='$cno' AND otp = '$ootp'";
+         $res1=mysqli_query($dbC,$sql);
+         if(mysqli_num_rows($res1) != 0)
+         {
+            $t=mysqli_fetch_row($res1);
+             if( ($t[0]-time()) <= 180 )
+             {
+                 echo "<style>
 .card-container1.card1 {
 
     width: 1050px;
@@ -225,5 +238,24 @@ tr input:focus {
                                             </tr>
                                         </tbody>
                                     </table>"; 
+                 $sql1="DELETE FROM tempotp where ration_card_no='$cno'";
+                 $res2=mysqli_query($dbC,$sql1);
+             }
+             else
+             {   
+                 $sql1="DELETE FROM tempotp where ration_card_no='$cno'";
+                 $res2=mysqli_query($dbC,$sql1);
+                 die("0");
+             }
+         }
+         else
+         {   
+             $sql1="DELETE FROM tempotp where ration_card_no='$cno'";
+             $res2=mysqli_query($dbC,$sql1);
+             die ("0");
+         }
+}
+
+
 
 ?>
