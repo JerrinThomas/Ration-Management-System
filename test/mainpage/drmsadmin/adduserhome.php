@@ -16,6 +16,65 @@ header("Expires: 0"); // Proxies.
             font-size: 25px;
             visibility: hidden;
         }
+        
+        /* hide input */
+        input.radio:empty {
+            margin-left: -99999px;
+        }
+
+        /* style label */
+        input.radio:empty ~ label {
+            position: relative;
+            float: left;
+            line-height: 2em;
+            text-indent: 3.25em;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        input.radio:empty ~ label:before {
+            position: absolute;
+            display: block;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            content: '';
+            width: 2.5em;
+            background: #D1D3D4;
+            border-radius: 3px 0 0 3px;
+        }
+
+        /* toggle hover */
+        input.radio:hover:not(:checked) ~ label:before {
+            content:'\2714';
+            text-indent: .9em;
+            color: #C2C2C2;
+        }
+
+        input.radio:hover:not(:checked) ~ label {
+            color: #888;
+        }
+
+        /* toggle on */
+        input.radio:checked ~ label:before {
+            content:'\2714';
+            text-indent: .9em;
+            color: #9CE2AE;
+            background-color: #4DCB6D;
+        }
+
+        input.radio:checked ~ label {
+            color: #777;
+        }
+
+        /* radio focus */
+        input.radio:focus ~ label:before {
+            box-shadow: 0 0 0 3px #999;
+        }
+        
     </style>
     <script type="text/javascript" src="js/validateuser.js"></script>
 
@@ -121,6 +180,31 @@ header("Expires: 0"); // Proxies.
           <span class="input__label-content input__label-content--manami" id="errcat">Category</span>
                         </label>
                         </span>
+                        
+                        <div style="clear: both;
+                                    margin: 0 50px;">
+                                    <h3 style="margin-top: 0;">Electrified</h3>
+                            <input type="radio" name="radio" id="radio1" class="radio" checked/>
+                            <label for="radio1" style="margin-left: 40%;
+                                                      width: 20%;
+                                                       border-radius: 3px;
+                                                       border: 1px solid #D1D3D4">Yes</label>
+                        </div>
+
+                        <div style="clear: both;
+                                    margin: 0 50px;">
+                            <input type="radio" name="radio" id="radio2" class="radio"/>
+                            <label for="radio2" style="margin-left: 40%;
+                                                     width: 20%;
+                                                     margin-bottom: 2%;
+                                                      margin-top: 2%;
+                                                       border-radius: 3px;
+                                                       border: 1px solid #D1D3D4">No</label>
+                        </div>
+                        
+                        <div style="clear: both;
+                                    margin: 0 50px;"></div>
+                        
          <span class="input input--manami input--filled">
         <input class="input__field input__field--manami" type="text" id="input-34" name="shopno" placeholder="Enter Shop Number" onblur="validate('errshopno',this.value)"/>
         <label class="input__label input__label--manami" for="input-34">
