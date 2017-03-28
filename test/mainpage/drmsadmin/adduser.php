@@ -111,6 +111,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
   $taluk=test_input($_POST["taluk"]);
   $cat=test_input($_POST["cat"]);
   $shopno=test_input($_POST["shopno"]);
+  $elect=test_input($_POST["radio"]);
+  if($elect=="yes")
+      $elect=1;
+  else
+      $elect=0;
 
   $no_of_mem=test_input($_POST["no_of_mem"]);
   if($no_of_mem!=0){
@@ -212,9 +217,9 @@ if($imageFileType != "jpg" && $imageFileType != "jpeg" ) {
   if(!$move) {
       throw new Exception("Error Uploading File...\n Try Again By Going Back....");
   }
-  $sql="INSERT INTO rationcard_holder(`Aadhar_no`,`hofamily`,`add1`,`add2`,`add3`,`pan_mun_cor`,`pincode`,`wardno`,`house_no`,`monthly_in`,`no_of_mem`,`hof_img`,`hof_img_type`,`mob_no`,`taluk`,`category`,`shopno`)
+  $sql="INSERT INTO rationcard_holder(`Aadhar_no`,`hofamily`,`add1`,`add2`,`add3`,`pan_mun_cor`,`pincode`,`wardno`,`house_no`,`monthly_in`,`no_of_mem`,`hof_img`,`hof_img_type`,`mob_no`,`taluk`,`category`,`shopno`,`elect`)
   VALUES('".$Aadhar_no."' , '".$hofamily."' , '".$add1."','".$add2."','".$add3."','".$pan_mun_cor."','".$pincode."','".$wardno."','".$house_no."','".$monthly_in."','".$no_of_mem."','".$target_file."','".$imageFileType."',
-  '".$mob_no."','".$taluk."','".$cat."','".$shopno."')";
+  '".$mob_no."','".$taluk."','".$cat."','".$shopno."','".$elect."')";
 
   $result=mysqli_query($dbC,$sql);
   if(!$result) {
@@ -228,10 +233,31 @@ if($imageFileType != "jpg" && $imageFileType != "jpeg" ) {
        $ql="INSERT INTO cardholder_and_mem VALUES( ".$Aadhar_no2[$i].",".$rw[0].",'".$name[$i]."',".$age[$i].")";
         $qlout=mysqli_query($dbC,$ql);
         if(!$qlout) {
+            // an error in entry so... Roll Back...
+          $error="delete from cardholder_and_mem where ration_card_no = '$rw[0]'";
+          $errormain="delete from rationcard_holder where ration_card_no = '$rw[0]'";
+          $q=mysqli_query($dbC,$error);
+          $q1=mysqli_query($dbC,$errormain);
           throw new Exception("Error In DataBase.MemberDetails row ".$i." addiction...<br> Please Fill Valid Informations... ! <br> Try Again By Going Back... :/ ");
        }
 
  }
+  //Section To Update Remaining Quantity Value....Automatically On row addition...
+    if($elect==1)
+        $query="select riceq,wheatq,ekerq,permember from category where cat_no='$cat'";
+    else
+        $query="select riceq,wheatq,nekerq,permember from category where cat_no='$cat'";
+    $q=mysqli_query($dbC,$query);
+    $t=mysqli_fetch_row($q);
+    $riceq=$t[0]; $wheatq=$t[1]; $kerq=$t[2]; $p=$t[3];
+    
+    if($cat == 1 || $cat == 4)
+        $up="update rationcard_holder set remrice='".$riceq."',remwheat='".$wheatq."',remker='".$kerq."' where ration_card_no = '".$rw[0]."'";
+    else if($cat == 2 || $cat == 3)
+        $up="update rationcard_holder set remrice='".$riceq*($no_of_mem+1)."',remwheat='".$wheatq*($no_of_mem+1)."',remker='".$kerq."' where ration_card_no = '".$rw[0]."'";
+    $update=mysqli_query($dbC,$up);
+
+        
   echo "<img src=\"".$target_file."\"><br>The allotted ration card No : ".$rw[0]."<br><p>The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.</p><br><p>Head Of Family : ".$hofamily;
   echo "</p><br><a href=\"admin.php\">Go Back</a>";
   echo "</p><br><a href=\"pdf.php?rno=".$rw[0]."\">Print</a>";

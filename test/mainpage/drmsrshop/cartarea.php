@@ -62,8 +62,19 @@ elseif(isset($_GET["otp"],$_GET["spno"]))
          if(mysqli_num_rows($res1) != 0)
          {
             $t=mysqli_fetch_row($res1);
-             if( ($t[0]-time()) <= 180 )
+             if( (time()-$t[0]) <= 180 )
              {
+                 $s="select no_of_mem,category,remrice,remwheat,remker,elect from rationcard_holder where ration_card_no='$cno'";
+                 $q=mysqli_query($dbC,$s);
+                 $t=mysqli_fetch_row($q);
+                 $no_of_mem=$t[0]; $cat=$t[1]; $remrice=$t[2]; $remwheat=$t[3]; $remker=$t[4]; $e=$t[5]; 
+                 
+                 $s1="select price,pwheat,pker from price where cat_no='$cat'";
+                 $q1=mysqli_query($dbC,$s1);
+                 $t1=mysqli_fetch_row($q1);
+                 $r=$t1[0]; $w=$t1[1]; $k=$t1[2];             
+                 
+                 
                  echo "<style>
 .card-container1.card1 {
 
@@ -166,8 +177,8 @@ tr input:focus {
                                             </tr>
                                             <tr>
                                                 <td>Rice</td>
-                                                <td id=\"price\">20.00</td>
-                                                <td>100 Kg</td>
+                                                <td id=\"price\">$r</td>
+                                                <td>$remrice Kg</td>
                                                 <td>
                                                     <input type=\"text\" value=\"0\" id=\"valr\" onkeyup=\"total()\">
                                                 </td>
@@ -180,8 +191,8 @@ tr input:focus {
                                             </tr>
                                             <tr>
                                                 <td>wheat</td>
-                                                <td id=\"pwheat\">20.00</td>
-                                                <td>100 Kg</td>
+                                                <td id=\"pwheat\">$w</td>
+                                                <td>$remwheat Kg</td>
                                                 <td>
                                                     <input type=\"text\" value=\"0\" id=\"valw\" onkeyup=\"total()\">
                                                 </td>
@@ -194,8 +205,8 @@ tr input:focus {
                                             </tr>
                                             <tr>
                                                 <td>kerosene</td>
-                                                <td id=\"pker\">20.50</td>
-                                                <td>100 L</td>
+                                                <td id=\"pker\">$k</td>
+                                                <td>$remker L</td>
                                                 <td>
                                                     <input type=\"text\" value=\"0\" id=\"valk\" onkeyup=\"total()\">
                                                 </td>

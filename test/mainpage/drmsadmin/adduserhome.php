@@ -16,8 +16,7 @@ header("Expires: 0"); // Proxies.
             font-size: 25px;
             visibility: hidden;
         }
-        
-        /* hide input */
+                /* hide input */
         input.radio:empty {
             margin-left: -99999px;
         }
@@ -74,7 +73,6 @@ header("Expires: 0"); // Proxies.
         input.radio:focus ~ label:before {
             box-shadow: 0 0 0 3px #999;
         }
-        
     </style>
     <script type="text/javascript" src="js/validateuser.js"></script>
 
@@ -174,17 +172,16 @@ header("Expires: 0"); // Proxies.
                         </label>
                         </span>
 
-                        <span class="input input--manami input--filled">
+                        <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-34" name="cat" placeholder="Enter Category"/>
         <label class="input__label input__label--manami" for="input-34">
           <span class="input__label-content input__label-content--manami" id="errcat">Category</span>
                         </label>
                         </span>
-                        
-                        <div style="clear: both;
+                   <div style="clear: both;
                                     margin: 0 50px;">
                                     <h3 style="margin-top: 0;">Electrified</h3>
-                            <input type="radio" name="radio" id="radio1" class="radio" checked/>
+                            <input type="radio" name="radio" id="radio1" class="radio" value="yes" checked/>
                             <label for="radio1" style="margin-left: 40%;
                                                       width: 20%;
                                                        border-radius: 3px;
@@ -193,7 +190,7 @@ header("Expires: 0"); // Proxies.
 
                         <div style="clear: both;
                                     margin: 0 50px;">
-                            <input type="radio" name="radio" id="radio2" class="radio"/>
+                            <input type="radio" name="radio" id="radio2" class="radio" value="no"/>
                             <label for="radio2" style="margin-left: 40%;
                                                      width: 20%;
                                                      margin-bottom: 2%;
@@ -204,8 +201,8 @@ header("Expires: 0"); // Proxies.
                         
                         <div style="clear: both;
                                     margin: 0 50px;"></div>
-                        
-         <span class="input input--manami input--filled">
+
+         <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-34" name="shopno" placeholder="Enter Shop Number" onblur="validate('errshopno',this.value)"/>
         <label class="input__label input__label--manami" for="input-34">
           <span class="input__label-content input__label-content--manami" id="errshopno">Ration Shop Number</span>

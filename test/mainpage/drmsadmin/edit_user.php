@@ -12,7 +12,7 @@ if(isset($_POST["Submit"])) {
 else {
   $cardno="";
 }
-$sql1="SELECT ration_card_no,Aadhar_no,hofamily,add1,add2,add3,pan_mun_cor,pincode,wardno,house_no,monthly_in,mob_no,taluk,category,no_of_mem,hof_img,shopno from rationcard_holder where ration_card_no='$cardno'";
+$sql1="SELECT ration_card_no,Aadhar_no,hofamily,add1,add2,add3,pan_mun_cor,pincode,wardno,house_no,monthly_in,mob_no,taluk,category,no_of_mem,hof_img,shopno,elect from rationcard_holder where ration_card_no='$cardno'";
 $result=mysqli_query($dbC,$sql1);
 $count=mysqli_num_rows($result);
 $row1=mysqli_fetch_row($result);
@@ -20,6 +20,12 @@ if($count==0)
 header("location:edit_user_home.php?msg=Invalid RationCard Number");
 elseif (strcasecmp($_SESSION['taluk'],$row1[12]) != 0) {
  header("location:edit_user_home.php?msg=Ration Card ".$cardno." Is Not Under Your Taluk");
+}
+if($row1[17] == 1){
+    $yes="yes";$no="no";
+}
+else{
+    $yes="no";$no="yes";
 }
 $sql2="SELECT mem_name,age,Aadhar_no FROM cardholder_and_mem WHERE ration_card_no='$cardno'";
 $res=mysqli_query($dbC,$sql2);
@@ -32,6 +38,63 @@ $i=1;
         font-size: 25px;
         visibility: hidden;
     }
+                       /* hide input */
+        input.radio:empty {
+            margin-left: -99999px;
+        }
+
+        /* style label */
+        input.radio:empty ~ label {
+            position: relative;
+            float: left;
+            line-height: 2em;
+            text-indent: 3.25em;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        input.radio:empty ~ label:before {
+            position: absolute;
+            display: block;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            content: '';
+            width: 2.5em;
+            background: #D1D3D4;
+            border-radius: 3px 0 0 3px;
+        }
+
+        /* toggle hover */
+        input.radio:hover:not(:checked) ~ label:before {
+            content:'\2714';
+            text-indent: .9em;
+            color: #C2C2C2;
+        }
+
+        input.radio:hover:not(:checked) ~ label {
+            color: #888;
+        }
+
+        /* toggle on */
+        input.radio:checked ~ label:before {
+            content:'\2714';
+            text-indent: .9em;
+            color: #9CE2AE;
+            background-color: #4DCB6D;
+        }
+
+        input.radio:checked ~ label {
+            color: #777;
+        }
+
+        /* radio focus */
+        input.radio:focus ~ label:before {
+            box-shadow: 0 0 0 3px #999;
+        }
 
 </style>
         <script type="text/javascript" src="js/validateedituser.js"></script>
@@ -130,6 +193,29 @@ $i=1;
                     <span class="input__label-content input__label-content--manami" id="errcat">Category</span>
                     </label>
                     </span>
+                    <div style="clear: both;
+                                    margin: 0 50px;">
+                                    <h3 style="margin-top: 0;">Electrified</h3>
+                            <input type="radio" name="radio" id="radio1" class="radio" value="<?php echo $yes; ?>" checked/>
+                            <label for="radio1" style="margin-left: 40%;
+                                                      width: 20%;
+                                                       border-radius: 3px;
+                                                       border: 1px solid #D1D3D4"><?php echo $yes; ?></label>
+                        </div>
+
+                        <div style="clear: both;
+                                    margin: 0 50px;">
+                            <input type="radio" name="radio" id="radio2" class="radio" value="<?php echo $no; ?>"/>
+                            <label for="radio2" style="margin-left: 40%;
+                                                     width: 20%;
+                                                     margin-bottom: 2%;
+                                                      margin-top: 2%;
+                                                       border-radius: 3px;
+                                                       border: 1px solid #D1D3D4"><?php echo $no; ?></label>
+                        </div>
+                        
+                        <div style="clear: both;
+                                    margin: 0 50px;"></div>
                              <span class="input input--manami input--filled">
         <input class="input__field input__field--manami" type="text" id="input-34" name="shopno" placeholder="<?php echo $row1[16]; ?>" value="<?php echo $row1[16]; ?>"onblur="validate('errshopno',this.value)" />
         <label class="input__label input__label--manami" for="input-34">

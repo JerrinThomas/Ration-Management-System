@@ -114,6 +114,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
   $cat=test_input($_POST["cat"]);
   $shopno=$_POST["shopno"];
   $dup=$_POST["dup"];
+  $elect=$_POST["radio"];
+  if($elect=="yes")
+      $elect=1;
+  else
+      $elect=0;
+    
   if($no_of_mem!=0){
   $name=$_POST["name"];
   $age=$_POST["age"];
@@ -224,16 +230,26 @@ if(mysqli_num_rows($checkmem) != 0){
       throw new Exception("Error Uploading File...\n Try Again By Going Back....");
   }
   $sql="UPDATE rationcard_holder SET Aadhar_no=\"$Aadhar_no\",hofamily=\"$hofamily\",add1=\"$add1\",add2=\"$add2\",add3=\"$add3\",pan_mun_cor=\"$pan_mun_cor\",pincode=\"$pincode\",wardno=\"$wardno\",house_no=\"$house_no\",monthly_in=\"$monthly_in\",no_of_mem=\"$no_of_mem\"
-  ,hof_img=\"$target_file\",hof_img_type=\"$imageFileType\",mob_no=\"$mob_no\",taluk=\"$taluk\",category=\"$cat\",shopno=\"$shopno\" WHERE ration_card_no=$cardno";
+  ,hof_img=\"$target_file\",hof_img_type=\"$imageFileType\",mob_no=\"$mob_no\",taluk=\"$taluk\",category=\"$cat\",elect=\"$elect\",shopno=\"$shopno\" WHERE ration_card_no=$cardno";
   $result=mysqli_query($dbC,$sql);
   if(!$result) {
      throw new Exception("Error In DataBase row addiction...<br> Please Fill Valid Informations...<br> Try Again By Going Back... :/ ");
   }
 }
+    //check whether there is change in cat or elect field...
+    $qq="select category,elect,no_of_mem from rationcard_holder where ration_card_no=$cardno";
+    $qqres=mysqli_query($dbC,$qq);
+    $q=mysqli_fetch_row($qqres);
+    if($q[0] != $cat || $q[1] != $elect || $q[2] != $no_of_mem)
+        $change=true;
+    else
+        $change=false;
+    
+    
 if(!$yes_img)
 {
   $sql="UPDATE rationcard_holder SET Aadhar_no=\"$Aadhar_no\",hofamily=\"$hofamily\",add1=\"$add1\",add2=\"$add2\",add3=\"$add3\",pan_mun_cor=\"$pan_mun_cor\",pincode=\"$pincode\",wardno=\"$wardno\",house_no=\"$house_no\",monthly_in=\"$monthly_in\",no_of_mem=\"$no_of_mem\"
-  ,hof_img=\"$dup\",mob_no=\"$mob_no\",taluk=\"$taluk\",category=\"$cat\",shopno=\"$shopno\" WHERE ration_card_no=$cardno";
+  ,hof_img=\"$dup\",mob_no=\"$mob_no\",taluk=\"$taluk\",category=\"$cat\",elect=\"$elect\",shopno=\"$shopno\" WHERE ration_card_no=$cardno";
   $result=mysqli_query($dbC,$sql);
   if(!$result) {
      throw new Exception("Error In DataBase row addiction...<br> Please Fill Valid Informations...<br> Try Again By Going Back... :/ ");
@@ -245,17 +261,41 @@ if(!$yes_img)
   {
        $ql="INSERT INTO cardholder_and_mem VALUES( ".$Aadhar_no2[$i].",".$cardno.",'".$name[$i]."',".$age[$i].")";
         $qlout=mysqli_query($dbC,$ql);
-        if(!$qlout) {
+        if(!$qlout){
+          $error="delete from cardholder_and_mem where ration_card_no = '$cardno'";
+          $errormain="delete from rationcard_holder where ration_card_no = '$cardno'";
+          $q=mysqli_query($dbC,$error);
+          $q1=mysqli_query($dbC,$errormain);
           throw new Exception("Error In DataBase.MemberDetails row ".$i." addiction...<br> Please Fill Valid Informations... ! <br> Try Again By Going Back... :/ ");
        }
 
- }
+  }
+    
+//update remQuantities if there s a change...
+    if($change)
+    {
+            if($e==1)
+              $query="select riceq,wheatq,ekerq,permember from category where cat_no='$cat'";
+            else
+              $query="select riceq,wheatq,nekerq,permember from category where cat_no='$cat'";
+      $q=mysqli_query($dbC,$query);
+      $t=mysqli_fetch_row($q);
+      $riceq=$t[0]; $wheatq=$t[1]; $kerq=$t[2]; $p=$t[3];
+    
+      if($cat == 1 || $cat == 4)
+           $up="update rationcard_holder set remrice='".$riceq."',remwheat='".$wheatq."',remker='".$kerq."' where ration_card_no = '".$cardno."'";
+      else if($cat == 2 || $cat == 3)
+          $up="update rationcard_holder set remrice='".$riceq*($no_of_mem+1)."',remwheat='".$wheatq*($no_of_mem+1)."',remker='".$kerq."' where ration_card_no = '".$cardno."'";
+      $update=mysqli_query($dbC,$up);
+    }
+    
 if($yes_img)
-  echo "<img src=\"".$target_file."\"><br>The allotted ration card No : ".$cardno." has been Modified<br>The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.<br>Head Of Family : ".$hofamily."<br><input action=\"action\" type=\"button\" value=\"Back\" onclick=\"history.go(-2);\"/>";
+  echo "<img src=\"".$target_file."\"><br>The allotted ration card No : ".$cardno." has been Modified<br>The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.<br>Head Of Family : ".$hofamily."<br><a href=\"edit_user_home.php\"><input action=\"action\" type=\"button\" value=\"Back\"/></a>";
 else
-      echo "<img src=\"".$dup."\"><br>The allotted ration card No : ".$cardno." has been Modified<br>The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.<br>Head Of Family : ".$hofamily."<br><input action=\"action\" type=\"button\" value=\"Back\" onclick=\"history.go(-2);\"/>";
-      echo "</p><br><a href=\"pdf.php?rno=".$cardno."\">Print</a>";
-} catch (Exception $e) {
+      echo "<img src=\"".$dup."\"><br>The allotted ration card No : ".$cardno." has been Modified<br>The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.<br>Head Of Family : ".$hofamily."<br><a href=\"edit_user_home.php\"><input action=\"action\" type=\"button\" value=\"Back\"/></a>";
+ echo "<br><a href=\"pdf.php?rno=".$cardno."\">Print</a>";
+} 
+catch (Exception $e) {
   echo 'Caught exception: ',  $e->getMessage(), "\n  ";
   echo "<input action=\"action\" type=\"button\" value=\"Back\" onclick=\"history.go(-1);\"/>";
 }
