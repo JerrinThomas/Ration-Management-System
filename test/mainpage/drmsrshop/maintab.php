@@ -14,7 +14,7 @@ if(!isset($_SESSION['lname']))
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap 101 Template</title>
+    <title>D R M S</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -29,10 +29,36 @@ if(!isset($_SESSION['lname']))
 </head>
 
 <body>
-        <a href="slogout.php"><h4 style="color:red">Logout<h4></a>
+        
+        <style>
+            #srchb6 {
+                width: 100%;
+                height: 100%;
+                display: inline;
+                position: relative;
+                top: 12%;
+                box-sizing: border-box;
+                border: 2px solid #47a3da;
+                border-radius: 10px;
+                font-size: 30px;
+                color: #47a3da;
+                background-color: transparent;
+                margin-left: 5%;
+                letter-spacing: 5px;
+            }
+            #srchb6:hover {
+                background-color: #47a3da; /* white */
+                color: #fff;
+            }
+            a:hover{text-decoration: none;}
+            .card-container.card {
+                margin-top: 25%;
+            }
+    </style>
+        
     <div class="col-md-12">
         <div class=" with-nav-tabs panel-primary">
-            <div class="panel-heading">
+            <div class="panel-heading" style="position: fixed; overflow: hidden; z-index: 100; box-shadow: 5px 4px .5px #fff; width: 97.5%;">
                 <ul class="nav nav-tabs nav-justified">
                     <li class="active hvr-reveal"><a href="#tab1primary " data-toggle="tab">Home</a></li>
                     <li class="hvr-reveal"><a href="#tab2primary " data-toggle="tab">Sales History</a></li>
@@ -40,6 +66,12 @@ if(!isset($_SESSION['lname']))
 
                 </ul>
             </div>
+            <div style="position: fixed;
+                        margin-top: 100px;
+                        margin-left: 85%;">
+                <a href="slogout.php"><input type="submit" name="srchb" id="srchb6" value="Logout"></a>
+                </div>
+                
             <div class="panel-body">
                 <div class="tab-content">
                     <div class="tab-pane fade in active " id="tab1primary">
@@ -91,7 +123,7 @@ if(!isset($_SESSION['lname']))
                     } else if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                         if(parseInt(xmlhttp.responseText) == 0 ) 
                         {
-                          sal.innerHTML = 'Ration Card No. '+v.value+' Not Found Or Does Not Belongs To This Shop. <br><br><center><a href="maintab.php"><input type="submit" value="Back" </a></center>';
+                            sal.innerHTML = '<style>a:hover{text-decoration: none;}#srchb3 {width: 20%;height: 25%;display: inline;position: relative;top: 40%;box-sizing: border-box;border: 2px solid white;border-radius: 15px;font-size: 40px;color: white;background-color: transparent;margin-left: 25%;}#srchb3:hover {background-color: #ffffff; /* white */color: #47a3da;}.abc{font-size: 45px;letter-spacing: 1px;margin-top: 20%;}</style><h3 class="abc">Ration Card No. '+v.value+' Not Found Or Does Not Belongs To This Shop.</h3> <br><br><center><a href="maintab.php" style="margin-left: -20%;"><input type="submit" name="srchb3" id="srchb3" value="Back"></a></center>';
                         }
                         else
                         {
@@ -152,7 +184,7 @@ if(!isset($_SESSION['lname']))
                     } else if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                         if(parseInt(xmlhttp.responseText) == 0 ) 
                         {
-                          sal.innerHTML = 'Invalid OTP or Time Expired.<br><center><a href=\"maintab.php\"><input type=\"button\" value=\"Back\"></center>';
+                            sal.innerHTML = '<style>.bc{background-color: #47a3da;color: white;border: 2px solid;font-size: 30px;letter-spacing: 3px;} .bc:hover{background-color: #fff;color: #47a3da;}</style><h4 style="font-size: 40px;margin-top: 20%;">Invalid OTP or Time Expired.</h4><br><center><a href=\"maintab.php\"><input class=\"bc\" type=\"button\" value=\"Back\"></center>';
                         }
                         else
                         {

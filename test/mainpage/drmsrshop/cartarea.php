@@ -43,7 +43,60 @@ if(isset($_GET["cardno"],$_GET["shopno"])){
          
         // return to called fuction with value 1 indicating otp validation..
         // for time being otp is */
-        die("<center><h3>Card Holder : $tap[0].</h3></center><br><div id=\"countdown\"></div><br>The OTP here : <input type=\"text\" style=\"color: #47a3da;\" placeholder=\"$otp\" value=\"0\" id=\"votp\" onblur=\"otpcheck()\"><input type=\"submit\" value=\"Submit\"><br><div id=\"otpcheckresult\"><div><br><center><a href=\"maintab.php\"><input type=\"button\" value=\"Back\"></center>");
+        die("<style>
+              .inp {
+              
+              color: white;
+    border: 3px solid white;
+    background-color: #47a3da;
+    border-radius: 15px;
+    box-sizing: border-box;
+    padding: 5px 12px 5px 12px;
+    margin-top: 1%;
+    text-align: center;
+              
+              }
+              
+              .inp:focus {
+                background-color: white;
+                color: #47a3da;
+              }
+              
+              
+              .sub {
+                    background-color: #fff;
+    border: none;
+    margin-left: 2%;
+    padding: 8px 15px 8px 15px;
+    letter-spacing: 3px;
+    color: #47a3da;
+              }
+              
+              .sub:hover{
+                    background-color: #f33636;
+    
+    color: #fff;
+              }
+              
+              .bk {
+              
+                    color: white;
+    background-color: #47a3da;
+    border: 2px solid white;
+    padding: 5px 5px 5px 5px;
+    font-size: 30px;
+    letter-spacing: 3px;
+    border-radius: 10px;
+              }
+              
+              .bk:hover {
+                    background-color: #fff;
+                    color: #47a3da;
+              }
+        
+        </style>
+        <center><h3 style=\"font-size: 40px;letter-spacing: 4px; margin-top: 15%;\">Card Holder : $tap[0].</h3></center><div id=\"countdown\"></div><br><p style=\"font-size: 30px;
+    letter-spacing: 5px;\">The OTP here :</p> <input class=\"inp\" type=\"text\" placeholder=\"$otp\" value=\"0\" id=\"votp\" onblur=\"otpcheck()\"><input class=\"sub\" type=\"submit\" value=\"Submit\"><br><div id=\"otpcheckresult\"><div><br><center><a href=\"maintab.php\"><input class=\"bk\" type=\"button\" value=\"Back\"></center>");
         
     }
     
@@ -54,28 +107,28 @@ if(isset($_GET["cardno"],$_GET["shopno"])){
 //time() returns current time in sec...can used to expire otp
 elseif(isset($_GET["otp"],$_GET["spno"]))
 {        
-         $cno=$_GET["cdno"];
-         $sno=$_GET["spno"];
-         $ootp=$_GET["otp"];
-         $sql="SELECT starttime FROM tempotp WHERE shopno='$sno' AND ration_card_no='$cno' AND otp = '$ootp'";
-         $res1=mysqli_query($dbC,$sql);
-         if(mysqli_num_rows($res1) != 0)
-         {
-            $t=mysqli_fetch_row($res1);
-             if( (time()-$t[0]) <= 180 )
-             {
-                 $s="select no_of_mem,category,remrice,remwheat,remker,elect from rationcard_holder where ration_card_no='$cno'";
-                 $q=mysqli_query($dbC,$s);
-                 $t=mysqli_fetch_row($q);
-                 $no_of_mem=$t[0]; $cat=$t[1]; $remrice=$t[2]; $remwheat=$t[3]; $remker=$t[4]; $e=$t[5]; 
-                 
-                 $s1="select price,pwheat,pker from price where cat_no='$cat'";
-                 $q1=mysqli_query($dbC,$s1);
-                 $t1=mysqli_fetch_row($q1);
-                 $r=$t1[0]; $w=$t1[1]; $k=$t1[2];             
-                 
-                 
-                 echo "<style>
+    $cno=$_GET["cdno"];
+    $sno=$_GET["spno"];
+    $ootp=$_GET["otp"];
+    $sql="SELECT starttime FROM tempotp WHERE shopno='$sno' AND ration_card_no='$cno' AND otp = '$ootp'";
+    $res1=mysqli_query($dbC,$sql);
+    if(mysqli_num_rows($res1) != 0)
+    {
+        $t=mysqli_fetch_row($res1);
+        if( (time()-$t[0]) <= 180 )
+        {
+            $s="select no_of_mem,category,remrice,remwheat,remker,elect from rationcard_holder where ration_card_no='$cno'";
+            $q=mysqli_query($dbC,$s);
+            $t=mysqli_fetch_row($q);
+            $no_of_mem=$t[0]; $cat=$t[1]; $remrice=$t[2]; $remwheat=$t[3]; $remker=$t[4]; $e=$t[5]; 
+
+            $s1="select price,pwheat,pker from price where cat_no='$cat'";
+            $q1=mysqli_query($dbC,$s1);
+            $t1=mysqli_fetch_row($q1);
+            $r=$t1[0]; $w=$t1[1]; $k=$t1[2];             
+
+
+            echo "<style>
 .card-container1.card1 {
 
     width: 1050px;
@@ -249,22 +302,22 @@ tr input:focus {
                                             </tr>
                                         </tbody>
                                     </table>"; 
-                 $sql1="DELETE FROM tempotp where ration_card_no='$cno'";
-                 $res2=mysqli_query($dbC,$sql1);
-             }
-             else
-             {   
-                 $sql1="DELETE FROM tempotp where ration_card_no='$cno'";
-                 $res2=mysqli_query($dbC,$sql1);
-                 die("0");
-             }
-         }
-         else
-         {   
-             $sql1="DELETE FROM tempotp where ration_card_no='$cno'";
-             $res2=mysqli_query($dbC,$sql1);
-             die ("0");
-         }
+            $sql1="DELETE FROM tempotp where ration_card_no='$cno'";
+            $res2=mysqli_query($dbC,$sql1);
+        }
+        else
+        {   
+            $sql1="DELETE FROM tempotp where ration_card_no='$cno'";
+            $res2=mysqli_query($dbC,$sql1);
+            die("0");
+        }
+    }
+    else
+    {   
+        $sql1="DELETE FROM tempotp where ration_card_no='$cno'";
+        $res2=mysqli_query($dbC,$sql1);
+        die ("0");
+    }
 }
 
 
