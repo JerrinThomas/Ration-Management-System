@@ -22,7 +22,7 @@
     if($ro[0]==1)
         echo "<li class=\"dropdown\"><a href=\"#\" class=\"dropdown-btn\">Modify Admins</a><div class=\"dropdown-menu\"><a href=\"add_admin_home.php\">Add</a><a href=\"rm_admin_home.php\">Remove</a><a href=\"edit_admin_home.php\">Modify</a></div></li>";
     ?>
-        <a class="anbutton" href="adminlogout.php">Logout</a>
+        <a class="anbutton" href="/drmsmain/drmsadmin/adminlogout.php">Logout</a>
 </ul>
 <!-- ended navigation bar-->
 <div class="logg">

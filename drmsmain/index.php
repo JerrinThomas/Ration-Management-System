@@ -77,7 +77,7 @@ else
                   </container>
                 </div>
                 <div class="adminlog">
-                  <a href="/drms/adminlogin.php"><img id="adminl" src="adminbtn.png"></img></a>
+                  <a href="drmsadmin/adminlogin.php"><img id="adminl" src="adminbtn.png"></img></a>
                 </div>
             </div>
             <!-- /intro -->
