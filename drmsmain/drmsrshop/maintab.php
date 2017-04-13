@@ -52,7 +52,7 @@ if(!isset($_SESSION['lname']))
             }
             a:hover{text-decoration: none;}
             .card-container.card {
-                margin-top: 25%;
+                margin-top: 25  
             }
     </style>
         
@@ -62,7 +62,7 @@ if(!isset($_SESSION['lname']))
                 <ul class="nav nav-tabs nav-justified">
                     <li class="active hvr-reveal"><a href="#tab1primary " data-toggle="tab">Home</a></li>
                     <li class="hvr-reveal"><a href="#tab2primary " data-toggle="tab">Sales History</a></li>
-                    <li class="hvr-reveal"><a href="#tab3primary " data-toggle="tab">Stock</a></li>
+                    <li class="hvr-reveal"><a href="#tab3primary " data-toggle="tab" onclick="return stock()">Stock</a></li>
 
                 </ul>
             </div>
@@ -82,7 +82,6 @@ if(!isset($_SESSION['lname']))
                                     <input type="text" name="srcht" id="srcht" style="text-align:center;" placeholder="Enter card number...">
                                     <input type="submit" name="srchb" id="srchb" value="Search" onclick="return ld();"> 
                                 </div>
-                          
                                 <div class="card1 card-container1" id="tabl">
                                     <center><img id="loading" src="load.gif" alt="loading" style="visibility:hidden" /></center>
                                 </div>
@@ -92,8 +91,30 @@ if(!isset($_SESSION['lname']))
 
 
                 
-                <div class="tab-pane fade" id="tab2primary">Primary 2</div>
-                <div class="tab-pane fade" id="tab3primary">Primary 3</div>
+                <div class="tab-pane fade" id="tab2primary">Primary 2
+                    <br><br><br><h3><center>Search</center></h3>
+                    <center>
+                        <select onchange="return history()">
+                            <option id="a">All</option>
+                            <option id="w">Wheat</option>
+                            <option id="r">Rice</option>
+                            <option id="k">Kerosene</option>
+                        </select><br>
+                        
+                    <input type="radio" name="cat" id="today" checked="checked">Today's Sale
+                    <input type="radio" name="cat" id="past">Past Month's Sale
+                    <br><input type="radio" name="cat" id="custom">Custom   From : <input type="date" name="frmdate" id="frmdate"> To : <input type="date" name="todate" id="todate">
+                    <br>
+                    <input type="submit" name="subsales" value="submit" onclick="return history()">
+                        
+                    </center>
+                    <div id="tablehere"></div>
+
+                </div>
+                <div class="tab-pane fade" id="tab3primary">Primary 3
+                    
+                    
+                </div>
             </div>
         </div>
     </div>
@@ -147,6 +168,9 @@ if(!isset($_SESSION['lname']))
         }
         var tot=0.00;
         var sno='<?php echo $_SESSION['shopno'] ?>';
+        var pww;
+        var prr;
+        var pkk;
         function total()
         {
             var pr=parseFloat(document.getElementById('price').innerHTML);
@@ -155,7 +179,10 @@ if(!isset($_SESSION['lname']))
             var r=document.getElementById('valr').value;
             var w=document.getElementById('valw').value;
             var k=document.getElementById('valk').value;
-            tot=parseFloat(pw*w)+parseFloat(pr*r)+parseFloat(pk*k);
+            pww=parseFloat(pw*w);
+            prr=parseFloat(pr*r);
+            pkk=parseFloat(pk*k);
+            tot= prr+pkk+pww;
             var dis=document.getElementById('totamt');
             if(isNaN(tot)){
                 dis.value='OOPS.';
@@ -231,7 +258,7 @@ if(!isset($_SESSION['lname']))
                         }
                     }
                 }
-                xmlhttp.open("GET", "cartarea.php?&totamt=" + tot + "&shno=" +sno +"&crdno=" + window.value+"&qr=" + r +"&qw=" + w +"&qk=" + k, false);
+                xmlhttp.open("GET", "cartarea.php?&totamt=" + tot + "&shno=" +sno +"&crdno=" + window.value+"&qr=" + r +"&qw=" + w +"&qk=" + k +"&pk=" + pkk +"&pw=" + pww +"&pr=" + prr, false);
                 xmlhttp.send();
             return true;
 
@@ -264,7 +291,74 @@ if(!isset($_SESSION['lname']))
     endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
     updateTimer();
     }
-
+   
+    function stock()
+      {
+                var xmlhttp;
+                var sal = document.getElementById('tab3primary');
+                if (window.XMLHttpRequest) { // for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                } else { // for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function() {
+                    if (xmlhttp.readyState != 4 && xmlhttp.status == 200) {
+                        error.innerHTML='<center><img id="loading" src="load.gif" alt="loading"/></center>';
+                    } else if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                           sal.innerHTML = xmlhttp.responseText;
+                    }
+                }
+                xmlhttp.open("GET", "cartarea.php?&shno4stock=" +sno , false);
+                xmlhttp.send();
+            return true;
+      }
+      
+      function history()
+      {
+                var fdat=document.getElementById('frmdate');
+                var fdate=fdat.value;
+                var tdat=document.getElementById('todate');
+                var tdate=tdat.value;
+                var cat,optns;
+                if(document.getElementById('past').checked) {
+                    cat='past';
+                    fdate='';
+                    tdate='';
+                }else if(document.getElementById('custom').checked) {
+                    cat='custom';
+                }else if(document.getElementById('today').checked) {
+                    cat='today';
+                    fdate='';
+                    tdate='';
+                }
+                if(document.getElementById('w').selected) {
+                       optns="w";
+                }else if(document.getElementById('k').selected) {
+                       optns="k";
+                }else if(document.getElementById('r').selected) {
+                       optns="r";
+                }else{
+                     optns="a";
+                }
+               
+                var xmlhttp;
+                var sal = document.getElementById('tablehere');
+                if (window.XMLHttpRequest) { // for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                } else { // for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function() {
+                    if (xmlhttp.readyState != 4 && xmlhttp.status == 200) {
+                        sal.innerHTML='<center><img id="loading" src="load.gif" alt="loading"/></center>';
+                    } else if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                           sal.innerHTML = xmlhttp.responseText;
+                    }
+                }
+                xmlhttp.open("GET", "cartarea.php?&shno4sales=" +sno +"&tdate="+tdate+"&fdate="+fdate+"&cat="+cat+"&optns="+optns, false);
+                xmlhttp.send();
+            return true;
+      }
   </script>
 
 

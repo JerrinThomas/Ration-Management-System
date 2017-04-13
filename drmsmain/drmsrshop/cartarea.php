@@ -20,7 +20,7 @@ if(isset($_GET["cardno"],$_GET["shopno"])){
          $otp = '';
          $maxc = 25;
          $maxn = 9;
-         for ($i = 0; $i < 6; $i++) {   
+         for ($i = 0; $i < 4; $i++) {   
             $sel = mt_rand(1,3);
             switch ($sel) 
             {
@@ -110,6 +110,7 @@ elseif(isset($_GET["otp"],$_GET["spno"]))
          $cno=$_GET["cdno"];
          $sno=$_GET["spno"];
          $ootp=$_GET["otp"];
+    
          $sql="SELECT starttime FROM tempotp WHERE shopno='$sno' AND ration_card_no='$cno' AND otp = '$ootp'";
          $res1=mysqli_query($dbC,$sql);
          if(mysqli_num_rows($res1) != 0)
@@ -130,7 +131,6 @@ elseif(isset($_GET["otp"],$_GET["spno"]))
                 $qq="SELECT hofamily FROM rationcard_holder WHERE shopno='$sno' AND ration_card_no='$cno'";
                 $qres=mysqli_query($dbC,$qq);
                 $qr=mysqli_fetch_row($qres);
-
                  echo "<style>
 .card-container1.card1 {
 
@@ -320,7 +320,7 @@ tr input:focus {
              $sql1="DELETE FROM tempotp where ration_card_no='$cno'";
              $res2=mysqli_query($dbC,$sql1);
              die ("0");
-         }
+         }   
 }
 
 elseif(isset($_GET["totamt"],$_GET["shno"])){
@@ -328,25 +328,121 @@ elseif(isset($_GET["totamt"],$_GET["shno"])){
     $shopno=$_GET["shno"];
     $cardno=$_GET["crdno"];
     $qk=$_GET["qk"];
-    $qr=$_GET["qr"];
+    $qanr=$_GET["qr"];
     $qw=$_GET["qw"];
+    $pk=$_GET["pk"];
+    $pr=$_GET["pr"];
+    $pw=$_GET["pw"];
 
-    $qs="update rationshops set bal_rice=bal_rice-".$qr.",bal_wheat=bal_wheat-".$qw.",bal_ker=bal_ker-".$qk.",amt=amt+".$totamt." where shopno= ".$shopno."";
+    $qs="update rationshops set bal_rice=bal_rice-".$qanr.",bal_wheat=bal_wheat-".$qw.",bal_ker=bal_ker-".$qk.",amt=amt+".$totamt." where shopno= ".$shopno."";
     $qsr=mysqli_query($dbC,$qs);
     if(!$qsr)
         die("ERROR<br><center><a href=\"maintab.php\"><input type=\"button\" value=\"Back\"></center>");
 
-    $qr="update rationcard_holder set remrice=remrice-$qr,remwheat=remwheat-$qw,remker=remker-$qk where ration_card_no = $cardno";
+    $qr="update rationcard_holder set remrice=remrice-$qanr,remwheat=remwheat-$qw,remker=remker-$qk where ration_card_no = $cardno";
     $qrr=mysqli_query($dbC,$qr);
 
     if(!$qrr){
-         $err="update rationshops set bal_rice=bal_rice+".$qr.",bal_wheat=bal_wheat+".$qw.",bal_ker=bal_ker+".$qk.",amt=amt-".$totamt." where shopno= ".$shopno."";
+         $err="update rationshops set bal_rice=bal_rice+".$qanr.",bal_wheat=bal_wheat+".$qw.",bal_ker=bal_ker+".$qk.",amt=amt-".$totamt." where shopno= ".$shopno."";
          $errres=mysqli_query($dbC,$err);
         die("ERROR<br><center><a href=\"maintab.php\"><input type=\"button\" value=\"Back\"></center>");
     }
-    else
-    die("0");
+    $ssr=$rrc=$ssrk=false;
+    
+    if($qw > 0){
+    $ss="insert into transdetails (`shopno`,`cardno`,`quantity`,`item`,`dat`,`tim`,`amt`) values(".$shopno.",".$cardno.",".$qw.",'wheat',curdate(),curtime(),".$pw.")";
+    $ssr=mysqli_query($dbC,$ss);
+    }
+    
+    if($qanr > 0){ 
+    $qrice="insert into transdetails (`shopno`,`cardno`,`quantity`,`item`,`dat`,`tim`,`amt`) values(".$shopno.",".$cardno.",".$qanr.",'rice',curdate(),curtime(),".$pr.")"; 
+    $rrc=mysqli_query($dbC,$qrice);
+    }
+    
+    if($qk > 0){
+    $ssk="insert into transdetails (`shopno`,`cardno`,`quantity`,`item`,`dat`,`tim`,`amt`) values(".$shopno.",".$cardno.",".$qk.",'kerosene',curdate(),curtime(),".$pk.")";
+    $ssrk=mysqli_query($dbC,$ssk);
+    }
+    
+    if($ssr || $rrc || $ssrk)
+        die("0");
+    
 }
+elseif(isset($_GET["shno4stock"]))
+{
+    $sno=$_GET["shno4stock"];
+    $sq="select bal_rice,bal_wheat,bal_ker,amt from rationshops where shopno=$sno";
+    $sus=mysqli_query($dbC,$sq);
+    $sr=mysqli_fetch_row($sus);
+    echo "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><center><h3>Remaining Balance</h3></center><br><center>Rice : $sr[0] Kg<br>Wheat : $sr[1] Kg<br>Kerosene : $sr[2] L<br>Total Sales  : Rs .$sr[3] /-<br></center>";
+    
+}
+elseif(isset($_GET["shno4sales"]))
+{
+    $shopno=$_GET["shno4sales"];
+    $tdate=$_GET["tdate"];
+    $fdate=$_GET["fdate"];
+    $cat=$_GET["cat"];
+    $o=$_GET["optns"];
+    if($o=="k"){
+        $extra=" and item='kerosene' ";
+    }
+    elseif($o=="w"){
+        $extra=" and item='wheat' ";
+    }
+    elseif($o=="r"){
+        $extra=" and item='rice'";
+    }
+    else
+        $extra=" ";
+    if($cat=="today")
+       $tq="select * from transdetails where shopno=".$shopno." and dat=curdate()".$extra."order by dat desc ";
+    elseif($cat="past"){
+       $tq="select * from transdetails where dat>=date_sub(curdate(),interval 1 month)".$extra."";
+    }
+    else{
+       $tq="select * from transdetails where dat>='".$fdate."' and dat<='".$tdate."' and shopno=".$shopno."".$extra."order by dat desc"; 
+    }
+    $restq=mysqli_query($dbC,$tq);
+    //die($tableq);
+    //die($cat);
+    if(!$restq) die("Fuckedd");
+   if(mysqli_num_rows($restq)==0)
+      die("<center><h3>OOPS! NO DATA FOUND...</h3></center>");
+    $output=" 
+<style>
+tbody {
+    color:blue;
+    overflow:scroll;
+    height:100px;
+    }
+</style>
+    <center><h3>HISTORY</h3></center><center><table class=\"table \">
+                                        <thead>
+                                            <tr>
+                                                <th>TransactionID</th>
+                                                <th>Customer(CardNo.)</th>
+                                                <th>Item</th>
+                                                <th>Quantity</th>
+                                                <th>Date</th>
+                                                <th>Time</th>
+                                                <th>Amount</th>
+                                            </tr><tbody>";
+     while ($tabrows=mysqli_fetch_row($restq))
+     {
+         $output.="                   <tr>
+                                                <td><center>$tabrows[0]</center></td>
+                                                <td><center>$tabrows[2]</center></td>
+                                                <td><center>$tabrows[4]</center></td>
+                                                <td><center>$tabrows[3]</center></td>
+                                                <td><center>$tabrows[5]</center></td>
+                                                <td><center>$tabrows[6]</center></td>
+                                                <td><center>$tabrows[7]</center></td>
+                                            </tr>";
+     } 
+    $output.="</tbody></table></center>";
+    echo $output;
 
+}
 
 ?>
