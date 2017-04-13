@@ -231,7 +231,7 @@ header("Expires: 0"); // Proxies.
                                     <input class="memfam" type="number" name="Aadhar_no2[]" placeholder=" AAadhar Number " id="Aadhar1" onblur="valid('check',this.value)">
                                 </td>
                                 <td>
-                                    <input class='btnew' type='button' value='-' onclick=delete_( 'row1')>
+                                    <input class='btnew' type='button' value='-' onclick="delete_('row1')">
                                 </td>
                             </tr>
 
