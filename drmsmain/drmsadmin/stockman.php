@@ -8,7 +8,6 @@ header("Pragma: no-cache"); // HTTP 1.0.
 header("Expires: 0"); // Proxies.
 if(!isset($_SESSION['name']))
   header("Location: adminlogin.php?msg=Sign In Again");
-
 if($_SESSION['role'] == 1)
     echo "
     <style>
@@ -20,8 +19,13 @@ if($_SESSION['role'] == 1)
     <center>
     <br>
         <h2 style=\"color : white;\">.Stock Management.</h2>
-    <br>Enter The Stock Here ->
-    <input type=text name=\"stock\" id=\"inputstock\">
+    <br>Enter The Stock Here -><br>
+    Rice
+    <input type=text name=\"stockr\" id=\"inputstockr\">
+    Wheat
+    <input type=text name=\"stockw\" id=\"inputstockw\">
+    Kerosene
+    <input type=text name=\"stockk\" id=\"inputstockk\">
     <input type=\"submit\" name=\"submit\" value=\"submit\" onclick=\"return st()\">
     <div id=\"here\"></div>
     </center>
@@ -30,7 +34,9 @@ if($_SESSION['role'] == 1)
     function st(){
                 var xmlhttp;
                 var sal = document.getElementById('here');
-                var inp = document.getElementById('inputstock').value;
+                var inpr = document.getElementById('inputstockr').value;
+                var inpw = document.getElementById('inputstockw').value;
+                var inpk = document.getElementById('inputstockk').value;
                 if (window.XMLHttpRequest) { // for IE7+, Firefox, Chrome, Opera, Safari
                     xmlhttp = new XMLHttpRequest();
                 } else { // for IE6, IE5
@@ -43,7 +49,7 @@ if($_SESSION['role'] == 1)
                            sal.innerHTML = xmlhttp.responseText;
                     }
                 }
-                xmlhttp.open(\"GET\", \"stockalgo.php?&stock=\" + inp , false);
+                xmlhttp.open(\"GET\", \"stockalgo.php?stockr=\" + inpr +\"&stockk=\" + inpk +\"&stockw=\" + inpw , false);
                 xmlhttp.send();
             return true;
     }
@@ -54,3 +60,4 @@ if($_SESSION['role'] == 1)
 
 
 ?>
+

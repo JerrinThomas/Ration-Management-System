@@ -20,6 +20,7 @@ if(isset($_POST['Submit'])) {
          session_start();
           $_SESSION['name']=$myusername;
           $_SESSION['taluk']=$tal[1];
+          $_SESSION['role']=$tal[0];
           header("location:admin.php");
        }
       else {

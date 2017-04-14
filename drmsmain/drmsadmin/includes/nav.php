@@ -16,11 +16,14 @@
             <a href="edit_user_home.php">Modify</a>
         </div>
     </li>
-    <li><a href="stockman.php">Stock</a></li>
     <?php
     // displays only if the admin is Super ! ..
     if($ro[0]==1)
-        echo "<li class=\"dropdown\"><a href=\"#\" class=\"dropdown-btn\">Modify Admins</a><div class=\"dropdown-menu\"><a href=\"add_admin_home.php\">Add</a><a href=\"rm_admin_home.php\">Remove</a><a href=\"edit_admin_home.php\">Modify</a></div></li>";
+        echo "<li class=\"dropdown\">
+        <a href=\"#\" class=\"dropdown-btn\">Modify Admins</a>
+            <div class=\"dropdown-menu\"><a href=\"add_admin_home.php\">Add</a><a href=\"rm_admin_home.php\">Remove</a><a href=\"edit_admin_home.php\">Modify</a></div>
+        </li>
+        <li><a href=\"stockman.php\">Stock</a></li>";
     ?>
         <a class="anbutton" href="/drmsmain/drmsadmin/adminlogout.php">Logout</a>
 </ul>
