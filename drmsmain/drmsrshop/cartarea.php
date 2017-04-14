@@ -328,7 +328,7 @@ elseif(isset($_GET["totamt"],$_GET["shno"])){
     $shopno=$_GET["shno"];
     $cardno=$_GET["crdno"];
     $qk=$_GET["qk"];
-    $qanr=$_GET["qr"];
+    $qanr=$_GET["qr"]; 
     $qw=$_GET["qw"];
     $pk=$_GET["pk"];
     $pr=$_GET["pr"];

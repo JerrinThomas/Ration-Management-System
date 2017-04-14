@@ -189,6 +189,25 @@ if(!isset($_SESSION['lname']))
             }
             else
             dis.value='Rs '+tot+' /-';
+                // check whether the transaction may lead to a negative value in the balance fields...
+                var xmlhttp;
+                if (window.XMLHttpRequest) { // for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                } else { // for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function() {
+                     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        if(parseInt(xmlhttp.responseText) != 0 )
+                        {
+                          alert(xmlhttp.responseText);
+                          dis.value='OOPs.';
+                        }
+                    }
+                }
+                xmlhttp.open("GET", "check.php?&shno=" +sno +"&crdno=" + window.value+"&qr=" + r +"&qw=" + w +"&qk=" + k , false);
+                xmlhttp.send();
+            
             return true;
         }
 
@@ -263,34 +282,7 @@ if(!isset($_SESSION['lname']))
             return true;
 
     }
-     function countdown( elementName, minutes, seconds )
-     {
-       var element, endTime, hours, mins, msLeft, time;
 
-         function twoDigits( n )
-         {
-            return (n <= 9 ? "0" + n : n);
-         }
-
-         function updateTimer()
-         {
-           msLeft = endTime - (+new Date);
-           if ( msLeft < 1000 ) {
-              element.innerHTML = "countdown's over!";
-           } else {
-            time = new Date( msLeft );
-            hours = time.getUTCHours();
-            mins = time.getUTCMinutes();
-            element.innerHTML = (hours ? hours + ':' + twoDigits( mins ) : mins) + ':' + twoDigits( time.getUTCSeconds() );
-            setTimeout( updateTimer, time.getUTCMilliseconds() + 500 );
-           }
-        }
-
-
-    element = document.getElementById( elementName );
-    endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
-    updateTimer();
-    }
    
     function stock()
       {

@@ -85,7 +85,9 @@ $tq="select shopno,bal_rice,bal_wheat,bal_ker from rationshops";
 $restq=mysqli_query($dbC,$tq);
 $output=" 
 <style>
-
+table{
+ color:red;
+}
 tbody {
     color:blue;
     overflow:scroll;
@@ -95,10 +97,10 @@ tbody {
     <center><h3>Stock Allocation</h3></center><center><table>
                                         <thead>
                                             <tr>
-                                                <th>  RationShop Number  </th>
-                                                <th>  Supplied Rice  </th>
-                                                <th>  Supplied Wheat  </th>
-                                                <th>  Supplied Kerosene  </th>
+                                                <th>&nbsp&nbsp  RationShop Number  &nbsp&nbsp</th>
+                                                <th>&nbsp&nbsp  Supplied Rice  &nbsp&nbsp</th>
+                                                <th>&nbsp&nbsp  Supplied Wheat  &nbsp&nbsp</th>
+                                                <th>&nbsp&nbsp  Supplied Kerosene  &nbsp&nbsp</th>
                                             </tr><tbody>";
      while ($tabrows=mysqli_fetch_row($restq))
      {

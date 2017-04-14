@@ -44,15 +44,14 @@ else
 
                 <!-- Left Side -->
                 <div class="side side-left">
+                    
                     <input type="button" name="hdr" id="bttn" value="Ration Card Search"><br>
-
-
-                    <input type="text" name="srcht" id="srcht" placeholder="Enter card number...">
-                    <input type="submit" name="srchb" id="srchb" value="Search">
+                    <input type="text" name="srcht" id="srcht" placeholder="Enter card number..." onblur="return cnochk()">
+                    <input type="submit" name="srchb" id="srchb" value="Search" onclick="return search()">
                     <div class="overlay">
                         </img>
                     </div>
-
+                    
                 </div>
 
                 <!-- Right Side -->
@@ -109,6 +108,28 @@ function ajax_check(no)	{
         }
   });
 
+}
+var v;
+function cnochk(){     
+                var xmlhttp;
+                v=document.getElementById('srcht').value;
+                if (window.XMLHttpRequest) { // for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                } else { // for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function() {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                                      if(parseInt(xmlhttp.responseText) != 0)
+                                                alert(xmlhttp.responseText);
+                    }
+                }
+                xmlhttp.open("GET", "cardsearch.php?cno=" + v , false);
+                xmlhttp.send();
+            return true;
+}
+function search(){    
+    window.location.href = "cardsearch.php?value=" + v ;
 }
 
 </script>
