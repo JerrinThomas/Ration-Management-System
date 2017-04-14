@@ -233,13 +233,17 @@ $i=1;
         </label>
       </span>
                     <table id="employee_table" align=center>
-                          <?php while ($row2=mysqli_fetch_row($res))
+                          <?php 
+                            if(mysqli_num_rows($res) > 0 )
+                            while ($row2=mysqli_fetch_row($res))
                             {
                               echo "<tr id=\"row".$i."\"><td><input class=\"memfam\" type=\"text\" name=\"name[]\" placeholder=\"".$row2[0]."\" value=\"".$row2[0]."\" id=\"name".$i."\"
                               ></td><td><input class=\"memfam\" type=\"number\" name=\"age[]\" placeholder=\"".$row2[1]."\" value=\"".$row2[1]."\" id=\"age".$i."\"></td><td><input class=\"memfam\" type=\"number\" name=\"Aadhar_no2[]\" placeholder=\"".$row2[2]
                               ."\" value=\"".$row2[2]."\" id=\"Aadhar".$i."\" onblur=\"valid('check',this.value)\"></td><td><input class='btnew' type='button' value='-' onclick=delete_('row".$i."')></td></tr>";
                               $i++;
                             }
+                          else 
+                              echo "<tr id=\"row0\">";
                           ?>
                     </table>
                     <input class="btnew" type="button" onclick="add_row();" value="+">

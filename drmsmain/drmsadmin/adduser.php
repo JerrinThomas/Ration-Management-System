@@ -223,13 +223,14 @@ if($imageFileType != "jpg" && $imageFileType != "jpeg" ) {
 
   $result=mysqli_query($dbC,$sql);
   if(!$result) {
-     throw new Exception("Error In DataBase row addiction...<br> Please Fill Valid Informations...<br> Try Again By Going Back... :/ ");
+     throw new Exception("Error In DataBase row addiction...<br> Please Fill Valid Informations...<br> Try Again By Going Back... :/ ".$sql."");
   }
   $sq="SELECT ration_card_no FROM rationcard_holder WHERE Aadhar_no='$Aadhar_no'";
   $res=mysqli_query($dbC,$sq);
   $rw=mysqli_fetch_row($res);
-  for($i=0;$i<count($name);$i++)
-  {
+  if(isset($name))
+     for($i=0;$i<count($name);$i++)
+     {
        $ql="INSERT INTO cardholder_and_mem VALUES( ".$Aadhar_no2[$i].",".$rw[0].",'".$name[$i]."',".$age[$i].")";
         $qlout=mysqli_query($dbC,$ql);
         if(!$qlout) {
@@ -241,7 +242,7 @@ if($imageFileType != "jpg" && $imageFileType != "jpeg" ) {
           throw new Exception("Error In DataBase.MemberDetails row ".$i." addiction...<br> Please Fill Valid Informations... ! <br> Try Again By Going Back... :/ ");
        }
 
- }
+    }
   //Section To Update Remaining Quantity Value....Automatically On row addition...
     if($elect==1)
         $query="select riceq,wheatq,ekerq,permember from category where cat_no='$cat'";
@@ -251,11 +252,16 @@ if($imageFileType != "jpg" && $imageFileType != "jpeg" ) {
     $t=mysqli_fetch_row($q);
     $riceq=$t[0]; $wheatq=$t[1]; $kerq=$t[2]; $p=$t[3];
     
-    if($cat == 1 || $cat == 4)
+    if($cat == 1 || $cat == 4){
         $up="update rationcard_holder set remrice='".$riceq."',remwheat='".$wheatq."',remker='".$kerq."' where ration_card_no = '".$rw[0]."'";
-    else if($cat == 2 || $cat == 3)
+        $upshp="update rationshops set max_rice=max_rice+".$riceq.", max_wheat=max_wheat+".$wheatq.", max_ker=max_ker+".$kerq." where shopno=".$shopno."";
+    }
+    else if($cat == 2 || $cat == 3){
         $up="update rationcard_holder set remrice='".$riceq*($no_of_mem+1)."',remwheat='".$wheatq*($no_of_mem+1)."',remker='".$kerq."' where ration_card_no = '".$rw[0]."'";
+        $upshp="update rationshops set max_rice=max_rice+".$riceq*($no_of_mem+1).", max_wheat=max_wheat+".$wheatq*($no_of_mem+1).", max_ker=max_ker+".$kerq." where shopno=".$shopno."";
+    }
     $update=mysqli_query($dbC,$up);
+    $updates=mysqli_query($dbC,$upshp);
 
         
   echo "<img src=\"".$target_file."\"><br>The allotted ration card No : ".$rw[0]."<br><p>The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.</p><br><p>Head Of Family : ".$hofamily;

@@ -16,7 +16,7 @@
             <a href="edit_user_home.php">Modify</a>
         </div>
     </li>
-    <li><a href="#">Stock</a></li>
+    <li><a href="stockman.php">Stock</a></li>
     <?php
     // displays only if the admin is Super ! ..
     if($ro[0]==1)

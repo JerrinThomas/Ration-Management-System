@@ -237,11 +237,25 @@ if(mysqli_num_rows($checkmem) != 0){
   }
 }
     //check whether there is change in cat or elect field...
-    $qq="select category,elect,no_of_mem from rationcard_holder where ration_card_no=$cardno";
+    $qq="select category,elect,no_of_mem,shopno from rationcard_holder where ration_card_no=$cardno";
     $qqres=mysqli_query($dbC,$qq);
     $q=mysqli_fetch_row($qqres);
-    if($q[0] != $cat || $q[1] != $elect || $q[2] != $no_of_mem)
-        $change=true;
+    if($q[0] != $cat || $q[1] != $elect || $q[2] != $no_of_mem){
+            $change=true;
+            if($q[1]==1)
+                 $query="select riceq,wheatq,ekerq,permember from category where cat_no='$q[0]'";
+            else
+                 $query="select riceq,wheatq,nekerq,permember from category where cat_no='$q[0]'";
+            $qdbc=mysqli_query($dbC,$query);
+            $t=mysqli_fetch_row($qdbc);
+            $riceq=$t[0]; $wheatq=$t[1]; $kerq=$t[2]; $p=$t[3];
+            if($q[0] == 1 || $q[0] == 4)
+                   $upshp1="update rationshops set max_rice=max_rice-".$riceq.", max_wheat=max_wheat-".$wheatq.", max_ker=max_ker-".$kerq." where shopno=".$q[3]."";
+            else if($q[0] == 2 || $q[0] == 3)
+                   $upshp1="update rationshops set max_rice=max_rice-".$riceq*($q[2]+1).", max_wheat=max_wheat-".$wheatq*($q[2]+1).", max_ker=max_ker-".$kerq." where shopno=".$q[3]."";
+            $updates1=mysqli_query($dbC,$upshp1);
+       
+    }
     else
         $change=false;
     
@@ -257,8 +271,9 @@ if(!$yes_img)
 }
   $sq="DELETE FROM cardholder_and_mem WHERE ration_card_no='$cardno'";
   $res=mysqli_query($dbC,$sq);
-  for($i=0;$i<count($name);$i++)
-  {
+ if(isset($name))
+    for($i=0;$i<count($name);$i++)
+    {
        $ql="INSERT INTO cardholder_and_mem VALUES( ".$Aadhar_no2[$i].",".$cardno.",'".$name[$i]."',".$age[$i].")";
         $qlout=mysqli_query($dbC,$ql);
         if(!$qlout){
@@ -269,12 +284,12 @@ if(!$yes_img)
           throw new Exception("Error In DataBase.MemberDetails row ".$i." addiction...<br> Please Fill Valid Informations... ! <br> Try Again By Going Back... :/ ");
        }
 
-  }
+   }
     
 //update remQuantities if there s a change...
     if($change)
     {
-            if($e==1)
+            if($elect==1)
               $query="select riceq,wheatq,ekerq,permember from category where cat_no='$cat'";
             else
               $query="select riceq,wheatq,nekerq,permember from category where cat_no='$cat'";
@@ -282,11 +297,16 @@ if(!$yes_img)
       $t=mysqli_fetch_row($q);
       $riceq=$t[0]; $wheatq=$t[1]; $kerq=$t[2]; $p=$t[3];
     
-      if($cat == 1 || $cat == 4)
-           $up="update rationcard_holder set remrice='".$riceq."',remwheat='".$wheatq."',remker='".$kerq."' where ration_card_no = '".$cardno."'";
-      else if($cat == 2 || $cat == 3)
-          $up="update rationcard_holder set remrice='".$riceq*($no_of_mem+1)."',remwheat='".$wheatq*($no_of_mem+1)."',remker='".$kerq."' where ration_card_no = '".$cardno."'";
+      if($cat == 1 || $cat == 4){
+        $up="update rationcard_holder set remrice='".$riceq."',remwheat='".$wheatq."',remker='".$kerq."' where ration_card_no = '".$cardno."'";
+        $upshp="update rationshops set max_rice=max_rice+".$riceq.", max_wheat=max_wheat+".$wheatq.", max_ker=max_ker+".$kerq." where shopno=".$shopno."";
+      }
+      else if($cat == 2 || $cat == 3){
+        $up="update rationcard_holder set remrice='".$riceq*($no_of_mem+1)."',remwheat='".$wheatq*($no_of_mem+1)."',remker='".$kerq."' where ration_card_no = '".$cardno."'";
+        $upshp="update rationshops set max_rice=max_rice+".$riceq*($no_of_mem+1).", max_wheat=max_wheat+".$wheatq*($no_of_mem+1).", max_ker=max_ker+".$kerq." where shopno=".$shopno."";
+      }
       $update=mysqli_query($dbC,$up);
+      $updates=mysqli_query($dbC,$upshp);
     }
     
 if($yes_img)
