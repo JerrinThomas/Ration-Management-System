@@ -168,9 +168,9 @@ if(!isset($_SESSION['lname']))
         }
         var tot=0.00;
         var sno='<?php echo $_SESSION['shopno'] ?>';
-        var pww;
-        var prr;
-        var pkk;
+        var pww= -0.001;
+        var prr= -0.001;
+        var pkk= -0.001;
         function total()
         {
             var pr=parseFloat(document.getElementById('price').innerHTML);
@@ -244,6 +244,10 @@ if(!isset($_SESSION['lname']))
         }
 
         function transaction(){
+        if(prr == -0.001 && pkk == -0.001 && pww == -0.001 ){
+            alert ("Enter An Input");
+            return; 
+        }
             var r=document.getElementById('valr').value;
             var qr=parseFloat(document.getElementById('qr').innerHTML);
             var w=document.getElementById('valw').value;
@@ -256,7 +260,12 @@ if(!isset($_SESSION['lname']))
                 alert("Entered value Cannot Be Processed...");
                 return true;
             }
-         alert('TOTAL : '+ tot + ' ');
+        if(isNaN(tot)){
+            alert(' Entry Is Invalid Try Again After Giving A Valid Entry.');
+            return;
+        }
+        else
+            alert('TOTAL : '+ tot + ' ');
           var xmlhttp;
                 if (window.XMLHttpRequest) { // for IE7+, Firefox, Chrome, Opera, Safari
                     xmlhttp = new XMLHttpRequest();

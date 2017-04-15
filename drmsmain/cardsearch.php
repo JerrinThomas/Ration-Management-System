@@ -64,9 +64,9 @@ if(isset($_GET["value"])){
                                                 <th>&nbsp&nbsp  Balance Kerosene  &nbsp&nbsp</th>
                                             </tr><tbody>
                                             <tr>
-                                                <td><center>$row[18]</center></td>
-                                                <td><center>$row[19]</center></td>
-                                                <td><center>$row[20]</center></td>
+                                                <td><center>$row1[7]</center></td>
+                                                <td><center>$row1[8]</center></td>
+                                                <td><center>$row1[9]</center></td>
                                             </tr>
                                             </tbody>
                                             </table>

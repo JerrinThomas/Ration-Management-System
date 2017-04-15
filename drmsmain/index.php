@@ -110,6 +110,7 @@ function ajax_check(no)	{
 
 }
 var v;
+var t=true;
 function cnochk(){     
                 var xmlhttp;
                 v=document.getElementById('srcht').value;
@@ -120,8 +121,12 @@ function cnochk(){
                 }
                 xmlhttp.onreadystatechange = function() {
                     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                                      if(parseInt(xmlhttp.responseText) != 0)
+                                      if(parseInt(xmlhttp.responseText) != 0){
                                                 alert(xmlhttp.responseText);
+                                                t=false;
+                                      }
+                                      else
+                                          t=true;
                     }
                 }
                 xmlhttp.open("GET", "cardsearch.php?cno=" + v , false);
@@ -132,8 +137,10 @@ function search(){
     v=document.getElementById('srcht').value;
     if( v== '' )
         alert('Enter A CardNumber.');
-    else
-    window.location.href = "cardsearch.php?value=" + v ;
+    else{
+        if(t==true)
+            window.location.href = "cardsearch.php?value=" + v ;
+    }
 }
 
 </script>
