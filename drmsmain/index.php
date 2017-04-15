@@ -128,7 +128,11 @@ function cnochk(){
                 xmlhttp.send();
             return true;
 }
-function search(){    
+function search(){   
+    v=document.getElementById('srcht').value;
+    if( v== '' )
+        alert('Enter A CardNumber.');
+    else
     window.location.href = "cardsearch.php?value=" + v ;
 }
 

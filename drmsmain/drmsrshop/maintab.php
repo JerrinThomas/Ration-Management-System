@@ -189,13 +189,13 @@ if(!isset($_SESSION['lname']))
             }
             else
             dis.value='Rs '+tot+' /-';
-                // check whether the transaction may lead to a negative value in the balance fields...
+                // check whether the transaction may lead to a negative value in the balance fields...                        
                 var xmlhttp;
-                if (window.XMLHttpRequest) { // for IE7+, Firefox, Chrome, Opera, Safari
+                if (window.XMLHttpRequest) { // for IE7+, Firefox, Chrome , Opera, Safari
                     xmlhttp = new XMLHttpRequest();
                 } else { // for IE6, IE5
                     xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-                }
+                } 
                 xmlhttp.onreadystatechange = function() {
                      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                         if(parseInt(xmlhttp.responseText) != 0 )
@@ -213,7 +213,7 @@ if(!isset($_SESSION['lname']))
 
         function otpcheck()
         {
-          var v=document.getElementById('votp');
+          var v=document.getElementById('votp' );
           var val=v.value;
           var error = document.getElementById('otpcheckresult');
           var sal = document.getElementById('tabl');

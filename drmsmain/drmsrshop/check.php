@@ -7,11 +7,11 @@ $qr=$_GET["qr"];
 $qw=$_GET["qw"];
 $qk=$_GET["qk"];
 
-if($qr == "" )
+if($qr == "" || !(ctype_digit($qr)))   //  
     $qr=0;
-if($qw == "" )
+if($qw == "" || !(ctype_digit($qw)))
     $qw=0;
-if($qk == "" )
+if($qk == "" || !(ctype_digit($qk)))
     $qk=0;
 
 $test=false; $out=" ";
