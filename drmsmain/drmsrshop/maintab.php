@@ -54,6 +54,71 @@ if(!isset($_SESSION['lname']))
             .card-container.card {
                 margin-top: 25  
             }
+            
+            input[type="radio"] {
+                display: none;
+            }
+            label {
+                cursor: pointer;
+            }
+            input[type="radio"] + label:before {
+                border: 1px solid #ffffff;
+                content: "\00a0";
+                display: inline-block;
+                font: 16px/1em sans-serif;
+                height: 16px;
+                margin: 0 .25em 0 0;
+                padding:0;
+                vertical-align: top;
+                width: 16px;
+                margin-top: 10px;
+                margin-right: 15px;
+            }
+            input[type="radio"]:checked + label:before {
+                background: #fff;
+                color: #666;
+                content: "\2713";
+                text-align: center;
+            }
+            input[type="radio"]:checked + label:after {
+                font-weight: bold;
+            }
+            #myDIV {
+                width: 50%;
+                padding: 50px 0;
+                text-align: center;
+                background-color: white;
+                margin-top:0px;
+                display: none;
+            }
+            .stub:hover {
+                background-color: #f33636;
+                color: white;
+            }
+            .stub {
+                width: 10%;
+                height: 40px;
+                background-color: white;
+                color: #47a3da;
+                font-size: 20px;
+                border: none;
+                letter-spacing: 2.5px;
+                margin-bottom: 20px;
+            }
+            .salessub {
+                background-color: #FF8484;
+                color: white;
+                font-size: 30px;
+                width: 25%;
+                height: 60px;
+                letter-spacing: 2px;
+                border: 3px solid white;
+                margin: 12px;
+            }
+            .salessub:hover {
+                background-color: #DA344D;
+                color: white;
+            }
     </style>
         
     <div class="col-md-12">
@@ -92,24 +157,93 @@ if(!isset($_SESSION['lname']))
 
                 
                 <div class="tab-pane fade" id="tab2primary">Primary 2
-                    <br><br><br><h3><center>Search</center></h3>
+                   <div class="container" style="background-color: #47a3da;
+                   margin-top: 10%; 
+                    ">
+                    <br><br><br><h3 style=" color: white;
+                    font-size: 80px; 
+                    margin-bottom: 4%;"><center>Search</center></h3>
                     <center>
-                        <select onchange="return history()">
-                            <option id="a">All</option>
-                            <option id="w">Wheat</option>
-                            <option id="r">Rice</option>
-                            <option id="k">Kerosene</option>
+                        <select onchange="return history()" style=" width: 200px;
+                           height: 30px;
+                           color: white;
+                           background-color: #47a3da;
+                           font-size: 25px;
+                           border: 3px solid white;
+                           margin-bottom: 5px; ">
+                            <option id="a" style=" color: #47a3da;
+                            background-color: white; ">All</option>
+                            background-color: white;<option id="w" style=" color: #47a3da;
+                            background-color: white; ">Wheat</option>
+                            background-color: white;<option id="r" style=" color: #47a3da;
+                            background-color: white;
+                             ">Rice</option>
+                            <option id="k" style=" color: #47a3da;
+                            background-color: white;
+                             ">Kerosene</option>
                         </select><br>
                         
-                    <input type="radio" name="cat" id="today" checked="checked">Today's Sale
-                    <input type="radio" name="cat" id="past">Past Month's Sale
-                    <br><input type="radio" name="cat" id="custom">Custom   From : <input type="date" name="frmdate" id="frmdate"> To : <input type="date" name="todate" id="todate">
-                    <br>
-                    <input type="submit" name="subsales" value="submit" onclick="return history()">
                         
+                       <!-- <input type="radio" name="cat" id="today" checked="checked"> <label>Today's Sale</label>
+                        <input type="radio" name="cat" id="past"><label>Past Month's Sale</label>-->
+                        <div class="rdr" style="
+                        width: 50%;
+                        margin-left: 80px;
+                        margin-top: 20px;">
+                        <center>
+                            <input type="radio" id="today" name="cat" checked="checked">
+                        <label for="today" style=" font-family: 'Lato', sans-serif;
+                        font-size: 25px;
+                        color: white;
+                        letter-spacing: 2px; ">Today's Sale</label>
+                        
+                            <input type="radio" id="past" name="cat">
+                        
+                        <label for="past" style=" font-family: 'Lato', sans-serif;
+                        letter-spacing: 2px;
+                        color: white;
+                        font-size: 25px;
+                        margin-left: 40px;
+                         ">Past Month's Sale</label>
+                            </center>     
+                        </div>
+                        
+                        
+                           <!-- <br><input type="radio" name="cat" id="custom"><label for="custom">Custom</label><br>
+                            <label>From</label> <input type="date" name="frmdate" id="frmdate"><label>To :</label>  <input type="date" name="todate" id="todate">-->
+                    <br>
+                        <button onclick="myFunction()" class="stub" name="cat" id="custom">Filter</button>
+                            <div id="myDIV">
+                                <label for="past" style=" font-family: 'Lato', sans-serif;
+                                letter-spacing: 2px;
+                                color: #47a3da;
+                                font-size: 25px;">From :</label>
+                                <input type="date" name="frmdate" id="frmdate" style=" height: 30px;
+                                                                                      background-color: white;
+                                                                                      border: 2.2px solid #47a3da;
+                                                                                      color: #47a3da;
+                                                                                      font-size: 18px;
+                                                                                      border-radius: 8px;
+                                  "><label for="past" style=" font-family: 'Lato', sans-serif;
+                                   letter-spacing: 2px;
+                                    color: #47a3da;
+                                    font-size: 25px;">To :</label>  <input type="date" name="todate" id="todate" style=" height: 30px;
+                                    background-color: white;
+                                    border: 2.2px solid #47a3da;
+                                    color: #47a3da;
+                                    font-size: 18px;
+                                    border-radius: 8px;
+                                    ">
+                            </div><br>
+                    <input type="submit" name="subsales" value="submit" onclick="return history()" class="salessub">
+                      
+                       
+                            
                     </center>
-                    <div id="tablehere"></div>
-
+                    <div id="tablehere" style=" margin-top: 0px;
+                        margin-bottom: 80px;
+                     "></div>
+                    </div>
                 </div>
                 <div class="tab-pane fade" id="tab3primary">Primary 3
                     
@@ -119,6 +253,8 @@ if(!isset($_SESSION['lname']))
         </div>
     </div>
     </div>
+    
+
 
   <script type="text/javascript">
         function ld(){
@@ -313,7 +449,17 @@ if(!isset($_SESSION['lname']))
                 xmlhttp.send();
             return true;
       }
-      
+      var chkfltr=0;
+      function myFunction() {
+          var x = document.getElementById('myDIV');
+          if (x.style.display === 'none') {
+              x.style.display = 'block';
+              chkfltr=1;
+          } else {
+              x.style.display = 'none';
+              chkfltr=0;
+          }
+      }
       function history()
       {
                 var fdat=document.getElementById('frmdate');
@@ -325,9 +471,13 @@ if(!isset($_SESSION['lname']))
                     cat='past';
                     fdate='';
                     tdate='';
-                }else if(document.getElementById('custom').checked) {
+                }/*else if(document.getElementById('custom').checked) {
                     cat='custom';
-                }else if(document.getElementById('today').checked) {
+                }*/
+                else if(chkfltr){
+                    cat='custom';
+                }
+                else if(document.getElementById('today').checked) {
                     cat='today';
                     fdate='';
                     tdate='';
