@@ -1,7 +1,7 @@
 <!--navigaation bar-->
 
 <ul>
-    <li><a href="#">Home</a></li>
+    <li><a href="admin.php">Home</a></li>
     <li class="dropdown"><a href="#" class="dropdown-btn">Ration Shops</a>
         <div class="dropdown-menu">
             <a href="addshopshome.php">Add</a>

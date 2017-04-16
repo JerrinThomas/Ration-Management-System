@@ -4,7 +4,7 @@ require_once('config.php');
 if(isset($_GET["cardno"],$_GET["shopno"])){
     $cno=$_GET["cardno"];
     $sno=$_GET["shopno"];
-    $sq="SELECT hofamily FROM rationcard_holder WHERE shopno='$sno' AND ration_card_no='$cno'";
+    $sq="SELECT hofamily,mob_no,remrice,remwheat,remker FROM rationcard_holder WHERE shopno='$sno' AND ration_card_no='$cno'";
     $res=mysqli_query($dbC,$sq);
     
     if(mysqli_num_rows($res) == 0)
@@ -40,6 +40,38 @@ if(isset($_GET["cardno"],$_GET["shopno"])){
         //save otp to temp table
          $sql="INSERT INTO tempotp VALUES('".$otp."','".$cno."','".$sno."','".$starttime."')";
          $res1=mysqli_query($dbC,$sql);
+        
+        
+        
+        	// Account details
+	$username = 'rationsystem@gmail.com';
+	$hash = '4ceb8e49a486459cacda9f637d4b61843a7e53cd1e9b726b760d5de7090b599b';
+	
+	// Message details
+    $num=$tap[1];
+    $num=910000000000+$num;
+	$numbers = array($num);
+	$sender = urlencode('TXTLCL');
+	$message = rawurlencode('Dear '.$tap[0].' OTP for your transaction is '.$otp.' . Your Monthly Balance Rice : '.$tap[2].' Kg Wheat : '.$tap[3].' Kg Kerosene : '.$tap[4].' L Hurry Up! Get Your Cart Filled. From Team dRMS ');
+ 
+	$numbers = implode(',', $numbers);
+ 
+	// Prepare data for POST request
+	$data = array('username' => $username, 'hash' => $hash, 'numbers' => $numbers, "sender" => $sender, "message" => $message);
+ 
+	// Send the POST request with cURL
+	$ch = curl_init('http://api.textlocal.in/send/');
+	curl_setopt($ch, CURLOPT_POST, true);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	$response = curl_exec($ch);
+	curl_close($ch);
+	
+	// Process your response here
+	echo $response;
+        
+        
+        
          
         // return to called fuction with value 1 indicating otp validation..
         // for time being otp is */

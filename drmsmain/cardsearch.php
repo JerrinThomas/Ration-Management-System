@@ -31,7 +31,7 @@ if(isset($_GET["value"])){
            color:red;
           }
           tbody {
-              color:blue;
+              color:#CDDC39;
               overflow:scroll;
               height:100px;
           }
