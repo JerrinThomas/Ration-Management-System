@@ -473,7 +473,7 @@ tbody {
                                             </tr>";
      } 
     $output.="</tbody></table></center>";
-    echo $output;echo $tq;
+    echo $output;
 
 }
 
