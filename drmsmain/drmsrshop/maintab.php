@@ -467,21 +467,24 @@ if(!isset($_SESSION['lname']))
                 var tdat=document.getElementById('todate');
                 var tdate=tdat.value;
                 var cat,optns;
-                if(document.getElementById('past').checked) {
-                    cat='past';
-                    fdate='';
-                    tdate='';
-                }/*else if(document.getElementById('custom').checked) {
+          if(chkfltr){
+              cat='custom';
+          }
+          /*else if(document.getElementById('custom').checked) {
                     cat='custom';
                 }*/
-                else if(chkfltr){
-                    cat='custom';
-                }
+                
                 else if(document.getElementById('today').checked) {
                     cat='today';
                     fdate='';
                     tdate='';
                 }
+          else if(document.getElementById('past').checked) {
+              cat='past';
+              fdate='';
+              tdate='';
+
+          }
                 if(document.getElementById('w').selected) {
                        optns="w";
                 }else if(document.getElementById('k').selected) {
