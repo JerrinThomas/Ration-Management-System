@@ -429,7 +429,7 @@ elseif(isset($_GET["shno4sales"]))
         $extra=" ";
     if($cat=="today")
        $tq="select * from transdetails where shopno=".$shopno." and dat=curdate()".$extra."order by dat desc ";
-    elseif($cat="past"){
+    elseif($cat=="past"){
        $tq="select * from transdetails where dat>=date_sub(curdate(),interval 1 month)".$extra."";
     }
     else{
@@ -473,7 +473,7 @@ tbody {
                                             </tr>";
      } 
     $output.="</tbody></table></center>";
-    echo $output;
+    echo $output;echo $tq;
 
 }
 
