@@ -44,18 +44,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
   $lname=test_input($_POST["lname"]);
   $address=test_input($_POST["address"]);
   $taluk=test_input($_POST["taluk"]);
-  $pass=test_input($_POST["pass"]);
-
+  $pass=test_input($_POST["pass"]); 
+if($lname == "" || $address == "" || $taluk == "" || $pass == "")
+    die (" <style>
+      body{
+        background : red;
+      }
+ </style>
+ <center> Missing Input Exception....<br><a href=\"addshopshome.php\"><input action=\"action\" type=\"button\" value=\"Back\"/></a>");
     $sql="INSERT INTO rationshops(`lname`,`address`,`taluk`,`password`) VALUES('".$lname."' , '".$address."' , '".$taluk."', '".$pass."')";
     $result=mysqli_query($dbC,$sql);
     if(!$result) {
-       echo "Error In DataBase row addiction...<br> Please Fill Valid Informations...<br> Try Again By Going Back... :/ <br><a href=\"addshopshome.php\"><input action=\"action\" type=\"button\" value=\"Back\"/></a>";
+       echo " <style>
+      body{
+        background : red;
+      }
+ </style>
+ <center>Error In DataBase row addiction...<br> Please Fill Valid Informations...<br> Try Again By Going Back... :/ <br><a href=\"addshopshome.php\"><input action=\"action\" type=\"button\" value=\"Back\"/></a>";
     }
     else {
       $sq="SELECT shopno FROM rationshops WHERE lname='$lname' AND address='$address' AND taluk='$taluk'";
       $res=mysqli_query($dbC,$sq);
       $r=mysqli_fetch_row($res);
-      echo "RationShop Has Been Added With Shopno : ".$r[0]."<br><a href=\"admin.php\"><input action=\"action\" type=\"button\" value=\"Back\"/></a>";
+      echo "
+ <style>
+      body{
+        background : #2980b9;
+      }
+ </style>
+ <center>
+      RationShop Has Been Added With Shopno : ".$r[0]."<br><a href=\"admin.php\"><input action=\"action\" type=\"button\" value=\"Back\"/></a>";
 
     }
 }

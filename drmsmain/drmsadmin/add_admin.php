@@ -88,10 +88,20 @@ try {
   $result=mysqli_query($dbC,$add);
   if(!$result)
     throw new Exception("Error In DataBase....");
-  echo "New Admin Has Been Added....<a href=\"admin.php\">Go Back</a>";
+  echo "  <style>
+      body{
+        background : #2980b9;
+        }
+ </style>
+ <center>New Admin Has Been Added....<a href=\"admin.php\">Go Back</a>";
 } catch (Exception $e) {
-  echo 'Caught exception: ',  $e->getMessage(), "\n  ";
-  echo "<input action=\"action\" type=\"button\" value=\"Back\" onclick=\"history.go(-1);\"/>";
+  echo '<center>Caught exception: ',  $e->getMessage(), "\n  ";
+  echo " <style>
+      body{
+        background : red;
+        }
+ </style>
+ <center><input action=\"action\" type=\"button\" value=\"Back\" onclick=\"history.go(-1);\"/>";
 
 }
 }

@@ -264,13 +264,25 @@ if($imageFileType != "jpg" && $imageFileType != "jpeg" ) {
     $updates=mysqli_query($dbC,$upshp);
 
         
-  echo "<img src=\"".$target_file."\"><br>The allotted ration card No : ".$rw[0]."<br><p>The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.</p><br><p>Head Of Family : ".$hofamily;
+  echo "
+ <style>
+      body{
+        background : #2980b9;
+      }
+ </style>
+ <center>
+  <img src=\"".$target_file."\"><br>The allotted ration card No : ".$rw[0]."<br><p>The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.</p><br><p>Head Of Family : ".$hofamily;
   echo "</p><br><a href=\"admin.php\">Go Back</a>";
   echo "</p><br><a href=\"pdf.php?rno=".$rw[0]."\">Print</a>";
 
 } catch (Exception $e) {
-  echo 'Caught exception: ',  $e->getMessage(), "\n  ";
-  echo "<input action=\"action\" type=\"button\" value=\"Back\" onclick=\"history.go(-1);\"/>";
+  echo '<center>Caught exception: ',  $e->getMessage(), "\n  ";
+  echo " <style>
+      body{
+        background : red;
+      }
+ </style>
+ <center><input action=\"action\" type=\"button\" value=\"Back\" onclick=\"history.go(-1);\"/>";
 
 }
 
