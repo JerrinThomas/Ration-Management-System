@@ -266,14 +266,50 @@ if($imageFileType != "jpg" && $imageFileType != "jpeg" ) {
         
   echo "
  <style>
+    @import url('https://fonts.googleapis.com/css?family=Questrial');
       body{
-        background : #2980b9;
+        background : white;
+      }
+      .rcard {
+        background-color: #2980b9;
+        width: 50%;
+        margin: 0 auto;
+        margin-top: 8%;
+        color: white;
+        font-size: 25px;
+        letter-spacing: 2px;
+        font-family: 'Questrial', sans-serif;
+        font-weight: 400;
+        padding: 20;
+      }
+      .bkbut {
+        text-decoration: none;
+        background-color: white;
+        padding: 10;
+        font-size: 23px;
+      }
+      .bkbut:hover {
+        background-color: #DA344D;
+        color: white;
+      }
+      .prntbut {
+        text-decoration: none;
+        background-color: white;
+        padding: 10;
+        font-size: 23px;
+        padding-left: 65px;
+        padding-right: 65px;
+      }
+      .prntbut:hover {
+        background-color: #DA344D;
+        color: white;
       }
  </style>
+ <div class=\"rcard\">
  <center>
-  <img src=\"".$target_file."\"><br>The allotted ration card No : ".$rw[0]."<br><p>The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.</p><br><p>Head Of Family : ".$hofamily;
-  echo "</p><br><a href=\"admin.php\">Go Back</a>";
-  echo "</p><br><a href=\"pdf.php?rno=".$rw[0]."\">Print</a>";
+  <img src=\"".$target_file."\" style=\" margin: 20px; \"><br>The allotted ration card No : ".$rw[0]."<br><p>The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.</p><p style=\" background-color: white; color: #2980b9; width: 93%; padding: 20;  \">Head Of Family : ".$hofamily;
+  echo "</p><br><a href=\"admin.php\" class=\" bkbut \">Go Back</a>";
+  echo "</p><br><a href=\"pdf.php?rno=".$rw[0]."\" class=\"prntbut\">Print</a>";
 
 } catch (Exception $e) {
   echo '<center>Caught exception: ',  $e->getMessage(), "\n  ";
@@ -282,7 +318,8 @@ if($imageFileType != "jpg" && $imageFileType != "jpeg" ) {
         background : red;
       }
  </style>
- <center><input action=\"action\" type=\"button\" value=\"Back\" onclick=\"history.go(-1);\"/>";
+ <center><input action=\"action\" type=\"button\" value=\"Back\" onclick=\"history.go(-1);\"/>
+</div>";
 
 }
 
