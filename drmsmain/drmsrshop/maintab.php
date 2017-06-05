@@ -120,6 +120,9 @@ if(!isset($_SESSION['lname']))
                 background-color: #DA344D;
                 color: white;
             }
+            .row {
+                margin-left: 0;
+            }
         </style>
 
         <div class="col-md-12">
@@ -141,7 +144,11 @@ if(!isset($_SESSION['lname']))
                 <div class="panel-body">
                     <div class="tab-content">
                         <div class="tab-pane fade in active " id="tab1primary">
-
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
                             <div class="container">
                                 <div class="row vertical-align">
                                     <div class="card card-container">

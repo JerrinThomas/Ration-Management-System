@@ -406,7 +406,7 @@ elseif(isset($_GET["shno4stock"]))
     $sq="select bal_rice,bal_wheat,bal_ker,amt from rationshops where shopno=$sno";
     $sus=mysqli_query($dbC,$sq);
     $sr=mysqli_fetch_row($sus);
-    echo "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><center><h3>Remaining Balance</h3></center><br><center>Rice : $sr[0] Kg<br>Wheat : $sr[1] Kg<br>Kerosene : $sr[2] L<br>Total Sales  : Rs .$sr[3] /-<br></center>";
+    echo "<br><br><br><br><br><br><br><br><br><br><br><center><div style=\" background-color: #47a3da; width: 50%;\"><center><br><br><h3 style=\" font-size:40px; color:white; letter-spacing:2px;\">Remaining Balance</h3></center><br><br><center style=\" background-color:white; width:80%; font-size:20px;\"><br>Rice : $sr[0] Kg<br>Wheat : $sr[1] Kg<br>Kerosene : $sr[2] L<br>Total Sales  : Rs .$sr[3] /-<br><br></center><br><br></div></center>";
 
 }
 elseif(isset($_GET["shno4sales"]))
