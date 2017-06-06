@@ -19,7 +19,7 @@ if($s == 1){
            color:red;
           }    
           tbody {
-              color:#CDDC39;
+              color:#3d4444;
               overflow:scroll;
               height:100px;
           }
@@ -37,7 +37,8 @@ if($s == 1){
                                             
      while ($tabrows=mysqli_fetch_row($q))
      {
-         $out.="                   <tr>
+         $out.="                   
+                                            <tr>
                                                 <td><center>&nbsp&nbsp$tabrows[2]&nbsp&nbsp</center></td>
                                                 <td><center>&nbsp&nbsp$tabrows[0]&nbsp&nbsp</center></td>
                                                 <td><center>&nbsp&nbsp$tabrows[3]&nbsp&nbsp</center></td>
@@ -69,7 +70,7 @@ else{
            color:red;
           }    
           tbody {
-              color:#CDDC39;
+              color:#3d4444;
               overflow:scroll;
               height:100px;
           }
