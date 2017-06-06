@@ -37,10 +37,30 @@ try {
      $result=mysqli_query($dbC,$add);
      if(!$result)
        throw new Exception("Error In DataBase....");
-     echo " Admin Has Been Modified....<a href=\"admin.php\">Go Back</a>";
+    echo "<style>.rmb{background-color:white; color:#2980b9; text-decoration:none; padding:10px; font-size:23px; border-radius:25px; letter-spacing:2px; border:2px solid;} .rmb:hover{background-color:#2980b9; color:white;}</style><center><h3  style=\" color:#2980b9; margin-top:300px; font-size:40px; \"> Admin Has Been Modified....<center></h3><a href=\"admin.php\" class=\"rmb\">Go Back</a></center>";
    } catch (Exception $e) {
-     echo 'Caught exception: ',  $e->getMessage(), "\n  ";
-     echo "<input action=\"action\" type=\"button\" value=\"Back\" onclick=\"history.go(-1);\"/>";
+    echo '<center style=" color:white; margin-top:300px; font-size:30px;">Caught exception: ',  $e->getMessage(), "\n  ";
+    echo " <style>
+      body{
+        background : red;
+        }
+      .rd {
+        width:100px;
+        height:30px;
+        margin-top:20px;
+        background-color:red;
+        color:white;
+        border: 2px solid white;
+        font-size:20px;
+        border-radius:20px;
+      }
+      .rd:hover {
+        background-color:white;
+        color:red;
+        font-size:23px;
+      }
+ </style>
+ <center><input class=\"rd\" action=\"action\" type=\"button\" value=\"Back\" onclick=\"history.go(-1);\"/>";
 
    }
    }

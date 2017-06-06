@@ -49,7 +49,7 @@ if(isset($_POST["Submit"])) {
        <div>
             <input class="btn" type="submit" value="submit" name="Submit" />
         </div>
-        <span><?php echo "<h1>".$msg1."</h1>" ?></span>
+        <span><?php echo "<center><h1 style=\"color: white;\">".$msg1."</h1></center>" ?></span>
 
     </form>
 </div>

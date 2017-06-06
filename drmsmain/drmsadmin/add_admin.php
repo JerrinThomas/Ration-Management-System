@@ -93,15 +93,30 @@ try {
         background : #2980b9;
         }
  </style>
- <center>New Admin Has Been Added....<a href=\"admin.php\">Go Back</a>";
+ <center><p style=\" font-size:23px; color:white; margin-top:300px; \">New Admin Has Been Added....</p><br><a href=\"admin.php\" style=\" background-color:white; color:#2980b9; text-decoration:none; font-size:23px; padding:7px;\">Go Back</a>";
 } catch (Exception $e) {
-  echo '<center>Caught exception: ',  $e->getMessage(), "\n  ";
+  echo '<center style=" color:white; margin-top:300px; font-size:30px;">Caught exception: ',  $e->getMessage(), "\n  ";
   echo " <style>
       body{
         background : red;
         }
+      .rd {
+        width:100px;
+        height:30px;
+        margin-top:20px;
+        background-color:red;
+        color:white;
+        border: 2px solid white;
+        font-size:20px;
+        border-radius:20px;
+      }
+      .rd:hover {
+        background-color:white;
+        color:red;
+        font-size:23px;
+      }
  </style>
- <center><input action=\"action\" type=\"button\" value=\"Back\" onclick=\"history.go(-1);\"/>";
+ <center><input class=\"rd\" action=\"action\" type=\"button\" value=\"Back\" onclick=\"history.go(-1);\"/>";
 
 }
 }
