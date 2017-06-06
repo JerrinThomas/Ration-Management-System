@@ -423,7 +423,7 @@ if(!isset($_SESSION['lname']))
                     } else if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                         if(parseInt(xmlhttp.responseText) == 0 )
                         {
-                            sal.innerHTML = 'Processing Completed Successfully...<br><center><a href=\"maintab.php\"><input type=\"button\" value=\"Back\"></center>';
+                            sal.innerHTML = '<br><br><p style=\"font-size: 35px; \">Processing Completed Successfully...</p><br><center><a href=\"maintab.php\"><input id=\"srchb2\" type=\"button\" value=\"Back\" style=\" width:20%; font-size: 31px; \"></center>';
                         }
                         else
                         {

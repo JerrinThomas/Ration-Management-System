@@ -369,7 +369,7 @@ elseif(isset($_GET["totamt"],$_GET["shno"])){
     $qs="update rationshops set bal_rice=bal_rice-".$qanr.",bal_wheat=bal_wheat-".$qw.",bal_ker=bal_ker-".$qk.",amt=amt+".$totamt." where shopno= ".$shopno."";
     $qsr=mysqli_query($dbC,$qs);
     if(!$qsr)
-        die("ERROR<br><center><a href=\"maintab.php\"><input type=\"button\" value=\"Back\"></center>");
+        die("<br><br>ERROR<br><br><center><a href=\"maintab.php\"><input style=\" width:20%; \" id=\"srchb2\" type=\"button\" value=\"Back\"></center>");
 
     $qr="update rationcard_holder set remrice=remrice-$qanr,remwheat=remwheat-$qw,remker=remker-$qk where ration_card_no = $cardno";
     $qrr=mysqli_query($dbC,$qr);
@@ -377,7 +377,7 @@ elseif(isset($_GET["totamt"],$_GET["shno"])){
     if(!$qrr){
         $err="update rationshops set bal_rice=bal_rice+".$qanr.",bal_wheat=bal_wheat+".$qw.",bal_ker=bal_ker+".$qk.",amt=amt-".$totamt." where shopno= ".$shopno."";
         $errres=mysqli_query($dbC,$err);
-        die("ERROR<br><center><a href=\"maintab.php\"><input type=\"button\" value=\"Back\"></center>");
+        die("<br><br>ERROR<br><br><center><a href=\"maintab.php\"><input style=\" width:20%; \" id=\"srchb2\" type=\"button\" value=\"Back\"></center>");
     }
     $ssr=$rrc=$ssrk=false;
 
