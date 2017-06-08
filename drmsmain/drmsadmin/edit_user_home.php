@@ -21,7 +21,7 @@ if(isset($_GET['msg']))
 
 <div class="bfore">
      <form action="edit_user.php" method="post">
-                    <span><?php echo "<h1>".$msg."</h1>" ?></span>
+                    <span><?php echo "<h1 style=\" color:white;\">".$msg."</h1>" ?></span>
                     <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-32" name="cardno" required/>
         <label class="input__label input__label--manami" for="input-32">

@@ -310,10 +310,96 @@ if(!$yes_img)
     }
     
 if($yes_img)
-  echo "<img src=\"".$target_file."\"><br>The allotted ration card No : ".$cardno." has been Modified<br>The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.<br>Head Of Family : ".$hofamily."<br><a href=\"edit_user_home.php\"><input action=\"action\" type=\"button\" value=\"Back\"/></a>";
-else
-      echo "<img src=\"".$dup."\"><br>The allotted ration card No : ".$cardno." has been Modified<br>The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.<br>Head Of Family : ".$hofamily."<br><a href=\"edit_user_home.php\"><input action=\"action\" type=\"button\" value=\"Back\"/></a>";
- echo "<br><a href=\"pdf.php?rno=".$cardno."\">Print</a>";
+  echo "
+    <style>
+    @import url('https://fonts.googleapis.com/css?family=Questrial');
+      body{
+        background : white;
+      }
+      .rcard {
+        background-color: #2980b9;
+        width: 50%;
+        margin: 0 auto;
+        margin-top: 8%;
+        color: white;
+        font-size: 25px;
+        letter-spacing: 2px;
+        font-family: 'Questrial', sans-serif;
+        font-weight: 400;
+        padding: 20;
+      }
+      .bkbut {
+        text-decoration: none;
+        background-color: white;
+        padding: 10;
+        font-size: 23px;
+      }
+      .bkbut:hover {
+        background-color: #DA344D;
+        color: white;
+      }
+      .prntbut {
+        text-decoration: none;
+        background-color: white;
+        padding: 10;
+        font-size: 23px;
+        padding-left: 65px;
+        padding-right: 65px;
+      }
+      .prntbut:hover {
+        background-color: #DA344D;
+        color: white;
+      }
+ </style>
+ <div class=\"rcard\">
+ <center>
+  <img src=\"".$target_file."\" style=\" margin: 20px; \"><br>The allotted ration card No : ".$cardno." has been Modified<br><p>The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.</p><p style=\" background-color: white; color: #2980b9; width: 93%; padding: 20;  \">Head Of Family : ".$hofamily."</p><a href=\"edit_user_home.php\" class=\" bkbut \">Go Back</a>";
+    else
+        echo "
+    <style>
+    @import url('https://fonts.googleapis.com/css?family=Questrial');
+      body{
+        background : white;
+      }
+      .rcard {
+        background-color: #2980b9;
+        width: 50%;
+        margin: 0 auto;
+        margin-top: 8%;
+        color: white;
+        font-size: 25px;
+        letter-spacing: 2px;
+        font-family: 'Questrial', sans-serif;
+        font-weight: 400;
+        padding: 20;
+      }
+      .bkbut {
+        text-decoration: none;
+        background-color: white;
+        padding: 10;
+        font-size: 23px;
+      }
+      .bkbut:hover {
+        background-color: #DA344D;
+        color: white;
+      }
+      .prntbut {
+        text-decoration: none;
+        background-color: white;
+        padding: 10;
+        font-size: 23px;
+        padding-left: 65px;
+        padding-right: 65px;
+      }
+      .prntbut:hover {
+        background-color: #DA344D;
+        color: white;
+      }
+ </style>
+ <div class=\"rcard\">
+ <center>
+    <img src=\"".$dup."\" style=\" margin: 20px; \"><br>The allotted ration card No : ".$cardno." has been Modified<br><p>The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.</p><p style=\" background-color: white; color: #2980b9; width: 93%; padding: 20;  \">Head Of Family : ".$hofamily."</p><a href=\"edit_user_home.php\" class=\" bkbut \">Go Back</a>";
+    echo "<br><br><a href=\"pdf.php?rno=".$cardno."\" class=\"prntbut\">Print</a>";
           session_start();
           $logname=$_SESSION['name'];
           $log="insert into adminlog values('$logname','Card Modified : $cardno ',curdate(),curtime())";
