@@ -1,0 +1,87 @@
+Algorithm-StockAllocation(Arice,Awheat,Akerosene)
+//Arice is the amount of rice available to the supply officer
+//Awheat is the amount of wheat available to the supply officer
+//Akerosene is the amount of kerosene available to the supply officer
+{
+      shopnos:= Read no of ration shops from database;
+      //Get stock needed for each shop
+      for i:=1 to shopnos do
+      {
+            req_rice[i]:= Read amount of rice required for shop[i]  from database;
+            req_wheat[i]:= Read amount of wheat required for shop[i]  from database;
+            req_kerosene[i]:= Read amount of kerosene required for shop[i]  from database;
+      }
+      max_rice:= total amount of rice required; //read from database
+      max_wheat:= total amount of wheat required; //read from database
+      max_kerosene:= total amount of kerosene required; //read from database
+
+      if(Arice != 0)
+      {
+            for i:=1 to shopnos do
+            {
+                  if(Arice = max_rice)
+                        bal_rice[i]:=bal_rice[i]+req_rice[i];
+                        //update entries of every rationshop
+                  else if(Arice > max-rice)
+                  {
+                        bal_rice[i]=bal_rice[i]+req_rice[i];
+                        //update entries of every rationshop
+                        AriceMod:= (Arice-max_rice)/shopnos;
+                        bal_rice[i]=bal_rice[i]+AriceMod;
+                        //leftover stock allocation
+                  }
+                  else
+                  {
+                        Aricem:=Arice/shopnos;
+                        bal_rice[i]:=bal-rice[i]+AriceMod;
+                        //when enough stock is available
+                  }
+            }
+      }
+      if(Awheat != 0)
+      {
+            fori:=1 to shopnos do
+            {
+                  if(Awheat = max_wheat)
+                        bal_wheat[i]:=bal_wheat[i]+req_wheat[i];
+                        //update entries of every rationshop
+                  else if(Awheat > max_wheat)
+                  {
+                        bal_wheat[i]:=bal_wheat[i]+req_wheat[i];
+                        //update entries of every rationshop
+                        AwheatMod:= (Awheat-max_wheat)/shopnos;
+                        bal_wheat[i]=bal_wheat[i]+AwheatMod;
+                        //leftover stock allocation
+                  }
+                  else
+                  {
+                        AwheatMod:=Awheat/shopnos;
+                        bal_wheat[i]:=bal_wheat[i]+AwheatMod;
+                        //when enough stock is available
+                  }
+            }
+      }
+      if(Akerosene != 0)
+      {
+            fori:=1 to shopnos do
+            {
+                  if(Akerosene = max_kerosene)
+                        bal_kerosene[i]:=bal_kerosene[i]+kerosene[i];
+                        //update entries of every rationshop
+                  else if(Akerosene > max_kerosene)
+                  {
+                        bal_kerosene[i]=bal_kerosene[i]+req_kerosene[i];
+                        //update entries of every rationshop
+                        AkeroseneMod:= (Akerosene-max_kerosene)/shopnos;
+                        bal_kerosene[i]:=bal_kerosene[i]+AkeroseneMod;
+                        //leftover stock allocation
+                  }
+                  else
+                  {
+                        AkeroseneMod:=Akerosene/shopnos;
+                        bal_kerosene[i]:=bal_kerosene[i]+AkeroseneMod;
+                        //when enough stock is available
+                  }
+            }
+      }
+}
