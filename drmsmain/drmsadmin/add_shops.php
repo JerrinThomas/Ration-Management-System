@@ -77,7 +77,7 @@ if($lname == "" || $address == "" || $taluk == "" || $pass == "")
       }
  </style>
  <center>
-      RationShop Has Been Added With Shopno : ".$r[0]."<br><a href=\"admin.php\"><input action=\"action\" type=\"button\" value=\"Back\"/></a>";
+      <p style=\" font-size:23px; color:white; margin-top:300px; \">RationShop Has Been Added With Shopno : ".$r[0]."</p><br><a href=\"admin.php\" style=\" background-color:white; color:#2980b9; text-decoration:none; font-size:23px; padding:7px;\">Go Back</a>";
     }
 }
     ob_get_contents();
