@@ -66,6 +66,10 @@ if($lname == "" || $address == "" || $taluk == "" || $pass == "")
       $sq="SELECT shopno FROM rationshops WHERE lname='$lname' AND address='$address' AND taluk='$taluk'";
       $res=mysqli_query($dbC,$sq);
       $r=mysqli_fetch_row($res);
+          session_start();
+          $logname=$_SESSION['name'];
+          $log="insert into adminlog values('$logname','Added new Shop : $r[0] ',curdate(),curtime())";
+          $logres=mysqli_query($dbC,$log);
       echo "
  <style>
       body{
@@ -74,7 +78,6 @@ if($lname == "" || $address == "" || $taluk == "" || $pass == "")
  </style>
  <center>
       RationShop Has Been Added With Shopno : ".$r[0]."<br><a href=\"admin.php\"><input action=\"action\" type=\"button\" value=\"Back\"/></a>";
-
     }
 }
     ob_get_contents();

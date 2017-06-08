@@ -395,7 +395,36 @@ elseif(isset($_GET["totamt"],$_GET["shno"])){
         $ssk="insert into transdetails (`shopno`,`cardno`,`quantity`,`item`,`dat`,`tim`,`amt`) values(".$shopno.",".$cardno.",".$qk.",'kerosene',curdate(),curtime(),".$pk.")";
         $ssrk=mysqli_query($dbC,$ssk);
     }
+    
+    $reply="select hofamily,remrice,remwheat,remker,mob_no from rationcard_holder where ration_card_no=$cardno";
+    $replyresult=mysqli_query($dbC,$reply);
+    $rep=mysqli_fetch_row($replyresult);
+            // Account details
+        $username = 'rationsystem@gmail.com';
+        $hash = '4ceb8e49a486459cacda9f637d4b61843a7e53cd1e9b726b760d5de7090b599b';
 
+      // Message details
+    
+        $num=$rep[4];
+        $num=910000000000+$num;
+        $numbers = array($num);
+        $sender = urlencode('TXTLCL');
+        $message = rawurlencode('Dear '.$rep[0].' Your New Balance -> Rice : '.$rep[1].' Kg Wheat : '.$rep[2].' Kg Kerosene : '.$rep[3].' Have A Great Day. From Team dRMS ');
+
+        $numbers = implode(',', $numbers);
+
+        // Prepare data for POST request
+        $data = array('username' => $username, 'hash' => $hash, 'numbers' => $numbers, "sender" => $sender, "message" => $message);
+
+        // Send the POST request with cURL
+        $ch = curl_init('http://api.textlocal.in/send/');
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($ch);
+        curl_close($ch);
+
+  
     if($ssr || $rrc || $ssrk)
         die("0");
 

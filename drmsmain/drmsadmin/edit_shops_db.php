@@ -22,10 +22,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $sql="UPDATE rationshops SET lname ='".$lname."' , address='".$address."' , taluk='".$taluk."' , password='".$pass."' WHERE shopno=$shopno";
     $result=mysqli_query($dbC,$sql);
     if(!$result) {
-       echo "Error In DataBase row addiction...<br> Please Fill Valid Informations...<br> Try Again By Going Back... :/ <br><a href=\"edit_shop_home.php\"><input action=\"action\" type=\"button\" value=\"Back\"/></a>";
+       echo " <style>
+        body{
+          background : red;
+         }
+        </style>
+        <center>Error In DataBase row addiction...<br> Please Fill Valid Informations...<br> Try Again By Going Back... :/ <br><a href=\"addshopshome.php\"><input action=\"action\" type=\"button\" value=\"Back\"/></a>";
     }
     else {
-      echo "RationShop With Shopno : ".$shopno." Has Been Modified..<br><a href=\"edit_shop_home.php\"><input action=\"action\" type=\"button\" value=\"Back\"/></a>";
+      echo "
+       <style>
+         body{
+            background : #2980b9;
+         }
+       </style>
+      <center>
+           RationShop With Shopno : ".$shopno." Has Been Modified..<br><a href=\"edit_shop_home.php\"><input action=\"action\" type=\"button\" value=\"Back\"/></a>";
+          session_start();
+          $logname=$_SESSION['name'];
+          $log="insert into adminlog values('$logname','Modified Shop : $shopno ',curdate(),curtime())";
+          $logres=mysqli_query($dbC,$log);
 
     }
 }

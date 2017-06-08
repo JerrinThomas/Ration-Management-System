@@ -314,6 +314,10 @@ if($yes_img)
 else
       echo "<img src=\"".$dup."\"><br>The allotted ration card No : ".$cardno." has been Modified<br>The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.<br>Head Of Family : ".$hofamily."<br><a href=\"edit_user_home.php\"><input action=\"action\" type=\"button\" value=\"Back\"/></a>";
  echo "<br><a href=\"pdf.php?rno=".$cardno."\">Print</a>";
+          session_start();
+          $logname=$_SESSION['name'];
+          $log="insert into adminlog values('$logname','Card Modified : $cardno ',curdate(),curtime())";
+          $logres=mysqli_query($dbC,$log);
 } 
 catch (Exception $e) {
   echo 'Caught exception: ',  $e->getMessage(), "\n  ";

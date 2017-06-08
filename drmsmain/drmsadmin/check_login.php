@@ -21,6 +21,9 @@ if(isset($_POST['Submit'])) {
           $_SESSION['name']=$myusername;
           $_SESSION['taluk']=$tal[1];
           $_SESSION['role']=$tal[0];
+                   $logname=$_SESSION['name'];
+                   $log="insert into adminlog values('$logname','Login',curdate(),curtime())";
+                   $logres=mysqli_query($dbC,$log);
           header("location:admin.php");
        }
       else {

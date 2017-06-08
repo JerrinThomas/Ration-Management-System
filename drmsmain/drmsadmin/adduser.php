@@ -310,6 +310,10 @@ if($imageFileType != "jpg" && $imageFileType != "jpeg" ) {
   <img src=\"".$target_file."\" style=\" margin: 20px; \"><br>The allotted ration card No : ".$rw[0]."<br><p>The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.</p><p style=\" background-color: white; color: #2980b9; width: 93%; padding: 20;  \">Head Of Family : ".$hofamily;
   echo "</p><br><a href=\"admin.php\" class=\" bkbut \">Go Back</a>";
   echo "</p><br><a href=\"pdf.php?rno=".$rw[0]."\" class=\"prntbut\">Print</a>";
+          session_start();
+          $logname=$_SESSION['name'];
+          $log="insert into adminlog values('$logname','Added new card : $rw[0] ',curdate(),curtime())";
+          $logres=mysqli_query($dbC,$log);
 
 } catch (Exception $e) {
   echo '<center>Caught exception: ',  $e->getMessage(), "\n  ";

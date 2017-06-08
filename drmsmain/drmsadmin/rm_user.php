@@ -38,8 +38,12 @@ else {
   $res=mysqli_query($dbC,$sql1);
   $sql2="DELETE FROM rationcard_holder WHERE ration_card_no='$cardno'";
   $result=mysqli_query($dbC,$sql2);
-  if($res==true && $result==true)
+  if($res==true && $result==true){
+          $logname=$_SESSION['name'];
+          $log="insert into adminlog values('$logname','Card Deleted : $cardno ',curdate(),curtime())";
+          $logres=mysqli_query($dbC,$log);
    header("location:rm_user_home.php?msg1=RationCard ".$cardno." Removed.");
+  }
   else {
   header("location:rm_user_home.php?msg1=Unsuccessfull.");
   }
