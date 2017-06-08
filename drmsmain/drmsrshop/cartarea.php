@@ -42,7 +42,7 @@ if(isset($_GET["cardno"],$_GET["shopno"])){
         $res1=mysqli_query($dbC,$sql);
 
 
-
+/*
         // Account details
         $username = 'rationsystem@gmail.com';
         $hash = '4ceb8e49a486459cacda9f637d4b61843a7e53cd1e9b726b760d5de7090b599b';
@@ -70,7 +70,7 @@ if(isset($_GET["cardno"],$_GET["shopno"])){
         // Process your response here
         echo $response;
 
-
+*/
 
 
         // return to called fuction with value 1 indicating otp validation..
@@ -395,7 +395,7 @@ elseif(isset($_GET["totamt"],$_GET["shno"])){
         $ssk="insert into transdetails (`shopno`,`cardno`,`quantity`,`item`,`dat`,`tim`,`amt`) values(".$shopno.",".$cardno.",".$qk.",'kerosene',curdate(),curtime(),".$pk.")";
         $ssrk=mysqli_query($dbC,$ssk);
     }
-    
+ /*   
     $reply="select hofamily,remrice,remwheat,remker,mob_no from rationcard_holder where ration_card_no=$cardno";
     $replyresult=mysqli_query($dbC,$reply);
     $rep=mysqli_fetch_row($replyresult);
@@ -423,7 +423,7 @@ elseif(isset($_GET["totamt"],$_GET["shno"])){
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $response = curl_exec($ch);
         curl_close($ch);
-
+*/
   
     if($ssr || $rrc || $ssrk)
         die("0");
