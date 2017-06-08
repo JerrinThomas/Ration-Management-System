@@ -20,7 +20,7 @@ if(isset($_GET['msg']))
 
 <div class="bfore">
      <form action="edit_shops.php" method="post">
-                    <span><?php echo "<h1>".$msg."</h1>" ?></span>
+                    <span><?php echo "<center><h1 style=\"color:white;\">".$msg."</h1></center>" ?></span>
                     <span class="input input--manami">
         <input class="input__field input__field--manami" type="text" id="input-32" name="shopno" required/>
         <label class="input__label input__label--manami" for="input-32">

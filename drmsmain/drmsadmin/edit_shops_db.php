@@ -30,7 +30,7 @@ if($lname == "" || $address == "" || $taluk == "" || $pass == "" || ($pass != ""
         background : red;
       }
  </style>
- <center> $message <br><a href=\"addshopshome.php\"><input action=\"action\" type=\"button\" value=\"Back\"/></a>");
+ <center><p style=\" font-size:23px; color:white; margin-top:300px; \"> $message </p><br><a href=\"edit_shop_home.php\" style=\" background-color:white; color:#2980b9; text-decoration:none; font-size:23px; padding:7px;\">Go Back</a>");
 }
 
     $sql="UPDATE rationshops SET lname ='".$lname."' , address='".$address."' , taluk='".$taluk."' , password='".$pass."' WHERE shopno=$shopno";
@@ -51,7 +51,7 @@ if($lname == "" || $address == "" || $taluk == "" || $pass == "" || ($pass != ""
          }
        </style>
       <center>
-           RationShop With Shopno : ".$shopno." Has Been Modified..<br><a href=\"edit_shop_home.php\"><input action=\"action\" type=\"button\" value=\"Back\"/></a>";
+           <p style=\" font-size:23px; color:white; margin-top:300px; \">RationShop With Shopno : ".$shopno." Has Been Modified..</p><br><a href=\"edit_shop_home.php\" style=\" background-color:white; color:#2980b9; text-decoration:none; font-size:23px; padding:7px;\">Go Back</a>";
           session_start();
           $logname=$_SESSION['name'];
           $log="insert into adminlog values('$logname','Modified Shop : $shopno ',curdate(),curtime())";
