@@ -18,6 +18,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
   $taluk=test_input($_POST["taluk"]);
   $shopno=test_input($_POST["shopno"]);
   $pass=test_input($_POST["pass"]);
+    
+if($lname == "" || $address == "" || $taluk == "" || $pass == "" || ($pass != "" && preg_match("/^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$/", $pass) === 0))
+{
+    if($pass != "" && preg_match("/^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$/", $pass) === 0)
+        $message ="ERROR IN PASSWORD...";
+    else
+        $message = "Missing Input Exception....";
+    die (" <style>
+      body{
+        background : red;
+      }
+ </style>
+ <center> $message <br><a href=\"addshopshome.php\"><input action=\"action\" type=\"button\" value=\"Back\"/></a>");
+}
 
     $sql="UPDATE rationshops SET lname ='".$lname."' , address='".$address."' , taluk='".$taluk."' , password='".$pass."' WHERE shopno=$shopno";
     $result=mysqli_query($dbC,$sql);
