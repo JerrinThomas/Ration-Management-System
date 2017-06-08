@@ -45,13 +45,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
   $address=test_input($_POST["address"]);
   $taluk=test_input($_POST["taluk"]);
   $pass=test_input($_POST["pass"]); 
-if($lname == "" || $address == "" || $taluk == "" || $pass == "")
+if($lname == "" || $address == "" || $taluk == "" || $pass == "" || ($pass != "" && preg_match("/^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$/", $pass) === 0))
+{
+    if($pass != "" && preg_match("/^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$/", $pass) === 0)
+        $message ="ERROR IN PASSWORD...";
+    else
+        $message = "Missing Input Exception....";
     die (" <style>
       body{
         background : red;
       }
  </style>
- <center> Missing Input Exception....<br><a href=\"addshopshome.php\"><input action=\"action\" type=\"button\" value=\"Back\"/></a>");
+ <center> $message <br><a href=\"addshopshome.php\"><input action=\"action\" type=\"button\" value=\"Back\"/></a>");
+}
+  
     $sql="INSERT INTO rationshops(`lname`,`address`,`taluk`,`password`) VALUES('".$lname."' , '".$address."' , '".$taluk."', '".$pass."')";
     $result=mysqli_query($dbC,$sql);
     if(!$result) {
