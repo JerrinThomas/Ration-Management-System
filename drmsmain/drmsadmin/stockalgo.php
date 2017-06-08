@@ -86,15 +86,18 @@ $restq=mysqli_query($dbC,$tq);
 $output=" 
 <style>
 table{
- color:red;
+ color:#1ebb90;
+ border-collapse: separate;
+ border-spacing: 10px;
+ font-size:30px;
 }
 tbody {
-    color:blue;
+    color:white;
     overflow:scroll;
-    height:100px;
+    font-size:25px;
     }
 </style>
-    <center><h3>Stock Allocation</h3></center><center><table>
+    <center><br><br><h3>Stock Allocation</h3></center><center><table>
                                         <thead>
                                             <tr>
                                                 <th>&nbsp&nbsp  RationShop Number  &nbsp&nbsp</th>
@@ -111,7 +114,7 @@ tbody {
                                                 <td><center>$tabrows[3]</center></td>
                                             </tr>";
      } 
-    $output.="</tbody></table></center>";
+    $output.="</tbody></table></center><br><br>";
     echo $output;
     
 }
