@@ -1,0 +1,56 @@
+<html>
+<head>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script type="text/javascript">
+  function add_row()
+  {
+    $rowno=$("#employee_table tr").length;
+    $rowno=$rowno+1;
+    $("#employee_table tr:last").after("<tr id='row"+$rowno+"'><td><input type='text' name='name[]' placeholder='Enter Name'></td><td><input type='text' name='age[]' placeholder='Enter Age'></td><td><input type='text' name='job[]' placeholder='Enter Job'></td><td><input type='button' value='DELETE' onclick=delete_row('row"+$rowno+"')></td></tr>");
+  }
+  function delete_row(rowno)
+  {
+    $('#'+rowno).remove();
+  }
+  </script>
+</head>
+<body>
+  <?php
+  echo "test php";
+  ?>
+ <form action="adduser.php" method="post" enctype="multipart/form-data">
+  Name of the Head of the family:
+  <input type="text" name="name" required ><br>
+  Address line 1:
+  <input type="text" name="address1"required ><br>
+  Address line 2:
+  <input type="text" name="address2" value="" ><br>
+  Address line 3:
+  <input type="text" name="address3" value="" ><br>
+  Panchayat/Municipality/Corporation:
+  <input type="text" name="panchayat" required ><br>
+  PIN code:
+  <input type="number" name="pin" min="100000" max="999999" required ><br>
+  Ward Number:
+  <input type="number" name="ward" min="1" max="99" required><br>
+  House Number:
+  <input type="number" name="houseno" min="1" max="9999" required ><br>
+  Monthly Income:
+  <input type="number" name="income" min="0" required ><br>
+  Phone:
+  <input type="number" name="phone" min="1000000000" max="9999999999"><br>
+
+  <table id="employee_table" align=left>
+   <tr id="row1">
+    <td><input type="text" name="name[]" placeholder="Enter Name"></td>
+    <td><input type="text" name="age[]" placeholder="Enter Age"></td>
+    <td><input type="text" name="job[]" placeholder="Enter Job"></td>
+   </tr>
+  </table>
+  <input type="button" onclick="add_row();" value="ADD ROW"><br>
+  <br>Select image to upload:
+  <input type="file" name="fileToUpload" id="fileToUpload" ><br> Number:
+<input type="submit" value="Submit">
+</form>
+</body>
+</html>

@@ -1,0 +1,36 @@
+admindetails table :
+CREATE TABLE `drms`.`admindetails` ( `username` VARCHAR(16) NOT NULL , `password` VARCHAR(32) NOT NULL , `name` VARCHAR(32) NOT NULL , `taluk` VARCHAR(32) NOT NULL , `role` INT(1) NOT NULL DEFAULT '0' , PRIMARY KEY (`username`(16))) ENGINE = InnoDB;
+
+Super Admin :
+INSERT INTO `admindetails` (`username`, `password`, `name`, `taluk`, `role`) VALUES ('superadmin', '1234567890', 'Gabbar Singh', 'Kottayam', '1');
+MiniAdmin 1 :
+INSERT INTO `admindetails` (`username`, `password`, `name`, `taluk`, `role`) VALUES ('miniadmin', '1234567890', 'Jose Prakash', 'kottarakara', '0');
+
+
+RationShopss
+CREATE TABLE `drms`.`rationshops` ( `shopno` INT(8) NOT NULL AUTO_INCREMENT, `lname` VARCHAR(50) NOT NULL , `address` VARCHAR(125) NOT NULL ,`taluk` VARCHAR(50) NOT NULL,max_wheat int(4) NULL,max_rice int(4) NULL,max_ker int(4) NULL,bal_wheat int(4) NULL,bal_rice int(4) NULL,bal_ker int(4) NULL,amt int(5) NULL , PRIMARY KEY(`shopno`)) ENGINE = InnoDB;
+ALTER TABLE `rationshops` AUTO_INCREMENT=100000;
+ALTER TABLE `rationshops` ADD INDEX(`shopno`);
+
+Ration_Card_Holder
+CREATE TABLE `drms`.`rationcard_holder` ( `ration_card_no` BIGINT(16) NOT NULL AUTO_INCREMENT, `Aadhar_no` BIGINT(18) NOT NULL , `hofamily` VARCHAR(50) NOT NULL , `add1` VARCHAR(125) NOT NULL , `add2` VARCHAR(125) NULL , `add3` VARCHAR(125) NULL , `pan_mun_cor` VARCHAR(50) NULL , `pincode` INT(7) NULL , `wardno` INT(4) NULL , `house_no` INT(4) NULL , `monthly_in` INT(14) NULL , `no_of_mem` INT(14) NULL , `hof_img` VARCHAR(125) NULL, `hof_img_type` VARCHAR(5) NULL , `mob_no` BIGINT(16) NULL , `taluk` VARCHAR(50) NOT NULL , PRIMARY KEY(`ration_card_no`), UNIQUE (`Aadhar_no`), UNIQUE (`mob_no`)) ENGINE = InnoDB;
+ALTER TABLE `rationcard_holder` AUTO_INCREMENT=1000000000;
+ALTER TABLE `rationcard_holder` ADD INDEX(`ration_card_no`);
+ALTER TABLE `rationcard_holder` ADD `category` INT(4) NOT NULL AFTER `taluk`;
+ALTER TABLE `rationcard_holder` ADD `shopno` INT(4) NOT NULL AFTER `category`;
+ALTER TABLE `rationcard_holder` ADD INDEX(`shopno`);
+ALTER TABLE `rationcard_holder` ADD CONSTRAINT `ffff` FOREIGN KEY (`shopno`) REFERENCES `rationshops`(`shopno`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+
+
+To Add Details Manually.(Aadhar_no and mob no should be unique =>error)..
+INSERT INTO rationcard_holder(`Aadhar_no`,`hofamily`,`add1`,`add2`,`add3`,`pan_mun_cor`,`pincode`,`wardno`,`house_no`,`monthly_in`,`no_of_mem`,`hof_img`,`hof_img_type`,`mob_no`,`taluk`) VALUES('100000000001' , 'Atom' , 'Mooshikasena (H) Kuttikad P.O Kottayam','Mooshikasena (H) Kuttikad P.O Kottayam' ,'Mooshikasena (H) Kuttikad P.O Kottayam','Kuttikad','686004','1','20','35000','1','uploads/image.jpg','jpg','8281860141','Kuttukad');
+
+
+Details Of Family Members//..
+CREATE TABLE `drms`.`cardholder_and_mem` ( `Aadhar_no` BIGINT(18) NOT NULL , `ration_card_no` BIGINT(16) NOT NULL , `mem_name` VARCHAR(50) NOT NULL, `age` INT(3) NOT NULL, PRIMARY KEY(`Aadhar_no`) ) ENGINE = InnoDB;
+ALTER TABLE `cardholder_and_mem` ADD INDEX(`ration_card_no`);
+ALTER TABLE `cardholder_and_mem` ADD CONSTRAINT `fkey1` FOREIGN KEY (`ration_card_no`) REFERENCES `rationcard_holder`(`ration_card_no`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+To Add Details Manually...
+INSERT INTO cardholder_and_mem VALUES( 100000000002,1000000000,'Chweet Lve',24);
