@@ -93,7 +93,11 @@ try {
         background : #2980b9;
         }
  </style>
- <center><p style=\" font-size:23px; color:white; margin-top:300px; \">New Admin Has Been Added....</p><br><a href=\"admin.php\" style=\" background-color:white; color:#2980b9; text-decoration:none; font-size:23px; padding:7px;\">Go Back</a>";
+ <center><p style=\" font-size:23px; color:white; margin-top:300px; \">New Admin $uname Has Been Added....</p><br><a href=\"admin.php\" style=\" background-color:white; color:#2980b9; text-decoration:none; font-size:23px; padding:7px;\">Go Back</a>";
+          session_start();
+          $logname=$_SESSION['name'];
+          $log="insert into adminlog values('$logname','Added new Admin : $uname ',curdate(),curtime())";
+          $logres=mysqli_query($dbC,$log); 
 } catch (Exception $e) {
   echo '<center style=" color:white; margin-top:300px; font-size:30px;">Caught exception: ',  $e->getMessage(), "\n  ";
   echo " <style>

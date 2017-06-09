@@ -19,8 +19,12 @@ if(isset($_POST["Submit"])) {
     else {
       $sql1="DELETE FROM admindetails WHERE username='$uname'";
       $res=mysqli_query($dbC,$sql1);
-      if($res==true)
+      if($res==true){
         $msg1="Admin ".$uname." Removed.";
+          $logname=$_SESSION['name'];
+          $log="insert into adminlog values('$logname','Deleted Admin : $uname ',curdate(),curtime())";
+          $logres=mysqli_query($dbC,$log);
+      }
       else {
        $msg1="Unsuccessfull";
       }
